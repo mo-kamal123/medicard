@@ -4,7 +4,7 @@ export function HomePage() {
   const { t } = useTranslation()
 
   return (
-    <section className="page-grid">
+    <section className="">
         <p className="eyebrow">{t('home.eyebrow')}</p>
     </section>
   )
