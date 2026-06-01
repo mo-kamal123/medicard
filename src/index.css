@@ -32,6 +32,13 @@
   --color-body: #f7fafc;
   --color-borders: #e1e1e4;
   --color-main: #3872B1;
-  --color-sec: #d2d6da;
+  --color-sec: #1B4477;
   --color-dark: #0b0c0c;
+}
+
+.hero-bg {
+  background-image: url('./assets/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
