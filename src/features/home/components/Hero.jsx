@@ -1,24 +1,22 @@
-import React from "react";
 import SearchInput from "../../../shared/components/Search-input";
+import appstore from "../../../assets/app-store.svg";
+import googleplay from "../../../assets/google-play.svg";
 
 const Hero = () => {
   return (
     <section className="relative hero-bg flex items-center bg-cover bg-center bg-no-repeat">
-      {/* Dark Overlay */}
-      {/* <div className="absolute inset-0 bg-black/60"></div> */}
-
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 lg:px-20 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-1 gap-16 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left text-white">
-            <span className="inline-block px-4 py-2 mb-6 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm tracking-wide">
+            <span className="inline-block px-4 py-2 mb-6 rounded-full text-black bg-white/10 backdrop-blur-md border border-white/20 text-sm tracking-wide">
               Modern Healthcare Platform
             </span>
 
-            <h1 className="text-5xl text-black md:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-6xl text-black md:text-6xl font-bold leading-tight mb-6">
               Less Cost
-              <span className="text-sec ml-4">Our Priority</span>
+              <span className="text-sec ml-4"> More Care.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-[#4A5A7A] mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
@@ -28,21 +26,25 @@ const Hero = () => {
 
             {/* Search */}
             <div className="mb-10 flex justify-center lg:justify-start">
-              <SearchInput />
+              <SearchInput placeholder="Doctor name, pharmacy, lab…" />
             </div>
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="px-8 py-4 rounded-xl bg-main text-white font-semibold shadow-lg hover:scale-105 hover:bg-main/90 transition-all duration-300">
-                Get Started
+              <button className="px-8 py-3 w-40 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition">
+                Buy Card
               </button>
 
-              <button className="px-8 py-4 rounded-xl border border-white/30 bg-white/10 backdrop-blur-md text-white font-semibold hover:bg-white/20 transition-all duration-300">
-                Learn More
+              <button className="px-5 py-3 text-sm font-medium bg-white text-main border border-main rounded-lg hover:bg-blue-50 transition">
+                Become a Provider
               </button>
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute right-10 bottom-10 flex items-center gap-5">
+        <img src={googleplay} alt="" />
+        <img src={appstore} alt="" />
       </div>
     </section>
   );

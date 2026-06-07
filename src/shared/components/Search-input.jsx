@@ -1,18 +1,26 @@
+import { Search } from "lucide-react";
 import React from "react";
 
-const   SearchInput = ({
+const SearchInput = ({
   placeholder = "Search doctors, clinics...",
   buttonText = "Search",
 }) => {
   return (
-    <div className="w-full max-w-xl flex items-center gap-5 overflow-hidden  border border-white/20">
-      <input
-        type="text"
-        placeholder={placeholder}
-        className="flex-1 px-5 py-4 outline-none text-gray-700 bg-white/90 bg-transparent rounded-xl"
-      />
+    <div className="w-full max-w-xl flex items-center gap-5">
+      <div className="relative flex-1">
+        <Search
+          size={20}
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+        />
 
-      <button className="px-6 py-4 bg-main text-white font-medium hover:bg-main/90 transition-all duration-300 rounded-xl">
+        <input
+          type="text"
+          placeholder={placeholder}
+          className="w-full pl-12 pr-5 py-4 outline-none text-gray-700 bg-white/90 rounded-xl border border-gray-300 placeholder:text-gray-400"
+        />
+      </div>
+
+      <button className="px-8 py-4 bg-main text-white font-medium hover:bg-sec transition-all duration-300 rounded-xl">
         {buttonText}
       </button>
     </div>
