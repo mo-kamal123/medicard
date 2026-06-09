@@ -26,7 +26,11 @@ const Hero = () => {
 
             {/* Search */}
             <div className="mb-10 flex justify-center lg:justify-start">
-              <SearchInput placeholder="Doctor name, pharmacy, lab…" />
+              <SearchInput
+                placeholder="Doctor name, pharmacy, lab…"
+                showButton
+                className="max-w-2xl"
+              />
             </div>
 
             {/* Buttons */}
