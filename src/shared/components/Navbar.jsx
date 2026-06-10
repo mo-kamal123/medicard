@@ -1,71 +1,83 @@
-import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useTranslation } from "react-i18next";
+import { Globe, Globe2 } from "lucide-react";
+
 const Navbar = () => {
-  const [lang, setLang] = useState("en");
-  const { t } = useTranslation();
-  // Dynamic nav links
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const currentLang = i18n.language === "ar" ? "AR" : "EN";
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "ar" ? "en" : "ar";
+    i18n.changeLanguage(newLang);
+  };
+
   const navLinks = [
-    { name: t("navbar.serviceProviders"), path: "/" },
-    { name: t("navbar.why"), path: "/doctors" },
-    { name: t("navbar.offers"), path: "/about" },
-    { name: t("navbar.contact"), path: "/contact" },
+    { name: t("navbar.serviceProviders"), hash: "#service-providers" },
+    { name: t("navbar.why"), hash: "#why" },
+    { name: t("navbar.offers"), hash: "#offers" },
+    { name: t("navbar.contact"), hash: "#contact" },
   ];
 
+  const onNavClick = (hash) => (e) => {
+    // We'll let the router update the URL/hash first, then scroll.
+    // HomePage also listens to `location.hash` and will scroll on mount.
+    e.preventDefault();
+    navigate({ pathname: "/", hash });
+
+    // If we're already on Home, do an immediate best-effort scroll too.
+    if (location.pathname === "/") {
+      window.requestAnimationFrame(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  };
+
   return (
-    <header className="flex items-center justify-between px-8 py-4 border-b bg-white shadow-sm">
-      {/* Left Side */}
+    <header className="flex items-center justify-between px-8 py-4 bg-white shadow-sm">
       <div className="flex items-center gap-8">
-        {/* Logo */}
         <Link to="/" className="flex items-center">
           <img
             src={logo}
-            alt="Medicard "
+            alt="Medicard"
             className="w-32 h-auto object-contain"
           />
         </Link>
 
-        {/* Dynamic Links */}
-        <nav
-          className="flex items-center gap-6 ml-5"
-          aria-label="Main navigation"
-        >
+        <nav className="flex items-center gap-6 ml-5">
           {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${
-                  isActive ? "text-main" : "text-gray-700 hover:text-main"
-                }`
-              }
+            <Link
+              key={link.hash}
+              to={{ pathname: "/", hash: link.hash }}
+              onClick={onNavClick(link.hash)}
+              className="text-sm font-medium transition-colors text-gray-700 hover:text-main"
             >
               {link.name}
-            </NavLink>
+            </Link>
           ))}
         </nav>
       </div>
 
-      {/* Right Side */}
       <div className="flex items-center gap-4">
-        {/* Buttons */}
         <button className="px-5 py-2 text-sm font-medium text-main border border-main rounded-lg hover:bg-blue-50 transition">
           Activate Card
         </button>
 
-        <button className="px-5 py-2 text-sm font-medium text-white bg-main rounded-lg hover:bg-blue-700 transition">
+        <button className="px-5 py-2 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition">
           Buy Card
         </button>
-        {/* Language Dropdown */}
-        <select
-          value={lang}
-          onChange={(e) => setLang(e.target.value)}
-          className="px-3 py-2 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+
+        <button
+          onClick={toggleLanguage}
+          className="flex items-center gap-2 text-gray-700 hover:text-sec transition-colors duration-300"
         >
-          <option value="en">EN</option>
-          <option value="ar">AR</option>
-        </select>
+          <Globe />
+          <span className="text-sm font-medium">{currentLang}</span>
+        </button>
       </div>
     </header>
   );
