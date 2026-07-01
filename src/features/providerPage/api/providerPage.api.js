@@ -1,0 +1,21 @@
+import { httpClient } from "../../../shared/api/httpClient"
+
+export const getProviderPage = async (id) => {
+  const response = await httpClient.get(`/ProviderPage/${id}`)
+  return response.data
+}
+
+export const getProviderServices = async (id) => {
+  const response = await httpClient.get(`/ProviderPage/${id}/services`)
+  return response.data
+}
+
+export const getProviderReviews = async (id) => {
+  const response = await httpClient.get(`/ProviderPage/${id}/reviews`)
+  return response.data
+}
+
+export const getProviderPackages = async (id) => {
+  const response = await httpClient.get(`/ProviderPage/${id}/packages`)
+  return response.data
+}
