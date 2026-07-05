@@ -4,6 +4,7 @@ import { ErrorPage } from '../../shared/components/ErrorPage'
 import { HomePage } from '../../features/home/pages/HomePage'
 import Providers from '../../features/providers/pages/Providers'
 import ProviderPage from '../../features/providerPage/pages/ProviderPage'
+import BecomeProvider from '../../features/becomeProvider/pages/BecomeProvider'
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: 'provider/:id',
         element: <ProviderPage />,
+      },
+      {
+        path: 'become-provider',
+        element: <BecomeProvider />,
       },
     ],
   },
