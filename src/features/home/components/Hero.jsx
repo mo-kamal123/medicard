@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import SearchInput from "../../../shared/components/Search-input";
 import appstore from "../../../assets/app-store.svg";
 import googleplay from "../../../assets/google-play.svg";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative hero-bg flex items-center bg-cover bg-center bg-no-repeat">
       {/* Content */}
@@ -39,7 +41,10 @@ const Hero = () => {
                 Buy Card
               </button>
 
-              <button className="px-5 py-3 text-sm font-medium bg-white text-main border border-main rounded-lg hover:bg-blue-50 transition">
+              <button
+                onClick={() => navigate("/become-provider")}
+                className="px-5 py-3 text-sm font-medium bg-white text-main border border-main rounded-lg hover:bg-blue-50 transition"
+              >
                 Become a Provider
               </button>
             </div>

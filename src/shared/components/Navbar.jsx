@@ -44,7 +44,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Medicard"
-            className="w-32 h-auto object-contain"
+            className="w-42 h-auto object-contain"
           />
         </Link>
 
