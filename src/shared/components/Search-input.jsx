@@ -1,6 +1,6 @@
-import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Search } from "lucide-react";
 
 const SearchInput = ({
   placeholder = "Search doctors, clinics...",

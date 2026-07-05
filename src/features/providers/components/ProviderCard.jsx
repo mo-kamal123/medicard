@@ -39,9 +39,9 @@ const ProviderCard = ({ provider }) => {
   const location = provider.city || provider.branchName || provider.governorate;
 
   return (
-    <Link to={`/provider/${provider.providerId}`}>
-      <article className="overflow-hidden rounded-2xl border border-borders bg-white shadow-sm transition-shadow hover:shadow-md">
-        <div className="relative h-52 bg-gray-50">
+    <Link to={`/provider/${provider.providerId}`} className="flex h-full">
+      <article className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-borders bg-white shadow-sm transition-shadow hover:shadow-md">
+        <div className="relative h-52 shrink-0 bg-gray-50">
           <img
             src={provider.imageUrl}
             alt={provider.providerName}
@@ -55,7 +55,7 @@ const ProviderCard = ({ provider }) => {
           </div>
         </div>
 
-        <div className="p-4">
+        <div className="flex flex-1 flex-col p-4">
           {offers.length > 0 && (
             <div className="mb-3 flex flex-wrap gap-2">
               {offers.map((offer) => (
@@ -73,7 +73,7 @@ const ProviderCard = ({ provider }) => {
           <p className="mt-1 text-sm text-gray-500">{provider.categoryName}</p>
 
           {location && (
-            <div className="mt-2 flex items-center gap-1.5 text-sm text-gray-500">
+            <div className="mt-auto flex items-center gap-1.5 pt-2 text-sm text-gray-500">
               <MapPin size={14} className="shrink-0" />
               <span>{location}</span>
             </div>
