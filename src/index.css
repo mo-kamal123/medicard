@@ -15,6 +15,18 @@ html {
   --color-main: #3872B1;
   --color-sec: #1B4477;
   --color-dark: #0b0c0c;
+  --animate-slide-in: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .hero-bg {

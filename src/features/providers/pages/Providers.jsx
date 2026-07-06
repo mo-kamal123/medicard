@@ -1,14 +1,13 @@
-import { useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
-import ProvidersGrid from "../components/ProvidersGrid";
-import { flattenProviders } from "../utils/flattenProviders";
-import ProvidersFilters from "../components/ProvidersFilters";
-import { useProviders } from "../hooks/providers.queries";
-import { mockProviders } from "../data/mockProviders";
-import { filterProviders } from "../utils/filterProviders";
+import { useMemo } from "react"
+import { useSearchParams } from "react-router-dom"
+import ProvidersGrid from "../components/ProvidersGrid"
+import { flattenProviders } from "../utils/flattenProviders"
+import ProvidersFilters from "../components/ProvidersFilters"
+import { useProviders } from "../hooks/providers.queries"
+import { filterProviders } from "../utils/filterProviders"
 
 const Providers = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams()
 
   const filters = {
     keyword: searchParams.get("keyword") || "",
@@ -16,38 +15,28 @@ const Providers = () => {
     governorate: searchParams.get("governorate") || "all",
     city: searchParams.get("city") || "all",
     sortBy: searchParams.get("sortBy") || "name",
-  };
+  }
 
-  const { data, isLoading, isError } = useProviders({
-    KeyWord: filters.keyword,
+  const queryParams = {
+    KeyWord: filters.keyword || undefined,
     PageNumber: 1,
     PageSize: 30,
-  });
+    SortBy: filters.sortBy !== "name" ? filters.sortBy : undefined,
+  }
 
-  const apiProviders = flattenProviders(data?.data?.items || []);
+  const { data, isLoading, isError } = useProviders(queryParams)
 
-  const allProviders = useMemo(() => {
-    if (apiProviders.length) return apiProviders;
-    if (!isLoading) return mockProviders;
-    return [];
-  }, [apiProviders, isLoading]);
+  const apiProviders = flattenProviders(data?.data?.items || [])
 
   const providers = useMemo(
-    () => filterProviders(allProviders, filters),
-    [
-      allProviders,
-      filters.keyword,
-      filters.category,
-      filters.governorate,
-      filters.city,
-      filters.sortBy,
-    ]
-  );
+    () => filterProviders(apiProviders, filters),
+    [apiProviders, filters.keyword, filters.category, filters.governorate, filters.city, filters.sortBy]
+  )
 
   return (
     <div className="bg-body min-h-screen pb-16">
       <div className="w-[90%] mx-auto px-4 py-8">
-        <ProvidersFilters providers={allProviders} />
+        <ProvidersFilters providers={apiProviders} />
 
         <div className="mt-8">
           <ProvidersGrid
@@ -57,7 +46,7 @@ const Providers = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Providers;
+export default Providers

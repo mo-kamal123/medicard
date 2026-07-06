@@ -38,13 +38,13 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex items-center justify-between px-8 py-4 bg-white shadow-sm">
+    <header className="flex items-center justify-between px-8 py-4 bg-white shadow-md">
       <div className="flex items-center gap-8">
         <Link to="/" className="flex items-center">
           <img
             src={logo}
             alt="Medicard"
-            className="w-32 h-auto object-contain"
+            className="w-42 h-auto object-contain"
           />
         </Link>
 
@@ -63,11 +63,17 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <button className="px-5 py-2 text-sm font-medium text-main border border-main rounded-lg hover:bg-blue-50 transition">
+        <button
+          onClick={() => navigate("/medicard-activation")}
+          className="px-5 py-2 text-sm font-medium text-main border border-main rounded-lg hover:bg-blue-50 transition"
+        >
           Activate Card
         </button>
 
-        <button className="px-5 py-2 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition">
+        <button
+          onClick={() => navigate("/buy-card")}
+          className="px-5 py-2 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition"
+        >
           Buy Card
         </button>
 

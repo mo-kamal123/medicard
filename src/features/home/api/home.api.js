@@ -1,9 +1,11 @@
 import { httpClient } from "../../../shared/api/httpClient"
 
-
-const getHomeData = async () => {}
+export const getHomeData = async () => {
+  const response = await httpClient.get("/Home")
+  return response.data
+}
 
 export const getCategoryData = async () => {
-    const categories = await httpClient.get('/Lookups/categories')
-    return categories.data
+  const categories = await httpClient.get("/Lookups/categories")
+  return categories.data
 }

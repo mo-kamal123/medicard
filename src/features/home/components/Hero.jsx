@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import SearchInput from "../../../shared/components/Search-input";
 import appstore from "../../../assets/app-store.svg";
 import googleplay from "../../../assets/google-play.svg";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative hero-bg flex items-center bg-cover bg-center bg-no-repeat">
       {/* Content */}
@@ -35,11 +37,17 @@ const Hero = () => {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="px-8 py-3 w-40 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition">
+              <button
+                onClick={() => navigate("/buy-card")}
+                className="px-8 py-3 w-40 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition"
+              >
                 Buy Card
               </button>
 
-              <button className="px-5 py-3 text-sm font-medium bg-white text-main border border-main rounded-lg hover:bg-blue-50 transition">
+              <button
+                onClick={() => navigate("/become-provider")}
+                className="px-5 py-3 text-sm font-medium bg-white text-main border border-main rounded-lg hover:bg-blue-50 transition"
+              >
                 Become a Provider
               </button>
             </div>

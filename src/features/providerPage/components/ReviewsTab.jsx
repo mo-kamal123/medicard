@@ -43,20 +43,39 @@ const ReviewsTab = ({ providerId }) => {
   return (
     <div className="grid grid-cols-3">
       {reviews.map((review, index) => (
-        <div key={index} className="rounded-xl border border-gray-200 bg-white p-4">
+        <div
+          key={index}
+          className="rounded-xl border border-gray-200 bg-gray-50/50 p-4"
+        >
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-main/10 text-sm font-semibold text-main">
-              {review.userName?.charAt(0)}
+            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-main/10">
+              {providerId.userImageUrl ? (
+                <img
+                  src={providerId.userImageUrl}
+                  alt="User avatar"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <span className="text-sm font-semibold text-main">
+                  {providerId.userName?.charAt(0).toUpperCase()}
+                </span>
+              )}
             </div>
             <div>
               <p className="font-medium text-gray-900">{review.userName}</p>
-              <p className="my-1 text-xs text-gray-400">{timeAgo(review.createdAt)}</p>
+              <p className="my-1 text-xs text-gray-400">
+                {timeAgo(review.createdAt)}
+              </p>
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
                     size={14}
-                    className={i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}
+                    className={
+                      i < review.rating
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "text-gray-300"
+                    }
                   />
                 ))}
               </div>
@@ -68,7 +87,7 @@ const ReviewsTab = ({ providerId }) => {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default ReviewsTab

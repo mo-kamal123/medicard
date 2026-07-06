@@ -1,10 +1,14 @@
+import { useQuery } from "@tanstack/react-query"
+import { getCategoryData, getHomeData } from "../api/home.api"
 
-import { useQuery } from '@tanstack/react-query'
-import { getCategoryData } from '../api/home.api'
-
-export const useCategoriesQuery = () => 
+export const useCategoriesQuery = () =>
   useQuery({
-    queryKey: ['categories'],
+    queryKey: ["categories"],
     queryFn: getCategoryData,
   })
 
+export const useHomeData = () =>
+  useQuery({
+    queryKey: ["homeData"],
+    queryFn: getHomeData,
+  })

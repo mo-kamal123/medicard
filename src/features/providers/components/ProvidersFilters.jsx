@@ -1,57 +1,90 @@
-import { ChevronDown, Search } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-
-const selectClassName =
-  "appearance-none rounded-xl border border-white bg-white px-4 py-3.5 pr-10 text-sm text-gray-700 outline-none min-w-[140px]";
+import { Search } from "lucide-react"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { useSearchParams } from "react-router-dom"
+import Dropdown from "../../../shared/components/Dropdown"
 
 const ProvidersFilters = ({ providers = [] }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
+  const timerRef = useRef(null)
 
-  const [keyword, setKeyword] = useState(searchParams.get("keyword") || "");
-  const [category, setCategory] = useState(searchParams.get("category") || "all");
-  const [governorate, setGovernorate] = useState(
-    searchParams.get("governorate") || "all"
-  );
-  const [city, setCity] = useState(searchParams.get("city") || "all");
-  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "name");
+  const [keyword, setKeyword] = useState(searchParams.get("keyword") || "")
+  const [category, setCategory] = useState(searchParams.get("category") || "all")
+  const [governorate, setGovernorate] = useState(searchParams.get("governorate") || "all")
+  const [city, setCity] = useState(searchParams.get("city") || "all")
+  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "name")
 
   useEffect(() => {
-    setKeyword(searchParams.get("keyword") || "");
-    setCategory(searchParams.get("category") || "all");
-    setGovernorate(searchParams.get("governorate") || "all");
-    setCity(searchParams.get("city") || "all");
-    setSortBy(searchParams.get("sortBy") || "name");
-  }, [searchParams]);
+    setKeyword(searchParams.get("keyword") || "")
+    setCategory(searchParams.get("category") || "all")
+    setGovernorate(searchParams.get("governorate") || "all")
+    setCity(searchParams.get("city") || "all")
+    setSortBy(searchParams.get("sortBy") || "name")
+  }, [searchParams])
+
+  const updateParams = (overrides) => {
+    const params = new URLSearchParams()
+    const kw = overrides.keyword !== undefined ? overrides.keyword : keyword
+    const cat = overrides.category !== undefined ? overrides.category : category
+    const gov = overrides.governorate !== undefined ? overrides.governorate : governorate
+    const cty = overrides.city !== undefined ? overrides.city : city
+    const sort = overrides.sortBy !== undefined ? overrides.sortBy : sortBy
+
+    if (kw.trim()) params.set("keyword", kw.trim())
+    if (cat !== "all") params.set("category", cat)
+    if (gov !== "all") params.set("governorate", gov)
+    if (cty !== "all") params.set("city", cty)
+    if (sort !== "name") params.set("sortBy", sort)
+
+    setSearchParams(params, { replace: true })
+  }
+
+  const handleKeywordChange = (e) => {
+    const value = e.target.value
+    setKeyword(value)
+    clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => updateParams({ keyword: value }), 400)
+  }
+
+  const handleCategoryChange = (e) => {
+    const value = e.target.value
+    setCategory(value)
+    updateParams({ category: value })
+  }
+
+  const handleGovernorateChange = (e) => {
+    const value = e.target.value
+    setGovernorate(value)
+    updateParams({ governorate: value })
+  }
+
+  const handleCityChange = (e) => {
+    const value = e.target.value
+    setCity(value)
+    updateParams({ city: value })
+  }
+
+  const handleSortChange = (e) => {
+    const value = e.target.value
+    setSortBy(value)
+    updateParams({ sortBy: value })
+  }
 
   const categories = useMemo(
     () =>
       [...new Set(providers.map((provider) => provider.categoryName).filter(Boolean))].sort(),
     [providers]
-  );
+  )
 
   const governorates = useMemo(
     () =>
       [...new Set(providers.map((provider) => provider.governorate).filter(Boolean))].sort(),
     [providers]
-  );
+  )
 
   const cities = useMemo(
     () => [...new Set(providers.map((provider) => provider.city).filter(Boolean))].sort(),
     [providers]
-  );
-
-  const handleSearch = () => {
-    const params = new URLSearchParams();
-
-    if (keyword.trim()) params.set("keyword", keyword.trim());
-    if (category !== "all") params.set("category", category);
-    if (governorate !== "all") params.set("governorate", governorate);
-    if (city !== "all") params.set("city", city);
-    if (sortBy !== "name") params.set("sortBy", sortBy);
-
-    setSearchParams(params);
-  };
+  )
 
   return (
     <div className="rounded-2xl bg-[#E8F1FA] p-4">
@@ -63,97 +96,68 @@ const ProvidersFilters = ({ providers = [] }) => {
           />
           <input
             value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            onChange={handleKeywordChange}
             type="text"
             placeholder="Doctor name, pharmacy, lab..."
             className="w-full rounded-xl border border-white bg-white py-3.5 pl-11 pr-4 text-sm text-gray-700 outline-none placeholder:text-gray-400"
           />
         </div>
 
-        <div className="relative">
-          <select
+        <div className="min-w-[140px]">
+          <Dropdown
+            placeholder="Category"
+            options={[
+              { value: "all", label: "All Categories" },
+              ...categories.map((item) => ({ value: item, label: item })),
+            ]}
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className={selectClassName}
-          >
-            <option value="all">Category</option>
-            {categories.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <ChevronDown
-            size={16}
-            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+            name="category"
+            onChange={handleCategoryChange}
           />
         </div>
 
-        <div className="relative">
-          <select
+        <div className="min-w-[140px]">
+          <Dropdown
+            placeholder="Government"
+            options={[
+              { value: "all", label: "All Governments" },
+              ...governorates.map((item) => ({ value: item, label: item })),
+            ]}
             value={governorate}
-            onChange={(e) => setGovernorate(e.target.value)}
-            className={selectClassName}
-          >
-            <option value="all">Government</option>
-            {governorates.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <ChevronDown
-            size={16}
-            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+            name="governorate"
+            onChange={handleGovernorateChange}
           />
         </div>
 
-        <div className="relative">
-          <select
+        <div className="min-w-[140px]">
+          <Dropdown
+            placeholder="City"
+            options={[
+              { value: "all", label: "All Cities" },
+              ...cities.map((item) => ({ value: item, label: item })),
+            ]}
             value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className={selectClassName}
-          >
-            <option value="all">City</option>
-            {cities.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <ChevronDown
-            size={16}
-            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+            name="city"
+            onChange={handleCityChange}
           />
         </div>
 
-        <div className="relative">
-          <select
+        <div className="min-w-[140px]">
+          <Dropdown
+            placeholder="Sort by"
+            options={[
+              { value: "name", label: "Name" },
+              { value: "rating", label: "Highest Rated" },
+              { value: "discount", label: "Highest Discount" },
+            ]}
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className={selectClassName}
-          >
-            <option value="name">Sort by</option>
-            <option value="rating">Highest Rated</option>
-            <option value="discount">Highest Discount</option>
-          </select>
-          <ChevronDown
-            size={16}
-            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+            name="sortBy"
+            onChange={handleSortChange}
           />
         </div>
-
-        <button
-          type="button"
-          onClick={handleSearch}
-          className="rounded-xl bg-main px-8 py-3.5 text-sm font-medium text-white transition hover:bg-sec"
-        >
-          Search
-        </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProvidersFilters;
+export default ProvidersFilters
