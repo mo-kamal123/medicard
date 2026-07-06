@@ -13,7 +13,7 @@ const FormInput = ({
         <input
           type={type}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-main"
+          className="w-full rounded-xl border bg-white border-gray-200 px-4 py-3 outline-none focus:border-main"
           {...props}
         />
       </div>

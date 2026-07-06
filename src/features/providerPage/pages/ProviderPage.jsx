@@ -61,7 +61,7 @@ const ProviderPage = () => {
   const ActiveComponent = tabComponents[activeTab]
 
   return (
-    <div className="bg-body min-h-screen pb-16">
+    <div className="bg-white min-h-screen pb-16">
       <div className="mx-auto w-[90%] px-4 py-8">
         {/* <Link
           to="/providers"
@@ -70,9 +70,9 @@ const ProviderPage = () => {
           <ArrowLeft size={16} /> Back to providers
         </Link> */}
 
-        <div className="rounded-2xl border border-gray-200 bg-gradient-to-r from-sky-50 to-cyan-50 p-6">
+        <div className="rounded-2xl border border-gray-200 bg-gradient-to-r from-[#F0F6FF] via-[#E7EFFF] to-[#DDF5EF] p-6">
           <div className="flex flex-col gap-6 md:flex-row md:items-center">
-            <div className="flex h-40 w-40 items-center justify-center rounded-xl border bg-white p-2">
+            <div className="flex h-40 w-40 items-center justify-center rounded-xl border border-gray-400 bg-white p-2">
               <img
                 src={provider.imageUrl}
                 alt={provider.name}
@@ -102,8 +102,8 @@ const ProviderPage = () => {
 
                 <div className="flex items-center gap-1 rounded-xl bg-white px-4 py-2 shadow-sm">
                   <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                  <span className="font-semibold">{provider.averageRating?.toFixed(1)}</span>
-                  <span className="text-gray-500">({provider.totalReviews} reviews)</span>
+                  <span className="text-main font-semibold">{provider.averageRating?.toFixed(1)}</span>
+                  <span className="text-main">({provider.totalReviews} reviews)</span>
                 </div>
               </div>
             </div>
