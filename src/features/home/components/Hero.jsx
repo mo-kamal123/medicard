@@ -37,7 +37,10 @@ const Hero = () => {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="px-8 py-3 w-40 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition">
+              <button
+                onClick={() => navigate("/buy-card")}
+                className="px-8 py-3 w-40 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition"
+              >
                 Buy Card
               </button>
 

@@ -23,10 +23,12 @@ const ServicesTab = ({ providerId }) => {
       {services.map((service) => (
         <div
           key={service.id}
-          className="rounded-xl border border-gray-200 flex flex-col justify-between bg-white p-4 transition hover:shadow-md"
+          className="rounded-xl border border-gray-200 flex flex-col justify-between bg-gray-50/60   p-4 transition hover:shadow-md"
         >
-          <h3 className="font-semibold text-gray-900">{service.serviceName}</h3>
-
+          <h3 className="font-semibold text-lg text-gray-900">{service.serviceName}</h3>
+          <span className="rounded-full bg-green-50 px-2 py-1 text-xs text-main bg-[#86AFE3] border border-main w-fit my-1">
+              -{service.discountPercentage.toFixed(1)}% off
+            </span>
           {service.isSpecialOffer && (
             <span className="mt-2 w-fit rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-600">
               Special Offer
@@ -39,9 +41,6 @@ const ServicesTab = ({ providerId }) => {
             </span>
             <span className="font-bold text-main">
               {service.priceAfter.toFixed(2)} EGP
-            </span>
-            <span className="ml-auto rounded-full bg-green-50 px-2 py-1 text-xs text-green-600">
-              -{service.discountPercentage.toFixed(1)}%
             </span>
           </div>
         </div>

@@ -13,7 +13,7 @@ const FormTextarea = ({
         <textarea
           rows={rows}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none resize-none focus:border-main"
+          className="w-full rounded-xl bg-white border border-gray-200 px-4 py-3 outline-none resize-none focus:border-main"
           {...props}
         />
       </div>

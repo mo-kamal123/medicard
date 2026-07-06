@@ -36,7 +36,7 @@ const PackagesTab = ({ providerId }) => {
           )}
           <div className="p-4">
             <h3 className="font-semibold text-gray-900">{pkg.name}</h3>
-            <p className="mt-1 text-sm text-gray-500">{pkg.description}</p>
+            {/* <p className="mt-1 text-sm text-gray-500">{pkg.description}</p> */}
 
             <div className="mt-3 flex items-center gap-2 text-sm text-gray-600">
               <span>{pkg.servicesCount} services</span>

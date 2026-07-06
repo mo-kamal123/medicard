@@ -22,7 +22,7 @@ const Why = () => {
 
   return (
     <div>
-      <h2>Why Choose MediCard?</h2>
+      <h2 className="my-8 text-3xl font-bold text-black">Why Choose MediCard?</h2>
 
       <div className="grid grid-cols-3 gap-8">
         {cards.map((card, index) => (
