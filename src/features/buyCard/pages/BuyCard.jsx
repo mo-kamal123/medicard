@@ -101,39 +101,40 @@ const BuyCard = () => {
     <div className="min-h-screen bg-white">
       <div className="grid min-h-screen lg:grid-cols-2">
         <div className="flex items-center justify-center p-8 lg:p-12">
-          <div className="w-full max-w-md">
+          <div className="w-[90%]">
             <h1 className="mb-8 text-4xl font-bold text-gray-900">
               Ready to join Medicard
             </h1>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 ">
               <Dropdown
                 label="Plan"
                 name="plan"
                 options={planOptions}
                 value={formData.plan}
                 onChange={(e) => {
-                  handleChange(e)
-                  setSelectedPlan(e.target.value)
+                  handleChange(e);
+                  setSelectedPlan(e.target.value);
                 }}
               />
+              <div className="grid grid-cols-2 gap-4">
+                <FormInput
+                  label="First Name"
+                  name="firstName"
+                  placeholder="Enter your first name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
 
-              <FormInput
-                label="First Name"
-                name="firstName"
-                placeholder="Enter your first name"
-                value={formData.firstName}
-                onChange={handleChange}
-              />
-
-              <FormInput
-                label="Second Name"
-                name="secondName"
-                placeholder="Enter your second name"
-                value={formData.secondName}
-                onChange={handleChange}
-              />
-
+                <FormInput
+                  label="Second Name"
+                  name="secondName"
+                  placeholder="Enter your second name"
+                  value={formData.secondName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
               <FormInput
                 label="Number of Cards"
                 name="numberOfCards"
@@ -151,7 +152,7 @@ const BuyCard = () => {
                 value={formData.governorate}
                 onChange={handleChange}
               />
-
+              </div>
               <FormInput
                 label="Address"
                 name="address"
@@ -161,7 +162,9 @@ const BuyCard = () => {
               />
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-900">Phone Number</label>
+                <label className="text-sm font-medium text-gray-900">
+                  Phone Number
+                </label>
                 <div className="grid grid-cols-[auto_1fr] gap-2">
                   <div className="flex h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-4 text-sm text-gray-500">
                     +20
@@ -208,7 +211,7 @@ const BuyCard = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default BuyCard

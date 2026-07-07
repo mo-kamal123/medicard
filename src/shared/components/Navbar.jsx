@@ -70,12 +70,12 @@ const Navbar = () => {
           Activate Card
         </button>
 
-        <button
+        {/* <button
           onClick={() => navigate("/buy-card")}
           className="px-5 py-2 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition"
         >
           Buy Card
-        </button>
+        </button> */}
 
         <button
           onClick={toggleLanguage}

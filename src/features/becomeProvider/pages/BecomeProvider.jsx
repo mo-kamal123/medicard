@@ -54,11 +54,7 @@ const BecomeProvider = () => {
   }
 
   return (
-    <FormLayout title="Become a Provider" image={becomeProviderImage}>
-      <p className="mb-8 text-gray-500">
-        Join our network and reach thousands of patients across Egypt.
-      </p>
-
+    <FormLayout title="Become a MediCard Provider" image={becomeProviderImage}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {apiError && (
           <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
@@ -67,35 +63,86 @@ const BecomeProvider = () => {
         )}
 
         <div>
-          <FormInput label="Clinic / Facility Name" placeholder="Enter your facility name" {...register("providerName")} />
-          {errors.providerName && <p className="mt-1 text-sm text-red-500">{errors.providerName.message}</p>}
+          <FormInput
+            label="Clinic / Facility Name"
+            placeholder="Enter your facility name"
+            {...register("providerName")}
+          />
+          {errors.providerName && (
+            <p className="mt-1 text-sm text-red-500">
+              {errors.providerName.message}
+            </p>
+          )}
+        </div>
+
+        <div className="flex justify-between w-full gap-4">
+          <div className="w-full">
+            <Dropdown
+              label="Category"
+              options={categoryOptions}
+              value={watch("category")}
+              {...register("category")}
+            />
+            {errors.category && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.category.message}
+              </p>
+            )}
+          </div>
+          <div className="w-full">
+            <FormInput
+              label="Number of Branches"
+              type="number"
+              min="1"
+              {...register("numberOfBranches")}
+            />
+            {errors.numberOfBranches && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.numberOfBranches.message}
+              </p>
+            )}
+          </div>
         </div>
 
         <div>
-          <Dropdown label="Category" options={categoryOptions} value={watch("category")} {...register("category")} />
-          {errors.category && <p className="mt-1 text-sm text-red-500">{errors.category.message}</p>}
+          <FormInput
+            label="Main Branch Address"
+            placeholder="Enter your main branch address"
+            {...register("mainBranchAddress")}
+          />
+          {errors.mainBranchAddress && (
+            <p className="mt-1 text-sm text-red-500">
+              {errors.mainBranchAddress.message}
+            </p>
+          )}
         </div>
 
-        <div>
-          <FormInput label="Number of Branches" type="number" min="1" {...register("numberOfBranches")} />
-          {errors.numberOfBranches && <p className="mt-1 text-sm text-red-500">{errors.numberOfBranches.message}</p>}
-        </div>
-
-        <div>
-          <FormInput label="Main Branch Address" placeholder="Enter your main branch address" {...register("mainBranchAddress")} />
-          {errors.mainBranchAddress && <p className="mt-1 text-sm text-red-500">{errors.mainBranchAddress.message}</p>}
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
           <div>
-            <FormInput label="Email" type="email" placeholder="Email address" {...register("email")} />
-            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
+            <FormInput
+              label="Email"
+              type="email"
+              placeholder="Email address"
+              {...register("email")}
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <div>
-            <FormInput label="Phone" type="tel" placeholder="Phone number" {...register("phoneNumber")} />
-            {errors.phoneNumber && <p className="mt-1 text-sm text-red-500">{errors.phoneNumber.message}</p>}
+            <FormInput
+              label="Phone"
+              type="tel"
+              placeholder="Phone number"
+              {...register("phoneNumber")}
+            />
+            {errors.phoneNumber && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.phoneNumber.message}
+              </p>
+            )}
           </div>
-        </div>
 
         <button
           type="submit"
@@ -105,13 +152,13 @@ const BecomeProvider = () => {
           {isPending ? "Submitting..." : "Submit Request"}
         </button>
 
-        <button
+        {/* <button
           type="button"
           onClick={() => navigate(-1)}
           className="w-full text-center text-sm text-gray-400 hover:text-gray-600"
         >
           Back
-        </button>
+        </button> */}
       </form>
 
       {isSuccess && (
@@ -123,7 +170,7 @@ const BecomeProvider = () => {
         />
       )}
     </FormLayout>
-  )
+  );
 }
 
 export default BecomeProvider
