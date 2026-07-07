@@ -11,9 +11,9 @@ const FormLayout = ({
         
         {/* Form Side */}
         <d  iv className="flex items-center justify-center p-8 lg:p-12">
-          <div className="w-full max-w-md">
+          <div className="w-[90%]">
             {title && (
-              <h1 className="mb-8 text-4xl font-bold text-gray-900">
+              <h1 className="mb-8 text-[45px] font-semibold text-gray-900">
                 {title}
               </h1>
             )}

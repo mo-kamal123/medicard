@@ -131,28 +131,65 @@ const MedicardActivation = () => {
 
         {step === 1 && (
           <>
-            <div>
-              <FormInput label="First Name" placeholder="Enter your first name" {...register("firstName")} />
-              {errors.firstName && <p className="mt-1 text-sm text-red-500">{errors.firstName.message}</p>}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <FormInput
+                  label="First Name"
+                  placeholder="Enter your first name"
+                  {...register("firstName")}
+                />
+                {errors.firstName && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.firstName.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <FormInput
+                  label="Second Name"
+                  placeholder="Enter your second name"
+                  {...register("lastName")}
+                />
+                {errors.lastName && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.lastName.message}
+                  </p>
+                )}
+              </div>
             </div>
 
             <div>
-              <FormInput label="Second Name" placeholder="Enter your second name" {...register("lastName")} />
-              {errors.lastName && <p className="mt-1 text-sm text-red-500">{errors.lastName.message}</p>}
+              <FormInput
+                label="Card Number"
+                placeholder="Enter your card number"
+                {...register("cardNumber")}
+              />
+              {errors.cardNumber && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.cardNumber.message}
+                </p>
+              )}
             </div>
 
             <div>
-              <FormInput label="Card Number" placeholder="Enter your card number" {...register("cardNumber")} />
-              {errors.cardNumber && <p className="mt-1 text-sm text-red-500">{errors.cardNumber.message}</p>}
-            </div>
-
-            <div>
-              <Dropdown label="Gender" options={GENDER_OPTIONS} value={watch("gender")} {...register("gender")} />
-              {errors.gender && <p className="mt-1 text-sm text-red-500">{errors.gender.message}</p>}
+              <Dropdown
+                label="Gender"
+                options={GENDER_OPTIONS}
+                value={watch("gender")}
+                {...register("gender")}
+              />
+              {errors.gender && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.gender.message}
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-gray-900">Phone Number</label>
+              <label className="text-sm font-medium text-gray-900">
+                Phone Number
+              </label>
               <div className="grid grid-cols-[auto_1fr] gap-2">
                 <div className="flex h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-4 text-sm text-gray-500">
                   +20
@@ -164,7 +201,9 @@ const MedicardActivation = () => {
                   {...register("phone")}
                 />
               </div>
-              {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
+              {errors.phone && (
+                <p className="text-sm text-red-500">{errors.phone.message}</p>
+              )}
             </div>
 
             <button
@@ -177,7 +216,9 @@ const MedicardActivation = () => {
 
             <div className="flex items-center gap-3 py-2">
               <div className="h-px flex-1 bg-gray-200" />
-              <span className="text-sm text-gray-400">Prefer to activate by phone?</span>
+              <span className="text-sm text-gray-400">
+                Prefer to activate by phone?
+              </span>
               <div className="h-px flex-1 bg-gray-200" />
             </div>
 
@@ -203,23 +244,54 @@ const MedicardActivation = () => {
             </button>
 
             <div>
-              <FormInput label="National ID" placeholder="Enter your national ID" {...register("nationalId")} />
-              {errors.nationalId && <p className="mt-1 text-sm text-red-500">{errors.nationalId.message}</p>}
+              <FormInput
+                label="National ID"
+                placeholder="Enter your national ID"
+                {...register("nationalId")}
+              />
+              {errors.nationalId && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.nationalId.message}
+                </p>
+              )}
             </div>
 
             <div>
-              <FormInput label="Passport" placeholder="Enter your passport number" {...register("passportNumber")} />
+              <FormInput
+                label="Passport"
+                placeholder="Enter your passport number"
+                {...register("passportNumber")}
+              />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-gray-900">Date of Birth</label>
+              <label className="text-sm font-medium text-gray-900">
+                Date of Birth
+              </label>
               <div className="grid grid-cols-3 gap-2">
-                <Dropdown options={MONTHS} placeholder="Month" value={watch("birthMonth")} {...register("birthMonth")} />
-                <Dropdown options={[{ value: "", label: "Day" }, ...DAYS]} placeholder="Day" value={watch("birthDay")} {...register("birthDay")} />
-                <Dropdown options={[{ value: "", label: "Year" }, ...YEARS]} placeholder="Year" value={watch("birthYear")} {...register("birthYear")} />
+                <Dropdown
+                  options={MONTHS}
+                  placeholder="Month"
+                  value={watch("birthMonth")}
+                  {...register("birthMonth")}
+                />
+                <Dropdown
+                  options={[{ value: "", label: "Day" }, ...DAYS]}
+                  placeholder="Day"
+                  value={watch("birthDay")}
+                  {...register("birthDay")}
+                />
+                <Dropdown
+                  options={[{ value: "", label: "Year" }, ...YEARS]}
+                  placeholder="Year"
+                  value={watch("birthYear")}
+                  {...register("birthYear")}
+                />
               </div>
               {(errors.birthMonth || errors.birthDay || errors.birthYear) && (
-                <p className="text-sm text-red-500">Please select your full date of birth</p>
+                <p className="text-sm text-red-500">
+                  Please select your full date of birth
+                </p>
               )}
             </div>
 
@@ -233,11 +305,15 @@ const MedicardActivation = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-4 top-[42px] text-gray-400 hover:text-gray-600"
+                className="absolute right-4 top-10 text-gray-400 hover:text-gray-600"
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
-              {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="text-sm text-red-500">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             <div className="relative">
@@ -254,7 +330,11 @@ const MedicardActivation = () => {
               >
                 {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
-              {errors.confirmPassword && <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>}
+              {errors.confirmPassword && (
+                <p className="text-sm text-red-500">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
             </div>
 
             <button
@@ -277,7 +357,7 @@ const MedicardActivation = () => {
         />
       )}
     </FormLayout>
-  )
+  );
 }
 
 export default MedicardActivation
