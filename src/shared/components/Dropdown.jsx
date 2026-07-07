@@ -39,7 +39,7 @@ const Dropdown = ({ label, options = [], value, onChange, name, placeholder = "S
         {open && (
           <>
             <div className="fixed inset-0" onClick={() => setOpen(false)} />
-            <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-xl border border-gray-200 backdrop-blur-sm bg-white/50 shadow-lg">
+            <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-y-auto rounded-xl border border-gray-200 backdrop-blur-sm bg-white/50 shadow-lg" style={{ maxHeight: "250px" }}>
               {options.map((opt) => (
                 <button
                   key={opt.value}

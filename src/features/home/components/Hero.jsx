@@ -37,16 +37,16 @@ const Hero = () => {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              {/* <button
+              <button
                 onClick={() => navigate("/buy-card")}
                 className="px-8 py-3 w-40 text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition"
               >
-                Buy Card
-              </button> */}
+                Activate Card
+              </button>
 
               <button
                 onClick={() => navigate("/become-provider")}
-                className="px-5 py-3 text-sm font-medium bg-main text-white border border-main rounded-lg hover:bg-sec transition"
+                className="px-5 py-3 text-sm font-medium bg-white text-main border border-main rounded-lg hover:bg-blue-50 transition"
               >
                 Become a Provider
               </button>
