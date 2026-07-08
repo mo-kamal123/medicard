@@ -34,7 +34,7 @@ const Providers = () => {
   )
 
   return (
-    <div className="bg-body min-h-screen pb-16">
+    <div className="bg-white min-h-screen pb-16">
       <div className="w-[90%] mx-auto px-4 py-8">
         <ProvidersFilters providers={apiProviders} />
 

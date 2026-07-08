@@ -60,15 +60,15 @@ const ContactUs = ({ data }) => {
   const socialItems = data?.socialItems || []
 
   return (
-    <section className="container mx-auto py-20">
-      <h2 className="my-8 text-3xl font-bold">Contact Us</h2>
+    <section className="container mx-auto px-4 md:px-0 py-10 md:py-20">
+      <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">Contact Us</h2>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-3xl border border-[#D9E4F5] bg-[#F4F8FF] p-6">
-          <h3 className="mb-6 text-3xl font-semibold">Send a Message</h3>
+        <div className="rounded-3xl border border-[#D9E4F5] bg-[#F4F8FF] p-4 md:p-6">
+          <h3 className="mb-4 md:mb-6 text-xl md:text-3xl font-medium">Send a Message</h3>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
               <div>
                 <FormInput label="Name" placeholder="Name" {...register("name")} />
                 {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
@@ -87,7 +87,7 @@ const ContactUs = ({ data }) => {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full rounded-xl bg-main py-4 font-medium text-white transition hover:bg-sec disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full rounded-xl bg-main py-3 font-medium text-white transition hover:bg-sec disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isPending ? "Sending..." : "Send"}
             </button>
@@ -106,19 +106,19 @@ const ContactUs = ({ data }) => {
           ))}
 
           {socialItems.length > 0 && (
-            <div className="flex items-center gap-4 rounded-2xl border border-[#D9E4F5] bg-white p-4">
+            <div className="flex flex-wrap items-center gap-3 md:gap-4 rounded-2xl border border-[#D9E4F5] bg-white p-4">
               {socialItems.map((item, index) => (
                 <a
                   key={index}
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#EAF2FF] transition hover:bg-[#D9E4F5]"
+                  className="flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-xl bg-[#EAF2FF] transition hover:bg-[#D9E4F5]"
                 >
-                  <img src={iconMap[item.type]} alt={item.label} />
+                  <img src={iconMap[item.type]} alt={item.label} className="w-5 h-5 md:w-auto md:h-auto" />
                 </a>
               ))}
-              <h3 className="ml-2 text-3xl font-semibold">Follow Us</h3>
+              <h3 className="ml-1 md:ml-2 text-xl md:text-3xl font-semibold">Follow Us</h3>
             </div>
           )}
         </div>

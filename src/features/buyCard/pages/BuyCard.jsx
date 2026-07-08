@@ -27,7 +27,7 @@ const SelectablePlanCard = ({ plan, isSelected, onSelect }) => (
       ${
         isSelected
           ? "z-10 scale-100 border-[#3B82F6] bg-white/60 opacity-100 shadow-xl backdrop-blur-sm blur-0"
-          : "scale-95 border-[#D6E4FF] bg-white/60 opacity-90 backdrop-blur-sm blur-[1px] hover:blur-0 hover:opacity-100"
+          : "scale-95 border-[#D6E4FF] bg-white/80 opacity-60 backdrop-blur-sm blur-[1px] hover:blur-0 hover:opacity-100"
       }
     `}
   >
@@ -100,9 +100,9 @@ const BuyCard = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="grid min-h-screen lg:grid-cols-2">
-        <div className="flex items-center justify-center p-8 lg:p-12">
-          <div className="w-[90%]">
-            <h1 className="mb-8 text-4xl font-bold text-gray-900">
+        <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
+          <div className="w-full md:w-[90%] max-w-lg">
+            <h1 className="mb-6 md:mb-8 text-2xl md:text-4xl font-bold text-gray-900 leading-tight">
               Ready to join Medicard
             </h1>
 
@@ -117,7 +117,7 @@ const BuyCard = () => {
                   setSelectedPlan(e.target.value);
                 }}
               />
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormInput
                   label="First Name"
                   name="firstName"
@@ -134,7 +134,7 @@ const BuyCard = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormInput
                 label="Number of Cards"
                 name="numberOfCards"
@@ -165,8 +165,8 @@ const BuyCard = () => {
                 <label className="text-sm font-medium text-gray-900">
                   Phone Number
                 </label>
-                <div className="grid grid-cols-[auto_1fr] gap-2">
-                  <div className="flex h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-4 text-sm text-gray-500">
+                <div className="flex items-stretch gap-2">
+                  <div className="flex shrink-0 h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-3 md:px-4 text-sm text-gray-500">
                     +20
                   </div>
                   <input
@@ -175,7 +175,7 @@ const BuyCard = () => {
                     placeholder="Phone number"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-main"
+                    className="w-full min-w-0 rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-main"
                   />
                 </div>
               </div>
