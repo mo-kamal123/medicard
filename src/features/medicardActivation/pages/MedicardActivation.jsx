@@ -131,7 +131,7 @@ const MedicardActivation = () => {
 
         {step === 1 && (
           <>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <FormInput
                   label="First Name"
@@ -190,14 +190,14 @@ const MedicardActivation = () => {
               <label className="text-sm font-medium text-gray-900">
                 Phone Number
               </label>
-              <div className="grid grid-cols-[auto_1fr] gap-2">
-                <div className="flex h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-4 text-sm text-gray-500">
+              <div className="flex items-stretch gap-2">
+                <div className="flex shrink-0 h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-3 md:px-4 text-sm text-gray-500">
                   +20
                 </div>
                 <input
                   type="text"
                   placeholder="Phone number"
-                  className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-main"
+                  className="w-full min-w-0 rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-main"
                   {...register("phone")}
                 />
               </div>
@@ -295,45 +295,47 @@ const MedicardActivation = () => {
               )}
             </div>
 
-            <div className="relative">
-              <FormInput
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                {...register("password")}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-4 top-10 text-gray-400 hover:text-gray-600"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-gray-900">Password</label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-12 outline-none focus:border-main"
+                  {...register("password")}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
               {errors.password && (
-                <p className="text-sm text-red-500">
-                  {errors.password.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.password.message}</p>
               )}
             </div>
 
-            <div className="relative">
-              <FormInput
-                label="Confirm Password"
-                type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirm your password"
-                {...register("confirmPassword")}
-              />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword((prev) => !prev)}
-                className="absolute right-4 top-[42px] text-gray-400 hover:text-gray-600"
-              >
-                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-gray-900">Confirm Password</label>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm your password"
+                  className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-12 outline-none focus:border-main"
+                  {...register("confirmPassword")}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword((prev) => !prev)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
               {errors.confirmPassword && (
-                <p className="text-sm text-red-500">
-                  {errors.confirmPassword.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
               )}
             </div>
 

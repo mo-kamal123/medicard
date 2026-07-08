@@ -75,7 +75,7 @@ const BecomeProvider = () => {
           )}
         </div>
 
-        <div className="flex justify-between w-full gap-4">
+        <div className="flex flex-col md:flex-row justify-between w-full gap-4">
           <div className="w-full">
             <Dropdown
               label="Category"

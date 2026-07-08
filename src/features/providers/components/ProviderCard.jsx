@@ -55,7 +55,7 @@ const ProviderCard = ({ provider }) => {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col p-4">
+        <div className="flex flex-1 flex-col justify-center p-4">
           {offers.length > 0 && (
             <div className="mb-3 flex flex-wrap gap-2">
               {offers.map((offer) => (

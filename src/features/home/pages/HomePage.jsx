@@ -24,35 +24,22 @@ export function HomePage() {
   const plans = (homeData?.data?.plans || []).slice(0, 2);
   const contactUs = homeData?.data?.contactUs || null;
 
-  console.log(homeData);
   useEffect(() => {
     if (!location.hash) return;
 
-    let rafId = 0;
-    let tries = 0;
-    const maxTries = 60; // ~1s at 60fps
-
-    const tryScroll = () => {
-      const el = document.querySelector(location.hash);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
-      tries += 1;
-      if (tries < maxTries) rafId = window.requestAnimationFrame(tryScroll);
-    };
-
-    rafId = window.requestAnimationFrame(tryScroll);
-    return () => window.cancelAnimationFrame(rafId);
+    const el = document.querySelector(location.hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }, [location.hash]);
 
   return (
     <section className="">
       <Hero />
-      <div className="w-[90%] m-auto">
+      <div className="w-[90%] mx-auto max-w-7xl">
         <CategoriesSlider categories={categories.data} />
         <section id="service-providers" className="scroll-mt-24">
-          <h2 className="my-8 text-3xl font-bold">Service Providers</h2>
+          <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">Service Providers</h2>
           <ProvidersSlider providers={providers} />
         </section>
         <section id="why" className="scroll-mt-24">

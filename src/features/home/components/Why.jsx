@@ -22,17 +22,17 @@ const Why = () => {
 
   return (
     <div>
-      <h2 className="my-8 text-3xl font-bold text-black">Why Choose MediCard?</h2>
+      <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold text-black">Why Choose MediCard?</h2>
 
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="p-6 text-center bg-blue-50 text-center rounded-2xl w-full flex flex-col items-center gap-2 my-10 w-40"
+            className="p-6 bg-blue-50 rounded-2xl flex flex-col items-center gap-2 my-6 md:my-10"
           >
             {card.icon}
             <p className="font-semibold text-lg">{card.title}</p>
-            <p className="text-sm text-gray-600">{card.desc}</p>
+            <p className="text-sm text-gray-600 text-center">{card.desc}</p>
           </div>
         ))}
       </div>
