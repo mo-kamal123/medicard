@@ -6,10 +6,10 @@ const Plans = ({ plans = [] }) => {
 
   return (
     <>
-      <h2 className="my-8 text-3xl font-bold text-black">MediCard Plans</h2>
+      <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold text-black">MediCard Plans</h2>
       <div className="flex items-center">
-        <img src={beats} alt="" className="rotate-180" />
-        <div className="flex w-full items-center justify-between gap-5">
+        <img src={beats} alt="" className="rotate-180 hidden md:block" />
+        <div className="flex w-full flex-col md:flex-row items-stretch justify-between gap-4 md:gap-5">
           {plans.map((plan, index) => (
             <PlanCard
               key={plan.id}
@@ -24,7 +24,7 @@ const Plans = ({ plans = [] }) => {
             />
           ))}
         </div>
-        <img src={beats} alt="" />
+        <img src={beats} alt="" className="hidden md:block" />
       </div>
     </>
   );

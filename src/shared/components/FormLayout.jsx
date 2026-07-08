@@ -10,17 +10,17 @@ const FormLayout = ({
       <div className="grid min-h-screen lg:grid-cols-2">
         
         {/* Form Side */}
-        <d  iv className="flex items-center justify-center p-8 lg:p-12">
-          <div className="w-[90%]">
+        <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
+          <div className="w-full md:w-[90%] max-w-lg">
             {title && (
-              <h1 className="mb-8 text-[45px] font-semibold text-gray-900">
+              <h1 className="mb-6 md:mb-8 text-2xl md:text-4xl lg:text-[45px] font-semibold text-gray-900 leading-tight">
                 {title}
               </h1>
             )}
 
             {children}
           </div>
-        </d>
+        </div>
 
         {/* Image Side */}
         <div className="relative hidden overflow-hidden lg:block">

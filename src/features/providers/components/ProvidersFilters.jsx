@@ -88,8 +88,8 @@ const ProvidersFilters = ({ providers = [] }) => {
 
   return (
     <div className="rounded-2xl bg-[#E8F1FA] p-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="relative min-w-[260px] flex-1">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="relative sm:col-span-2 lg:col-span-1">
           <Search
             size={18}
             className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
@@ -103,58 +103,50 @@ const ProvidersFilters = ({ providers = [] }) => {
           />
         </div>
 
-        <div className="min-w-[140px]">
-          <Dropdown
-            placeholder="Category"
-            options={[
-              { value: "all", label: "All Categories" },
-              ...categories.map((item) => ({ value: item, label: item })),
-            ]}
-            value={category}
-            name="category"
-            onChange={handleCategoryChange}
-          />
-        </div>
+        <Dropdown
+          placeholder="Category"
+          options={[
+            { value: "all", label: "All Categories" },
+            ...categories.map((item) => ({ value: item, label: item })),
+          ]}
+          value={category}
+          name="category"
+          onChange={handleCategoryChange}
+        />
 
-        <div className="min-w-[140px]">
-          <Dropdown
-            placeholder="Government"
-            options={[
-              { value: "all", label: "All Governments" },
-              ...governorates.map((item) => ({ value: item, label: item })),
-            ]}
-            value={governorate}
-            name="governorate"
-            onChange={handleGovernorateChange}
-          />
-        </div>
+        <Dropdown
+          placeholder="Government"
+          options={[
+            { value: "all", label: "All Governments" },
+            ...governorates.map((item) => ({ value: item, label: item })),
+          ]}
+          value={governorate}
+          name="governorate"
+          onChange={handleGovernorateChange}
+        />
 
-        <div className="min-w-[140px]">
-          <Dropdown
-            placeholder="City"
-            options={[
-              { value: "all", label: "All Cities" },
-              ...cities.map((item) => ({ value: item, label: item })),
-            ]}
-            value={city}
-            name="city"
-            onChange={handleCityChange}
-          />
-        </div>
+        <Dropdown
+          placeholder="City"
+          options={[
+            { value: "all", label: "All Cities" },
+            ...cities.map((item) => ({ value: item, label: item })),
+          ]}
+          value={city}
+          name="city"
+          onChange={handleCityChange}
+        />
 
-        <div className="min-w-[140px]">
-          <Dropdown
-            placeholder="Sort by"
-            options={[
-              { value: "name", label: "Name" },
-              { value: "rating", label: "Highest Rated" },
-              { value: "discount", label: "Highest Discount" },
-            ]}
-            value={sortBy}
-            name="sortBy"
-            onChange={handleSortChange}
-          />
-        </div>
+        <Dropdown
+          placeholder="Sort by"
+          options={[
+            { value: "name", label: "Name" },
+            { value: "rating", label: "Highest Rated" },
+            { value: "discount", label: "Highest Discount" },
+          ]}
+          value={sortBy}
+          name="sortBy"
+          onChange={handleSortChange}
+        />
       </div>
     </div>
   )
