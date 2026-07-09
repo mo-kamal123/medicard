@@ -90,8 +90,8 @@ const ProvidersFilters = ({ providers = [] }) => {
 
   return (
     <div className="rounded-2xl bg-[#E8F1FA] p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-        <div className="relative sm:col-span-2 lg:col-span-1">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-3">
+        <div className="relative sm:col-span-2 lg:col-span-4">
           <Search
             size={18}
             className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"

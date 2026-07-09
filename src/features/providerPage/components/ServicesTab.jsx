@@ -1,10 +1,22 @@
+import { useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useProviderServices } from "../hooks/providerPage.queries"
+import Pagination from "../../../shared/components/Pagination"
+
+const PAGE_SIZE = 9
 
 const ServicesTab = ({ providerId }) => {
   const { t } = useTranslation()
+  const [page, setPage] = useState(1)
   const { data, isLoading } = useProviderServices(providerId, true)
   const services = data?.data?.items || []
+
+  const totalPages = Math.max(1, Math.ceil(services.length / PAGE_SIZE))
+
+  const paginatedServices = useMemo(
+    () => services.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+    [services, page]
+  )
 
   if (isLoading) {
     return (
@@ -21,33 +33,41 @@ const ServicesTab = ({ providerId }) => {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {services.map((service) => (
-        <div
-          key={service.id}
-          className="rounded-xl border border-gray-200 flex flex-col justify-between bg-gray-50/60   p-4 transition hover:shadow-md"
-        >
-          <h3 className="font-semibold text-lg text-gray-900">{service.serviceName}</h3>
-          <span className="rounded-full bg-green-50 px-2 py-1 text-xs text-main bg-[#86AFE3] border border-main w-fit my-1">
-              {t("providerPage.off", { discount: service.discountPercentage.toFixed(1) })}
-            </span>
-          {service.isSpecialOffer && (
-            <span className="mt-2 w-fit rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-600">
-              {t("providerPage.specialOffer")}
-            </span>
-          )}
+    <>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {paginatedServices.map((service) => (
+          <div
+            key={service.id}
+            className="rounded-xl border border-gray-200 flex flex-col justify-between bg-gray-50/60   p-4 transition hover:shadow-md"
+          >
+            <h3 className="font-semibold text-lg text-gray-900">{service.serviceName}</h3>
+            <span className="rounded-full bg-green-50 px-2 py-1 text-xs text-main bg-[#86AFE3] border border-main w-fit my-1">
+                {t("providerPage.off", { discount: service.discountPercentage.toFixed(1) })}
+              </span>
+            {service.isSpecialOffer && (
+              <span className="mt-2 w-fit rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-600">
+                {t("providerPage.specialOffer")}
+              </span>
+            )}
 
-          <div className="mt-4 flex items-center gap-2">
-            <span className="text-sm text-gray-400 line-through">
-              {service.priceBefore.toFixed(2)} EGP
-            </span>
-            <span className="font-bold text-main">
-              {service.priceAfter.toFixed(2)} EGP
-            </span>
+            <div className="mt-4 flex items-center gap-2">
+              <span className="text-sm text-gray-400 line-through">
+                {service.priceBefore.toFixed(2)} EGP
+              </span>
+              <span className="font-bold text-main">
+                {service.priceAfter.toFixed(2)} EGP
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
+    </>
   )
 }
 

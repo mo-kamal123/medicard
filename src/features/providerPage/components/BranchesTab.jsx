@@ -1,15 +1,30 @@
+import { useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { MapPin, Phone, ExternalLink } from "lucide-react"
+import Pagination from "../../../shared/components/Pagination"
+
+const PAGE_SIZE = 9
 
 const BranchesTab = ({ branches }) => {
   const { t } = useTranslation()
-  if (!branches?.length) {
+  const [page, setPage] = useState(1)
+  const safeBranches = branches || []
+
+  const totalPages = Math.max(1, Math.ceil(safeBranches.length / PAGE_SIZE))
+
+  const paginatedBranches = useMemo(
+    () => safeBranches.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+    [safeBranches, page]
+  )
+
+  if (!safeBranches.length) {
     return <p className="text-gray-500">{t("providerPage.noBranches")}</p>
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-3">
-      {branches.map((branch) => (
+    <>
+      <div className="grid gap-4 md:grid-cols-3">
+        {paginatedBranches.map((branch) => (
         <div
           key={branch.branchId}
           className="rounded-xl border border-gray-200 bg-white p-5 transition hover:shadow-md"
@@ -50,6 +65,13 @@ const BranchesTab = ({ branches }) => {
         </div>
       ))}
     </div>
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
+    </>
   )
 }
 
