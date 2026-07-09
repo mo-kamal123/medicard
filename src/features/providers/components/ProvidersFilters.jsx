@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { Search } from "lucide-react"
+import { Search, SlidersHorizontal } from "lucide-react"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import Dropdown from "../../../shared/components/Dropdown"
@@ -8,6 +8,7 @@ const ProvidersFilters = ({ providers = [] }) => {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const timerRef = useRef(null)
+  const [filterOpen, setFilterOpen] = useState(false)
 
   const [keyword, setKeyword] = useState(searchParams.get("keyword") || "")
   const [category, setCategory] = useState(searchParams.get("category") || "all")
@@ -101,54 +102,68 @@ const ProvidersFilters = ({ providers = [] }) => {
             onChange={handleKeywordChange}
             type="text"
             placeholder={t("providers.searchPlaceholder")}
-            className="w-full rounded-xl border border-white bg-white py-3.5 pl-11 pr-4 text-sm text-gray-700 outline-none placeholder:text-gray-400"
+            className="w-full rounded-xl border border-white bg-white py-3.5 pl-11 pr-12 text-sm text-gray-700 outline-none placeholder:text-gray-400"
           />
+          <button
+            onClick={() => setFilterOpen((prev) => !prev)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-main transition-colors lg:hidden"
+          >
+            <SlidersHorizontal size={18} />
+          </button>
         </div>
 
-        <Dropdown
-          placeholder={t("providers.category")}
-          options={[
-            { value: "all", label: t("providers.allCategories") },
-            ...categories.map((item) => ({ value: item, label: item })),
-          ]}
-          value={category}
-          name="category"
-          onChange={handleCategoryChange}
-        />
+        <div
+          className={`col-span-full lg:col-span-4 lg:grid lg:grid-cols-4 lg:gap-3 transition-all duration-300 ease-in-out ${
+            filterOpen
+              ? "max-h-96 opacity-100 mt-3 overflow-visible"
+              : "max-h-0 opacity-0 overflow-hidden lg:max-h-96 lg:opacity-100 lg:mt-0 lg:overflow-visible"
+          }`}
+        >
+          <Dropdown
+            placeholder={t("providers.category")}
+            options={[
+              { value: "all", label: t("providers.allCategories") },
+              ...categories.map((item) => ({ value: item, label: item })),
+            ]}
+            value={category}
+            name="category"
+            onChange={handleCategoryChange}
+          />
 
-        <Dropdown
-          placeholder={t("providers.government")}
-          options={[
-            { value: "all", label: t("providers.allGovernments") },
-            ...governorates.map((item) => ({ value: item, label: item })),
-          ]}
-          value={governorate}
-          name="governorate"
-          onChange={handleGovernorateChange}
-        />
+          <Dropdown
+            placeholder={t("providers.government")}
+            options={[
+              { value: "all", label: t("providers.allGovernments") },
+              ...governorates.map((item) => ({ value: item, label: item })),
+            ]}
+            value={governorate}
+            name="governorate"
+            onChange={handleGovernorateChange}
+          />
 
-        <Dropdown
-          placeholder={t("providers.city")}
-          options={[
-            { value: "all", label: t("providers.allCities") },
-            ...cities.map((item) => ({ value: item, label: item })),
-          ]}
-          value={city}
-          name="city"
-          onChange={handleCityChange}
-        />
+          <Dropdown
+            placeholder={t("providers.city")}
+            options={[
+              { value: "all", label: t("providers.allCities") },
+              ...cities.map((item) => ({ value: item, label: item })),
+            ]}
+            value={city}
+            name="city"
+            onChange={handleCityChange}
+          />
 
-        <Dropdown
-          placeholder={t("providers.sortBy")}
-          options={[
-            { value: "name", label: t("providers.name") },
-            { value: "rating", label: t("providers.highestRated") },
-            { value: "discount", label: t("providers.highestDiscount") },
-          ]}
-          value={sortBy}
-          name="sortBy"
-          onChange={handleSortChange}
-        />
+          <Dropdown
+            placeholder={t("providers.sortBy")}
+            options={[
+              { value: "name", label: t("providers.name") },
+              { value: "rating", label: t("providers.highestRated") },
+              { value: "discount", label: t("providers.highestDiscount") },
+            ]}
+            value={sortBy}
+            name="sortBy"
+            onChange={handleSortChange}
+          />
+        </div>
       </div>
     </div>
   )
