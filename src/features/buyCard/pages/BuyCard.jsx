@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { Check } from "lucide-react"
 import becomeProviderImage from "../../../assets/buyCard.jpg"
@@ -6,16 +7,19 @@ import FormInput from "../../../shared/components/Form-Input"
 import Dropdown from "../../../shared/components/Dropdown"
 import { useHomeData } from "../../home/hooks/home.queries"
 
-const GOVERNORATES = [
-  { value: "", label: "Select an option" },
-  { value: "cairo", label: "Cairo" },
-  { value: "alexandria", label: "Alexandria" },
-  { value: "giza", label: "Giza" },
-  { value: "sharqia", label: "Sharqia" },
-  { value: "dakahlia", label: "Dakahlia" },
-  { value: "beheira", label: "Beheira" },
-  { value: "gharbia", label: "Gharbia" },
-]
+const BuyCard = () => {
+  const { t } = useTranslation()
+
+  const GOVERNORATES = [
+    { value: "", label: t("buyCard.selectOption") },
+    { value: "cairo", label: "Cairo" },
+    { value: "alexandria", label: "Alexandria" },
+    { value: "giza", label: "Giza" },
+    { value: "sharqia", label: "Sharqia" },
+    { value: "dakahlia", label: "Dakahlia" },
+    { value: "beheira", label: "Beheira" },
+    { value: "gharbia", label: "Gharbia" },
+  ]
 
 const SelectablePlanCard = ({ plan, isSelected, onSelect }) => (
   <button
@@ -42,7 +46,7 @@ const SelectablePlanCard = ({ plan, isSelected, onSelect }) => (
 
       <div className="mb-8 flex items-end gap-2 border-b border-gray-200 pb-4">
         <span className="text-6xl font-semibold text-[#0A1F57]">{plan.price}</span>
-        <span className="mb-2 text-lg text-gray-500">EGP</span>
+        <span className="mb-2 text-lg text-gray-500">{t("buyCard.egp")}</span>
       </div>
 
       <div className="space-y-4">
@@ -57,7 +61,6 @@ const SelectablePlanCard = ({ plan, isSelected, onSelect }) => (
   </button>
 )
 
-const BuyCard = () => {
   const navigate = useNavigate()
   const { data: homeData } = useHomeData()
   const apiPlans = (homeData?.data?.plans || []).slice(0, 2)
@@ -66,7 +69,7 @@ const BuyCard = () => {
     id: String(p.id),
     title: p.name,
     price: p.priceAfter,
-    badge: p.discountPercentage ? `Save ${Math.round(p.discountPercentage)}%` : null,
+    badge: p.discountPercentage ? t("buyCard.save", { discount: Math.round(p.discountPercentage) }) : null,
     benefits: p.description.split("/").map((s) => s.trim()),
   }))
 
@@ -103,12 +106,12 @@ const BuyCard = () => {
         <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
           <div className="w-full md:w-[90%] max-w-lg">
             <h1 className="mb-6 md:mb-8 text-2xl md:text-4xl font-bold text-gray-900 leading-tight">
-              Ready to join Medicard
+              {t("buyCard.title")}
             </h1>
 
             <form onSubmit={handleSubmit} className="space-y-5 ">
               <Dropdown
-                label="Plan"
+                label={t("buyCard.plan")}
                 name="plan"
                 options={planOptions}
                 value={formData.plan}
@@ -119,24 +122,24 @@ const BuyCard = () => {
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormInput
-                  label="First Name"
+                  label={t("buyCard.firstName")}
                   name="firstName"
-                  placeholder="Enter your first name"
+                  placeholder={t("buyCard.firstNamePlaceholder")}
                   value={formData.firstName}
                   onChange={handleChange}
                 />
 
                 <FormInput
-                  label="Second Name"
+                  label={t("buyCard.secondName")}
                   name="secondName"
-                  placeholder="Enter your second name"
+                  placeholder={t("buyCard.secondNamePlaceholder")}
                   value={formData.secondName}
                   onChange={handleChange}
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormInput
-                label="Number of Cards"
+                label={t("buyCard.numberOfCards")}
                 name="numberOfCards"
                 type="number"
                 min="1"
@@ -146,7 +149,7 @@ const BuyCard = () => {
               />
 
               <Dropdown
-                label="Government"
+                label={t("buyCard.governorate")}
                 name="governorate"
                 options={GOVERNORATES}
                 value={formData.governorate}
@@ -154,16 +157,16 @@ const BuyCard = () => {
               />
               </div>
               <FormInput
-                label="Address"
+                label={t("buyCard.address")}
                 name="address"
-                placeholder="Enter your address"
+                placeholder={t("buyCard.addressPlaceholder")}
                 value={formData.address}
                 onChange={handleChange}
               />
 
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-gray-900">
-                  Phone Number
+                  {t("buyCard.phoneNumber")}
                 </label>
                 <div className="flex items-stretch gap-2">
                   <div className="flex shrink-0 h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-3 md:px-4 text-sm text-gray-500">
@@ -172,7 +175,7 @@ const BuyCard = () => {
                   <input
                     type="text"
                     name="phone"
-                    placeholder="Phone number"
+                    placeholder={t("buyCard.phonePlaceholder")}
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full min-w-0 rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-main"
@@ -184,7 +187,7 @@ const BuyCard = () => {
                 type="submit"
                 className="w-full rounded-xl bg-main py-3 font-medium text-white transition hover:bg-sec"
               >
-                Buy Now
+                {t("buyCard.buyNow")}
               </button>
             </form>
           </div>

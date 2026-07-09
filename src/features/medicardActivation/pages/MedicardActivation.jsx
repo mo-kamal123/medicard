@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -11,64 +12,65 @@ import SuccessPopup from "../../../shared/components/SuccessPopup"
 import { useActivateCard } from "../hooks/activateCard.queries"
 import activateCard from "../../../assets/activateCard.jpg"
 
-const MONTHS = [
-  { value: "", label: "Month" },
-  { value: "1", label: "January" },
-  { value: "2", label: "February" },
-  { value: "3", label: "March" },
-  { value: "4", label: "April" },
-  { value: "5", label: "May" },
-  { value: "6", label: "June" },
-  { value: "7", label: "July" },
-  { value: "8", label: "August" },
-  { value: "9", label: "September" },
-  { value: "10", label: "October" },
-  { value: "11", label: "November" },
-  { value: "12", label: "December" },
-]
-
-const DAYS = Array.from({ length: 31 }, (_, i) => ({
-  value: String(i + 1),
-  label: String(i + 1),
-}))
-
-const YEARS = Array.from({ length: 100 }, (_, i) => {
-  const year = 2026 - i
-  return { value: String(year), label: String(year) }
-})
-
-const GENDER_OPTIONS = [
-  { value: "", label: "Select an option" },
-  { value: "male", label: "Male" },
-  { value: "female", label: "Female" },
-]
-
-const schema = z
-  .object({
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().min(1, "Second name is required"),
-    cardNumber: z.string().min(1, "Card number is required"),
-    gender: z.string().min(1, "Please select your gender"),
-    phone: z.string().regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
-    nationalId: z.string().min(1, "National ID is required"),
-    passportNumber: z.string().optional(),
-    birthMonth: z.string().min(1, "Select month"),
-    birthDay: z.string().min(1, "Select day"),
-    birthYear: z.string().min(1, "Select year"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-    confirmPassword: z.string().min(1, "Confirm your password"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  })
-
 const MedicardActivation = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { mutate, isPending, error: apiError, isSuccess } = useActivateCard()
+
+  const MONTHS = [
+    { value: "", label: t("activation.month") },
+    { value: "1", label: t("activation.months.1") },
+    { value: "2", label: t("activation.months.2") },
+    { value: "3", label: t("activation.months.3") },
+    { value: "4", label: t("activation.months.4") },
+    { value: "5", label: t("activation.months.5") },
+    { value: "6", label: t("activation.months.6") },
+    { value: "7", label: t("activation.months.7") },
+    { value: "8", label: t("activation.months.8") },
+    { value: "9", label: t("activation.months.9") },
+    { value: "10", label: t("activation.months.10") },
+    { value: "11", label: t("activation.months.11") },
+    { value: "12", label: t("activation.months.12") },
+  ]
+
+  const DAYS = Array.from({ length: 31 }, (_, i) => ({
+    value: String(i + 1),
+    label: String(i + 1),
+  }))
+
+  const YEARS = Array.from({ length: 100 }, (_, i) => {
+    const year = 2026 - i
+    return { value: String(year), label: String(year) }
+  })
+
+  const GENDER_OPTIONS = [
+    { value: "", label: t("activation.genderOptions.select") },
+    { value: "male", label: t("activation.genderOptions.male") },
+    { value: "female", label: t("activation.genderOptions.female") },
+  ]
+
+  const schema = z
+    .object({
+      firstName: z.string().min(1, t("activation.firstNameRequired")),
+      lastName: z.string().min(1, t("activation.secondNameRequired")),
+      cardNumber: z.string().min(1, t("activation.cardNumberRequired")),
+      gender: z.string().min(1, t("activation.genderRequired")),
+      phone: z.string().regex(/^\d{10}$/, t("activation.phoneInvalid")),
+      nationalId: z.string().min(1, t("activation.nationalIdRequired")),
+      passportNumber: z.string().optional(),
+      birthMonth: z.string().min(1, t("activation.selectMonth")),
+      birthDay: z.string().min(1, t("activation.selectDay")),
+      birthYear: z.string().min(1, t("activation.selectYear")),
+      password: z.string().min(6, t("activation.passwordMinLength")),
+      confirmPassword: z.string().min(1, t("activation.confirmPasswordRequired")),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: t("activation.passwordsDoNotMatch"),
+      path: ["confirmPassword"],
+    })
 
   const {
     register,
@@ -119,7 +121,7 @@ const MedicardActivation = () => {
 
   return (
     <FormLayout
-      title={step === 1 ? "Activate Your Medicard" : "Complete Your Activation"}
+      title={step === 1 ? t("activation.titleStep1") : t("activation.titleStep2")}
       image={activateCard}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -134,8 +136,8 @@ const MedicardActivation = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <FormInput
-                  label="First Name"
-                  placeholder="Enter your first name"
+                  label={t("activation.firstName")}
+                  placeholder={t("activation.firstNamePlaceholder")}
                   {...register("firstName")}
                 />
                 {errors.firstName && (
@@ -147,8 +149,8 @@ const MedicardActivation = () => {
 
               <div>
                 <FormInput
-                  label="Second Name"
-                  placeholder="Enter your second name"
+                  label={t("activation.secondName")}
+                  placeholder={t("activation.secondNamePlaceholder")}
                   {...register("lastName")}
                 />
                 {errors.lastName && (
@@ -161,8 +163,8 @@ const MedicardActivation = () => {
 
             <div>
               <FormInput
-                label="Card Number"
-                placeholder="Enter your card number"
+                label={t("activation.cardNumber")}
+                placeholder={t("activation.cardNumberPlaceholder")}
                 {...register("cardNumber")}
               />
               {errors.cardNumber && (
@@ -174,7 +176,7 @@ const MedicardActivation = () => {
 
             <div>
               <Dropdown
-                label="Gender"
+                label={t("activation.gender")}
                 options={GENDER_OPTIONS}
                 value={watch("gender")}
                 {...register("gender")}
@@ -188,7 +190,7 @@ const MedicardActivation = () => {
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-gray-900">
-                Phone Number
+                {t("activation.phoneNumber")}
               </label>
               <div className="flex items-stretch gap-2">
                 <div className="flex shrink-0 h-12 items-center rounded-xl border border-gray-200 bg-gray-50 px-3 md:px-4 text-sm text-gray-500">
@@ -196,7 +198,7 @@ const MedicardActivation = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Phone number"
+                  placeholder={t("activation.phonePlaceholder")}
                   className="w-full min-w-0 rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-main"
                   {...register("phone")}
                 />
@@ -211,13 +213,13 @@ const MedicardActivation = () => {
               onClick={handleNext}
               className="w-full rounded-xl bg-main py-3 font-medium text-white transition hover:bg-sec"
             >
-              Next
+              {t("activation.next")}
             </button>
 
             <div className="flex items-center gap-3 py-2">
               <div className="h-px flex-1 bg-gray-200" />
               <span className="text-sm text-gray-400">
-                Prefer to activate by phone?
+                {t("activation.activateByPhone")}
               </span>
               <div className="h-px flex-1 bg-gray-200" />
             </div>
@@ -227,7 +229,7 @@ const MedicardActivation = () => {
               className="flex w-full items-center justify-center gap-2 rounded-xl border border-main py-3 font-medium text-main transition hover:bg-main hover:text-white"
             >
               <Phone size={16} />
-              Call Now
+              {t("activation.callNow")}
             </button>
           </>
         )}
@@ -240,13 +242,13 @@ const MedicardActivation = () => {
               className="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600"
             >
               <ArrowLeft size={16} />
-              Back
+              {t("activation.back")}
             </button>
 
             <div>
               <FormInput
-                label="National ID"
-                placeholder="Enter your national ID"
+                label={t("activation.nationalId")}
+                placeholder={t("activation.nationalIdPlaceholder")}
                 {...register("nationalId")}
               />
               {errors.nationalId && (
@@ -258,49 +260,49 @@ const MedicardActivation = () => {
 
             <div>
               <FormInput
-                label="Passport"
-                placeholder="Enter your passport number"
+                label={t("activation.passport")}
+                placeholder={t("activation.passportPlaceholder")}
                 {...register("passportNumber")}
               />
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-gray-900">
-                Date of Birth
+                {t("activation.dateOfBirth")}
               </label>
               <div className="grid grid-cols-3 gap-2">
                 <Dropdown
                   options={MONTHS}
-                  placeholder="Month"
+                  placeholder={t("activation.month")}
                   value={watch("birthMonth")}
                   {...register("birthMonth")}
                 />
                 <Dropdown
-                  options={[{ value: "", label: "Day" }, ...DAYS]}
-                  placeholder="Day"
+                  options={[{ value: "", label: t("activation.day") }, ...DAYS]}
+                  placeholder={t("activation.day")}
                   value={watch("birthDay")}
                   {...register("birthDay")}
                 />
                 <Dropdown
-                  options={[{ value: "", label: "Year" }, ...YEARS]}
-                  placeholder="Year"
+                  options={[{ value: "", label: t("activation.year") }, ...YEARS]}
+                  placeholder={t("activation.year")}
                   value={watch("birthYear")}
                   {...register("birthYear")}
                 />
               </div>
               {(errors.birthMonth || errors.birthDay || errors.birthYear) && (
                 <p className="text-sm text-red-500">
-                  Please select your full date of birth
+                  {t("activation.selectFullDateOfBirth")}
                 </p>
               )}
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-gray-900">Password</label>
+              <label className="text-sm font-medium text-gray-900">{t("activation.password")}</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
+                  placeholder={t("activation.passwordPlaceholder")}
                   className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-12 outline-none focus:border-main"
                   {...register("password")}
                 />
@@ -318,11 +320,11 @@ const MedicardActivation = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-gray-900">Confirm Password</label>
+              <label className="text-sm font-medium text-gray-900">{t("activation.confirmPassword")}</label>
               <div className="relative">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm your password"
+                  placeholder={t("activation.confirmPasswordPlaceholder")}
                   className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-12 outline-none focus:border-main"
                   {...register("confirmPassword")}
                 />
@@ -344,7 +346,7 @@ const MedicardActivation = () => {
               disabled={isPending}
               className="w-full rounded-xl bg-main py-3 font-medium text-white transition hover:bg-sec disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isPending ? "Activating..." : "Activate"}
+              {isPending ? t("activation.activating") : t("activation.activate")}
             </button>
           </>
         )}
@@ -352,9 +354,9 @@ const MedicardActivation = () => {
 
       {isSuccess && (
         <SuccessPopup
-          title="Card Activated!"
-          message="Your Medicard has been activated successfully."
-          buttonText="Back to Home"
+          title={t("activation.successTitle")}
+          message={t("activation.successMessage")}
+          buttonText={t("activation.backToHome")}
           onButtonClick={() => navigate("/")}
         />
       )}

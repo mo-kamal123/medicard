@@ -38,8 +38,8 @@ export function HomePage() {
       <Hero />
       <div className="w-[90%] mx-auto max-w-7xl">
         <CategoriesSlider categories={categories.data} />
-        <section id="service-providers" className="scroll-mt-24">
-          <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">Service Providers</h2>
+          <section id="service-providers" className="scroll-mt-24">
+          <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">{t("home.serviceProviders")}</h2>
           <ProvidersSlider providers={providers} />
         </section>
         <section id="why" className="scroll-mt-24">

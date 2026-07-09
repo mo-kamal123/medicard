@@ -1,0 +1,274 @@
+{
+  "app": {
+    "brand": "Medicard",
+    "navigation": {
+      "home": "Home",
+      "login": "Login"
+    }
+  },
+  "common": {
+    "backHome": "Back home",
+    "folders": "Folders"
+  },
+  "navbar": {
+    "serviceProviders": "Service Providers",
+    "why": "Why",
+    "offers": "Offers",
+    "contact": "Contact",
+    "activateCard": "Activate Card"
+  },
+  "hero": {
+    "title1": "Less Cost",
+    "title2": "More Care.",
+    "description": "Access 2,000+ doctors, labs, pharmacies, gyms & home services across Egypt all with one MediCard membership.",
+    "searchPlaceholder": "Doctor name, pharmacy, lab\u2026",
+    "activateCard": "Activate Card",
+    "becomeProvider": "Become a Provider"
+  },
+  "footer": {
+    "services": {
+      "title": "Services",
+      "items": ["Doctors", "Beauty", "Elder care", "Labs & Diagnostics", "Pharmacy", "Gyms & Wellness", "Home Services"]
+    },
+    "membership": {
+      "title": "Membership",
+      "items": ["Standard Plan", "Silver 50+"]
+    },
+    "company": {
+      "title": "Company",
+      "items": ["Terms and conditions", "Privacy Policy", "Refund Policy", "Contact Us"]
+    },
+    "description": "Egypt's #1 healthcare membership card. Access 2,400+ providers, exclusive discounts, and comprehensive family health management in one card.",
+    "copyright": "\u00a9 2025 MediCard Egypt. All rights reserved.",
+    "contact": "+19011 | support@medicard.com.eg"
+  },
+  "why": {
+    "title": "Why Choose MediCard?",
+    "trust": "Trust",
+    "trustDesc": "All our Service providers are verified and offer genuine discounts on quality medical services.",
+    "savings": "Savings",
+    "savingsDesc": "Save up to 30% on lab tests, scans, pharmacy services, and more.",
+    "coverage": "Coverage",
+    "coverageDesc": "Coverage across all of Egypt 27 Governorates, urban and rural communities alike."
+  },
+  "offers": {
+    "title": "Why Choose MediCard?"
+  },
+  "home": {
+    "serviceProviders": "Service Providers",
+    "eyebrow": "Project core",
+    "title": "Feature-based React foundation for Medicard.",
+    "description": "Router objects, TanStack Query, Axios, React Hook Form, and Zod are now wired into a structure that can grow feature by feature.",
+    "action": "View form example"
+  },
+  "plans": {
+    "title": "MediCard Plans",
+    "save": "Save {{discount}}%",
+    "egp": "EGP",
+    "getCard": "Get Card"
+  },
+  "search": {
+    "placeholder": "Search doctors, clinics...",
+    "button": "Search"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "sendMessage": "Send a Message",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "messagePlaceholder": "enter your message",
+    "send": "Send",
+    "sending": "Sending...",
+    "followUs": "Follow Us",
+    "toastSuccess": "Message sent successfully!",
+    "toastError": "Failed to send message. Please try again.",
+    "nameMinLength": "Name must be at least 2 characters",
+    "invalidEmail": "Please enter a valid email",
+    "messageMinLength": "Message must be at least 10 characters"
+  },
+  "providers": {
+    "searchPlaceholder": "Doctor name, pharmacy, lab...",
+    "allCategories": "All Categories",
+    "allGovernments": "All Governments",
+    "allCities": "All Cities",
+    "sortBy": "Sort by",
+    "name": "Name",
+    "highestRated": "Highest Rated",
+    "highestDiscount": "Highest Discount",
+    "noResults": "No providers found",
+    "noResultsDesc": "Try adjusting your search or filters to find more results.",
+    "upToOff": "Up to {{discount}}% Off",
+    "scanOff": "Scan 20%",
+    "examOff": "30% Off Examination",
+    "category": "Category",
+    "government": "Government",
+    "city": "City"
+  },
+  "providerPage": {
+    "tabs": {
+      "services": "Services",
+      "reviews": "Reviews",
+      "packages": "Packages",
+      "branches": "Branches"
+    },
+    "notFound": "Provider not found",
+    "backToProviders": "Back to providers",
+    "services": "{{count}} Services",
+    "noServices": "No services available.",
+    "off": "-{{discount}}% off",
+    "specialOffer": "Special Offer",
+    "noReviews": "No reviews yet.",
+    "timeAgo": {
+      "year": "{{count}} year ago",
+      "year_plural": "{{count}} years ago",
+      "month": "{{count}} month ago",
+      "month_plural": "{{count}} months ago",
+      "week": "{{count}} week ago",
+      "week_plural": "{{count}} weeks ago",
+      "day": "{{count}} day ago",
+      "day_plural": "{{count}} days ago",
+      "hour": "{{count}} hour ago",
+      "hour_plural": "{{count}} hours ago",
+      "minute": "{{count}} min ago",
+      "justNow": "just now"
+    },
+    "noPackages": "No packages available.",
+    "packageServices": "{{count}} services",
+    "noBranches": "No branches available.",
+    "viewOnMap": "View on map"
+  },
+  "becomeProvider": {
+    "title": "Become a MediCard Provider",
+    "facilityName": "Clinic / Facility Name",
+    "facilityNamePlaceholder": "Enter your facility name",
+    "category": "Category",
+    "selectCategory": "Select a category",
+    "numberOfBranches": "Number of Branches",
+    "mainBranchAddress": "Main Branch Address",
+    "mainBranchAddressPlaceholder": "Enter your main branch address",
+    "email": "Email",
+    "emailPlaceholder": "Email address",
+    "phone": "Phone",
+    "phonePlaceholder": "Phone number",
+    "submit": "Submit Request",
+    "submitting": "Submitting...",
+    "successTitle": "Request Sent!",
+    "successMessage": "We will review your request and get back to you soon.",
+    "backToHome": "Back to Home",
+    "facilityNameRequired": "Facility name is required",
+    "selectCategoryRequired": "Please select a category",
+    "branchesRequired": "At least 1 branch is required",
+    "addressRequired": "Main branch address is required",
+    "invalidEmail": "Please enter a valid email",
+    "phoneInvalid": "Phone number must be exactly 11 digits"
+  },
+  "activation": {
+    "titleStep1": "Activate Your Medicard",
+    "titleStep2": "Complete Your Activation",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Enter your first name",
+    "secondName": "Second Name",
+    "secondNamePlaceholder": "Enter your second name",
+    "cardNumber": "Card Number",
+    "cardNumberPlaceholder": "Enter your card number",
+    "gender": "Gender",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "Phone number",
+    "next": "Next",
+    "activateByPhone": "Prefer to activate by phone?",
+    "callNow": "Call Now",
+    "back": "Back",
+    "nationalId": "National ID",
+    "nationalIdPlaceholder": "Enter your national ID",
+    "passport": "Passport",
+    "passportPlaceholder": "Enter your passport number",
+    "dateOfBirth": "Date of Birth",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "activating": "Activating...",
+    "activate": "Activate",
+    "successTitle": "Card Activated!",
+    "successMessage": "Your Medicard has been activated successfully.",
+    "backToHome": "Back to Home",
+    "month": "Month",
+    "day": "Day",
+    "year": "Year",
+    "selectOption": "Select an option",
+    "firstNameRequired": "First name is required",
+    "secondNameRequired": "Second name is required",
+    "cardNumberRequired": "Card number is required",
+    "genderRequired": "Please select your gender",
+    "phoneInvalid": "Phone number must be exactly 10 digits",
+    "nationalIdRequired": "National ID is required",
+    "selectMonth": "Select month",
+    "selectDay": "Select day",
+    "selectYear": "Select year",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "confirmPasswordRequired": "Confirm your password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "selectFullDateOfBirth": "Please select your full date of birth",
+    "months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    },
+    "genderOptions": {
+      "select": "Select an option",
+      "male": "Male",
+      "female": "Female"
+    }
+  },
+  "buyCard": {
+    "title": "Ready to join Medicard",
+    "plan": "Plan",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Enter your first name",
+    "secondName": "Second Name",
+    "secondNamePlaceholder": "Enter your second name",
+    "numberOfCards": "Number of Cards",
+    "governorate": "Governorate",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "Phone number",
+    "buyNow": "Buy Now",
+    "save": "Save {{discount}}%",
+    "selectOption": "Select an option",
+    "egp": "EGP"
+  },
+  "auth": {
+    "eyebrow": "Auth feature",
+    "title": "Login flow starter",
+    "description": "This page keeps form UI, validation, API calls, and mutation state inside the auth feature.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "loginSuccess": "Login request completed.",
+    "validation": {
+      "invalidEmail": "Enter a valid email address",
+      "passwordMin": "Password must be at least 8 characters"
+    }
+  },
+  "errors": {
+    "routing": "Routing error",
+    "unexpected": "Unexpected application error"
+  },
+  "language": {
+    "label": "Language",
+    "english": "English",
+    "arabic": "Arabic"
+  }
+}
