@@ -1,7 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  if (totalPages <= 1) return null
 
   const getPages = () => {
     const pages = []
@@ -53,7 +52,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 : "text-gray-600 hover:bg-blue-50 hover:text-main"
             }`}
           >
-            {page}
+            {page}  
           </button>
         )
       )}

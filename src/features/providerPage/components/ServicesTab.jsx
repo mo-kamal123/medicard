@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useProviderServices } from "../hooks/providerPage.queries"
-import Pagination from "../../../shared/components/Pagination"
+import Paginations from "../../../shared/components/Pagination                                               "
 
 const PAGE_SIZE = 9
 
@@ -62,7 +62,7 @@ const ServicesTab = ({ providerId }) => {
         ))}
       </div>
 
-      <Pagination
+      <Paginations
         currentPage={page}
         totalPages={totalPages}
         onPageChange={setPage}

@@ -5,8 +5,7 @@ import { flattenProviders } from "../utils/flattenProviders"
 import ProvidersFilters from "../components/ProvidersFilters"
 import { useProviders } from "../hooks/providers.queries"
 import { filterProviders } from "../utils/filterProviders"
-import Pagination from "../../../shared/components/Pagination"
-
+import Paginations from "../../../shared/components/Pagination"
 const PAGE_SIZE = 12
 const API_PAGE_SIZE = 100
 
@@ -69,8 +68,7 @@ const Providers = () => {
             isLoading={isLoading && !isError && !apiProviders.length}
           />
         </div>
-
-        <Pagination
+        <Paginations
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
