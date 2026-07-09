@@ -1,8 +1,11 @@
-import { Check } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next";
+import { Check } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import i18n from "../config/i18n";
 
 const PlanCard = ({ data, active }) => {
-  const navigate = useNavigate()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div
       className={`
@@ -14,20 +17,29 @@ const PlanCard = ({ data, active }) => {
         }
       `}
     >
-      {data.discount && (
-        <div className="absolute right-3 md:right-5 top-3 md:top-5 rounded-full border border-[#FCD34D] bg-[#FEF3C7] px-3 md:px-4 py-1 text-xs md:text-sm font-medium text-[#D97706]">
-          Save {Math.round(data.discount)}%
-        </div>
-      )}
+      <div
+        className={`absolute top-3 md:top-5 rounded-full border border-[#FCD34D] bg-[#FEF3C7] px-3 md:px-4 py-1 text-xs md:text-sm font-medium text-[#D97706]
+    ${i18n.dir() === "rtl" ? "left-3 md:left-5" : "right-3 md:right-5"}`}
+      >
+        {t("plans.save", { discount: Math.round(data.discount) })}
+      </div>
 
       <div>
-        <h3 className="mb-4 md:mb-6 text-xl md:text-2xl font-medium uppercase text-main">{data.title}</h3>
+        <h3 className="mb-4 md:mb-6 text-xl md:text-2xl font-medium uppercase text-main">
+          {data.title}
+        </h3>
 
         <div className="mb-6 md:mb-8 flex items-end gap-2 border-b border-gray-200 pb-4">
-          <span className="text-4xl md:text-6xl font-semibold text-[#0A1F57]">{data.price}</span>
-          <span className="mb-1 md:mb-2 text-base md:text-lg text-gray-500">EGP</span>
+          <span className="text-4xl md:text-6xl font-semibold text-[#0A1F57]">
+            {data.price}
+          </span>
+          <span className="mb-1 md:mb-2 text-base md:text-lg text-gray-500">
+            {t("plans.egp")}
+          </span>
           {data.priceBefore && data.priceBefore !== data.price && (
-            <span className="mb-1 md:mb-2 text-sm md:text-lg text-gray-400 line-through">{data.priceBefore} EGP</span>
+            <span className="mb-1 md:mb-2 text-sm md:text-lg text-gray-400 line-through">
+              {data.priceBefore} {t("plans.egp")}
+            </span>
           )}
         </div>
 
@@ -52,10 +64,10 @@ const PlanCard = ({ data, active }) => {
           }
         `}
       >
-        Get Card
+        {t("plans.getCard")}
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default PlanCard
+export default PlanCard;

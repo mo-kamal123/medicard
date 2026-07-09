@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import ProviderCard from "./ProviderCard";
 
 const ProvidersGrid = ({ providers = [], isLoading }) => {
+  const { t } = useTranslation();
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -24,9 +26,9 @@ const ProvidersGrid = ({ providers = [], isLoading }) => {
   if (!providers.length) {
     return (
       <div className="rounded-2xl border border-dashed border-borders bg-white px-6 py-16 text-center">
-        <h3 className="text-xl font-semibold text-dark">No providers found</h3>
+        <h3 className="text-xl font-semibold text-dark">{t("providers.noResults")}</h3>
         <p className="mt-2 text-sm text-gray-500">
-          Try adjusting your search or filters to find more results.
+          {t("providers.noResultsDesc")}
         </p>
       </div>
     );

@@ -1,17 +1,18 @@
+import { useTranslation } from "react-i18next";
 import { MapPin, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const getOffers = (provider) => {
+const getOffers = (provider, t) => {
   if (provider.offers?.length) return provider.offers.slice(0, 2);
 
   const offers = [];
   if (provider.maxDiscountPercentage) {
-    offers.push(`Up to ${provider.maxDiscountPercentage}% Off`);
+    offers.push(t("providers.upToOff", { discount: provider.maxDiscountPercentage }));
   }
   if (provider.categoryName === "Lab") {
-    offers.push("Scan 20%");
+    offers.push(t("providers.scanOff"));
   } else if (provider.categoryName === "Hospital") {
-    offers.push("30% Off Examination");
+    offers.push(t("providers.examOff"));
   }
 
   return offers.slice(0, 2);
@@ -33,8 +34,8 @@ const getRating = (provider) => {
 };
 
 const ProviderCard = ({ provider }) => {
-  console.log(provider);
-  const offers = getOffers(provider);
+  const { t } = useTranslation();
+  const offers = getOffers(provider, t);
   const rating = getRating(provider);
   const location = provider.city || provider.branchName || provider.governorate;
 

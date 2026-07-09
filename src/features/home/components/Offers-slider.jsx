@@ -1,4 +1,6 @@
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
+import i18n, { getLanguageDirection } from "../../../shared/config/i18n/i18n";
 
 import { A11y, Navigation, Autoplay } from "swiper/modules";
 
@@ -7,13 +9,16 @@ import "swiper/css/navigation";
 
 
 const OffersSlider = ({ sliders }) => {
+  const { t } = useTranslation();
   return (
     <>
       <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold text-black">
-        Why Choose MediCard?
+        {t("offers.title")}
       </h2>
 
       <Swiper
+        key={i18n.language}
+        dir={getLanguageDirection(i18n.language)}
         className="offers-slider"
         modules={[Navigation, A11y, Autoplay]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}

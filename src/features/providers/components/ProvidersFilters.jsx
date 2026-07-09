@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next"
 import { Search } from "lucide-react"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import Dropdown from "../../../shared/components/Dropdown"
 
 const ProvidersFilters = ({ providers = [] }) => {
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const timerRef = useRef(null)
 
@@ -98,15 +100,15 @@ const ProvidersFilters = ({ providers = [] }) => {
             value={keyword}
             onChange={handleKeywordChange}
             type="text"
-            placeholder="Doctor name, pharmacy, lab..."
+            placeholder={t("providers.searchPlaceholder")}
             className="w-full rounded-xl border border-white bg-white py-3.5 pl-11 pr-4 text-sm text-gray-700 outline-none placeholder:text-gray-400"
           />
         </div>
 
         <Dropdown
-          placeholder="Category"
+          placeholder={t("providers.category")}
           options={[
-            { value: "all", label: "All Categories" },
+            { value: "all", label: t("providers.allCategories") },
             ...categories.map((item) => ({ value: item, label: item })),
           ]}
           value={category}
@@ -115,9 +117,9 @@ const ProvidersFilters = ({ providers = [] }) => {
         />
 
         <Dropdown
-          placeholder="Government"
+          placeholder={t("providers.government")}
           options={[
-            { value: "all", label: "All Governments" },
+            { value: "all", label: t("providers.allGovernments") },
             ...governorates.map((item) => ({ value: item, label: item })),
           ]}
           value={governorate}
@@ -126,9 +128,9 @@ const ProvidersFilters = ({ providers = [] }) => {
         />
 
         <Dropdown
-          placeholder="City"
+          placeholder={t("providers.city")}
           options={[
-            { value: "all", label: "All Cities" },
+            { value: "all", label: t("providers.allCities") },
             ...cities.map((item) => ({ value: item, label: item })),
           ]}
           value={city}
@@ -137,11 +139,11 @@ const ProvidersFilters = ({ providers = [] }) => {
         />
 
         <Dropdown
-          placeholder="Sort by"
+          placeholder={t("providers.sortBy")}
           options={[
-            { value: "name", label: "Name" },
-            { value: "rating", label: "Highest Rated" },
-            { value: "discount", label: "Highest Discount" },
+            { value: "name", label: t("providers.name") },
+            { value: "rating", label: t("providers.highestRated") },
+            { value: "discount", label: t("providers.highestDiscount") },
           ]}
           value={sortBy}
           name="sortBy"

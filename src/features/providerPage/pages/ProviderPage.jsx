@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useParams, Link } from "react-router-dom"
 import { Phone, Star, ArrowLeft, Stethoscope } from "lucide-react"
 import { useProviderPage } from "../hooks/providerPage.queries"
@@ -7,12 +8,14 @@ import ReviewsTab from "../components/ReviewsTab"
 import PackagesTab from "../components/PackagesTab"
 import BranchesTab from "../components/BranchesTab"
 
-const TABS = [
-  { key: "services", label: "Services" },
-  { key: "reviews", label: "Reviews" },
-  { key: "packages", label: "Packages" },
-  { key: "branches", label: "Branches" },
-]
+const ProviderPage = () => {
+  const { t } = useTranslation()
+  const TABS = [
+    { key: "services", label: t("providerPage.tabs.services") },
+    { key: "reviews", label: t("providerPage.tabs.reviews") },
+    { key: "packages", label: t("providerPage.tabs.packages") },
+    { key: "branches", label: t("providerPage.tabs.branches") },
+  ]
 
 const tabComponents = {
   services: ServicesTab,
@@ -21,7 +24,6 @@ const tabComponents = {
   branches: BranchesTab,
 }
 
-const ProviderPage = () => {
   const { id } = useParams()
   const [activeTab, setActiveTab] = useState("services")
   const { data, isLoading, isError } = useProviderPage(id)
@@ -49,9 +51,9 @@ const ProviderPage = () => {
     return (
       <div className="bg-body flex min-h-screen items-center justify-center pb-16">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold text-dark">Provider not found</h2>
+          <h2 className="text-2xl font-semibold text-dark">{t("providerPage.notFound")}</h2>
           <Link to="/providers" className="mt-4 inline-flex items-center gap-2 text-main underline">
-            <ArrowLeft size={16} /> Back to providers
+            <ArrowLeft size={16} /> {t("providerPage.backToProviders")}
           </Link>
         </div>
       </div>
@@ -89,7 +91,7 @@ const ProviderPage = () => {
                   <div className="mt-3 md:mt-4 flex flex-wrap gap-4 md:gap-6 text-sm text-gray-600">
                     <span className="flex items-center gap-2 text-xl">
                     <Stethoscope size={20} className="text-main" />
-                      {provider.totalServices} Services
+                      {t("providerPage.services", { count: provider.totalServices })}
                     </span>
 
                     {provider.hotLine && (

@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next"
 import { useProviderServices } from "../hooks/providerPage.queries"
 
 const ServicesTab = ({ providerId }) => {
+  const { t } = useTranslation()
   const { data, isLoading } = useProviderServices(providerId, true)
   const services = data?.data?.items || []
 
@@ -15,7 +17,7 @@ const ServicesTab = ({ providerId }) => {
   }
 
   if (!services.length) {
-    return <p className="text-gray-500">No services available.</p>
+    return <p className="text-gray-500">{t("providerPage.noServices")}</p>
   }
 
   return (
@@ -27,11 +29,11 @@ const ServicesTab = ({ providerId }) => {
         >
           <h3 className="font-semibold text-lg text-gray-900">{service.serviceName}</h3>
           <span className="rounded-full bg-green-50 px-2 py-1 text-xs text-main bg-[#86AFE3] border border-main w-fit my-1">
-              -{service.discountPercentage.toFixed(1)}% off
+              {t("providerPage.off", { discount: service.discountPercentage.toFixed(1) })}
             </span>
           {service.isSpecialOffer && (
             <span className="mt-2 w-fit rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-600">
-              Special Offer
+              {t("providerPage.specialOffer")}
             </span>
           )}
 
