@@ -48,10 +48,10 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`sticky top-0 grid grid-cols-3 items-center px-4 md:px-8 py-4 bg-white shadow-md z-50 transition-transform duration-300 ${
+      <header className={`sticky top-0 flex items-center justify-between px-4 md:px-8 py-4 bg-white shadow-md z-50 transition-transform duration-300 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}>
-        <Link to="/" className="flex items-center shrink-0 justify-self-start">
+        <Link to="/" className="flex items-center shrink-0">
           <img
             src={logo}
             alt="Medicard"
@@ -59,7 +59,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <nav className="hidden lg:flex items-center justify-center gap-12">
+        <nav className="hidden lg:flex items-center justify-center flex-1 gap-12">
           {navLinks.map((link) => (
             <Link
               key={link.hash}
@@ -72,12 +72,12 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="flex items-center justify-self-end gap-2 md:gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <button
             onClick={() => navigate("/medicard-activation")}
             className="hidden sm:inline-block px-4 md:px-5 py-2 text-sm font-medium text-main border border-main rounded-lg hover:bg-blue-50 transition whitespace-nowrap"
           >
-            Activate Card
+            {t("navbar.activateCard")}
           </button>
 
           <button
@@ -118,7 +118,7 @@ const Navbar = () => {
             onClick={() => { navigate("/medicard-activation"); setMobileOpen(false); }}
             className="sm:hidden w-full px-4 py-2 text-sm font-medium text-main border border-main rounded-lg hover:bg-blue-50 transition"
           >
-            Activate Card
+            {t("navbar.activateCard")}
           </button>
         </nav>
       </header>

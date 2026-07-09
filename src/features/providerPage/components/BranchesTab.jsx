@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next"
 import { MapPin, Phone, ExternalLink } from "lucide-react"
 
 const BranchesTab = ({ branches }) => {
+  const { t } = useTranslation()
   if (!branches?.length) {
-    return <p className="text-gray-500">No branches available.</p>
+    return <p className="text-gray-500">{t("providerPage.noBranches")}</p>
   }
 
   return (
@@ -42,7 +44,7 @@ const BranchesTab = ({ branches }) => {
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-main hover:underline"
             >
-              <ExternalLink size={14} /> View on map
+              <ExternalLink size={14} /> {t("providerPage.viewOnMap")}
             </a>
           )}
         </div>

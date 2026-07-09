@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -14,12 +15,6 @@ import Toast from "../../../shared/components/Toast"
 import ContactCard from "./Contact-card"
 import { useContactUs } from "../hooks/contactUs.queries"
 
-const schema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-})
-
 const iconMap = {
   phone,
   email: mail,
@@ -30,8 +25,15 @@ const iconMap = {
 }
 
 const ContactUs = ({ data }) => {
+  const { t } = useTranslation()
   const [toast, setToast] = useState(null)
   const { mutate, isPending, isSuccess } = useContactUs()
+
+  const schema = z.object({
+    name: z.string().min(2, t("contact.nameMinLength")),
+    email: z.string().email(t("contact.invalidEmail")),
+    message: z.string().min(10, t("contact.messageMinLength")),
+  })
 
   const {
     register,
@@ -45,11 +47,11 @@ const ContactUs = ({ data }) => {
   const onSubmit = (data) => {
     mutate(data, {
       onSuccess: () => {
-        setToast({ message: "Message sent successfully!", type: "success" })
+        setToast({ message: t("contact.toastSuccess"), type: "success" })
         reset()
       },
       onError: () => {
-        setToast({ message: "Failed to send message. Please try again.", type: "error" })
+        setToast({ message: t("contact.toastError"), type: "error" })
       },
     })
   }
@@ -61,26 +63,26 @@ const ContactUs = ({ data }) => {
 
   return (
     <section className="container mx-auto px-4 md:px-0 py-10 md:py-20">
-      <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">Contact Us</h2>
+      <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">{t("contact.title")}</h2>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="rounded-3xl border border-[#D9E4F5] bg-[#F4F8FF] p-4 md:p-6">
-          <h3 className="mb-4 md:mb-6 text-xl md:text-3xl font-medium">Send a Message</h3>
+          <h3 className="mb-4 md:mb-6 text-xl md:text-3xl font-medium">{t("contact.sendMessage")}</h3>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
               <div>
-                <FormInput label="Name" placeholder="Name" {...register("name")} />
+                <FormInput label={t("contact.name")} placeholder={t("contact.name")} {...register("name")} />
                 {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
               </div>
               <div>
-                <FormInput label="Email" type="email" placeholder="Email" {...register("email")} />
+                <FormInput label={t("contact.email")} type="email" placeholder={t("contact.email")} {...register("email")} />
                 {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
               </div>
             </div>
 
             <div>
-              <FormTextarea label="Message" placeholder="enter your message" rows={6} {...register("message")} />
+              <FormTextarea label={t("contact.message")} placeholder={t("contact.messagePlaceholder")} rows={6} {...register("message")} />
               {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>}
             </div>
 
@@ -89,7 +91,7 @@ const ContactUs = ({ data }) => {
               disabled={isPending}
               className="w-full rounded-xl bg-main py-3 font-medium text-white transition hover:bg-sec disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isPending ? "Sending..." : "Send"}
+              {isPending ? t("contact.sending") : t("contact.send")}
             </button>
           </form>
         </div>
@@ -118,7 +120,7 @@ const ContactUs = ({ data }) => {
                   <img src={iconMap[item.type]} alt={item.label} className="w-5 h-5 md:w-auto md:h-auto" />
                 </a>
               ))}
-              <h3 className="ml-1 md:ml-2 text-xl md:text-3xl font-semibold">Follow Us</h3>
+              <h3 className="ml-1 md:ml-2 text-xl md:text-3xl font-semibold">{t("contact.followUs")}</h3>
             </div>
           )}
         </div>

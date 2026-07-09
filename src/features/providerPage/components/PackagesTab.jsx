@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next"
 import { useProviderPackages } from "../hooks/providerPage.queries"
 
 const PackagesTab = ({ providerId }) => {
+  const { t } = useTranslation()
   const { data, isLoading } = useProviderPackages(providerId, true)
   const packages = data?.data?.items || []
 
@@ -15,7 +17,7 @@ const PackagesTab = ({ providerId }) => {
   }
 
   if (!packages.length) {
-    return <p className="text-gray-500">No packages available.</p>
+    return <p className="text-gray-500">{t("providerPage.noPackages")}</p>
   }
 
   return (
@@ -39,7 +41,7 @@ const PackagesTab = ({ providerId }) => {
             {/* <p className="mt-1 text-sm text-gray-500">{pkg.description}</p> */}
 
             <div className="mt-3 flex items-center gap-2 text-sm text-gray-600">
-              <span>{pkg.servicesCount} services</span>
+              <span>{t("providerPage.packageServices", { count: pkg.servicesCount })}</span>
             </div>
 
             <div className="mt-4 flex items-center gap-2">

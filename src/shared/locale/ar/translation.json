@@ -1,0 +1,274 @@
+{
+  "app": {
+    "brand": "ميديكارد",
+    "navigation": {
+      "home": "الرئيسية",
+      "login": "تسجيل الدخول"
+    }
+  },
+  "common": {
+    "backHome": "العودة للرئيسية",
+    "folders": "المجلدات"
+  },
+  "navbar": {
+    "serviceProviders": "مزودو الخدمات",
+    "why": "لماذا",
+    "offers": "العروض",
+    "contact": "اتصل بنا",
+    "activateCard": "تفعيل البطاقة"
+  },
+  "hero": {
+    "title1": "تكلفة أقل",
+    "title2": "رعاية أكثر.",
+    "description": "استفد من أكثر من 2,000 طبيب ومختبر وصيدلية ونادي صحي وخدمات منزلية في جميع أنحاء مصر بعضوية ميديكارد واحدة.",
+    "searchPlaceholder": "اسم الطبيب، الصيدلية، المختبر\u2026",
+    "activateCard": "تفعيل البطاقة",
+    "becomeProvider": "كن مزود خدمة"
+  },
+  "footer": {
+    "services": {
+      "title": "الخدمات",
+      "items": ["الأطباء", "التجميل", "رعاية المسنين", "المختبرات والتصوير", "الصيدليات", "النوادي الصحية", "الخدمات المنزلية"]
+    },
+    "membership": {
+      "title": "العضوية",
+      "items": ["الباقة القياسية", "فضي 50+"]
+    },
+    "company": {
+      "title": "الشركة",
+      "items": ["الشروط والأحكام", "سياسة الخصوصية", "سياسة الاسترداد", "اتصل بنا"]
+    },
+    "description": "بطاقة العضوية الصحية الأولى في مصر. استفد من أكثر من 2,400 مزود خدمة وخصومات حصرية وإدارة شاملة لصحة الأسرة في بطاقة واحدة.",
+    "copyright": "\u00a9 2025 ميديكارد مصر. جميع الحقوق محفوظة.",
+    "contact": "19011+ | support@medicard.com.eg"
+  },
+  "why": {
+    "title": "لماذا تختار ميديكارد؟",
+    "trust": "الثقة",
+    "trustDesc": "جميع مزودي الخدمات لدينا معتمدون ويقدمون خصومات حقيقية على الخدمات الطبية عالية الجودة.",
+    "savings": "التوفير",
+    "savingsDesc": "وفر حتى 30% على التحاليل المخبرية والفحوصات وخدمات الصيدليات والمزيد.",
+    "coverage": "التغطية",
+    "coverageDesc": "تغطية في جميع أنحاء مصر في 27 محافظة، في المجتمعات الحضرية والريفية على حد سواء."
+  },
+  "offers": {
+    "title": "لماذا تختار ميديكارد؟"
+  },
+  "home": {
+    "serviceProviders": "مزودو الخدمات",
+    "eyebrow": "أساس المشروع",
+    "title": "بنية React قائمة على الخصائص لميديكارد.",
+    "description": "تم تجهيز Router objects و TanStack Query و Axios و React Hook Form و Zod داخل هيكل يمكنه النمو خاصية بعد خاصية.",
+    "action": "عرض مثال النموذج"
+  },
+  "plans": {
+    "title": "باقات ميديكارد",
+    "save": "وفر {{discount}}%",
+    "egp": "ج.م",
+    "getCard": "احصل على البطاقة"
+  },
+  "search": {
+    "placeholder": "ابحث عن أطباء، عيادات...",
+    "button": "بحث"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "sendMessage": "أرسل رسالة",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "message": "الرسالة",
+    "messagePlaceholder": "أدخل رسالتك",
+    "send": "إرسال",
+    "sending": "جاري الإرسال...",
+    "followUs": "تابعنا",
+    "toastSuccess": "تم إرسال الرسالة بنجاح!",
+    "toastError": "فشل إرسال الرسالة. حاول مرة أخرى.",
+    "nameMinLength": "الاسم يجب أن يكون حرفين على الأقل",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "messageMinLength": "الرسالة يجب أن تكون 10 أحرف على الأقل"
+  },
+  "providers": {
+    "searchPlaceholder": "اسم الطبيب، الصيدلية، المختبر...",
+    "allCategories": "جميع الفئات",
+    "allGovernments": "جميع المحافظات",
+    "allCities": "جميع المدن",
+    "sortBy": "ترتيب حسب",
+    "name": "الاسم",
+    "highestRated": "الأعلى تقييماً",
+    "highestDiscount": "أعلى خصم",
+    "noResults": "لم يتم العثور على مزودي خدمات",
+    "noResultsDesc": "حاول تعديل البحث أو الفلاتر للحصول على نتائج أكثر.",
+    "upToOff": "خصم حتى {{discount}}%",
+    "scanOff": "خصم 20% على الفحوصات",
+    "examOff": "خصم 30% على الكشف",
+    "category": "الفئة",
+    "government": "المحافظة",
+    "city": "المدينة"
+  },
+  "providerPage": {
+    "tabs": {
+      "services": "الخدمات",
+      "reviews": "التقييمات",
+      "packages": "الباقات",
+      "branches": "الفروع"
+    },
+    "notFound": "مزود الخدمة غير موجود",
+    "backToProviders": "العودة إلى مزودي الخدمات",
+    "services": "{{count}} خدمات",
+    "noServices": "لا توجد خدمات متاحة.",
+    "off": "خصم {{discount}}%",
+    "specialOffer": "عرض خاص",
+    "noReviews": "لا توجد تقييمات بعد.",
+    "timeAgo": {
+      "year": "منذ {{count}} سنة",
+      "year_plural": "منذ {{count}} سنوات",
+      "month": "منذ {{count}} شهر",
+      "month_plural": "منذ {{count}} أشهر",
+      "week": "منذ {{count}} أسبوع",
+      "week_plural": "منذ {{count}} أسابيع",
+      "day": "منذ {{count}} يوم",
+      "day_plural": "منذ {{count}} أيام",
+      "hour": "منذ {{count}} ساعة",
+      "hour_plural": "منذ {{count}} ساعات",
+      "minute": "منذ {{count}} دقيقة",
+      "justNow": "الآن"
+    },
+    "noPackages": "لا توجد باقات متاحة.",
+    "packageServices": "{{count}} خدمات",
+    "noBranches": "لا توجد فروع متاحة.",
+    "viewOnMap": "عرض على الخريطة"
+  },
+  "becomeProvider": {
+    "title": "كن مزود خدمة ميديكارد",
+    "facilityName": "اسم المنشأة / العيادة",
+    "facilityNamePlaceholder": "أدخل اسم منشأتك",
+    "category": "الفئة",
+    "selectCategory": "اختر فئة",
+    "numberOfBranches": "عدد الفروع",
+    "mainBranchAddress": "عنوان الفرع الرئيسي",
+    "mainBranchAddressPlaceholder": "أدخل عنوان الفرع الرئيسي",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "phonePlaceholder": "رقم الهاتف",
+    "submit": "إرسال الطلب",
+    "submitting": "جاري الإرسال...",
+    "successTitle": "تم إرسال الطلب!",
+    "successMessage": "سنراجع طلبك وسنعود إليك قريباً.",
+    "backToHome": "العودة للرئيسية",
+    "facilityNameRequired": "اسم المنشأة مطلوب",
+    "selectCategoryRequired": "يرجى اختيار فئة",
+    "branchesRequired": "فرع واحد على الأقل مطلوب",
+    "addressRequired": "عنوان الفرع الرئيسي مطلوب",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "phoneInvalid": "رقم الهاتف يجب أن يتكون من 11 رقماً بالضبط"
+  },
+  "activation": {
+    "titleStep1": "تفعيل بطاقة ميديكارد",
+    "titleStep2": "إكمال التفعيل",
+    "firstName": "الاسم الأول",
+    "firstNamePlaceholder": "أدخل اسمك الأول",
+    "secondName": "الاسم الثاني",
+    "secondNamePlaceholder": "أدخل اسمك الثاني",
+    "cardNumber": "رقم البطاقة",
+    "cardNumberPlaceholder": "أدخل رقم البطاقة",
+    "gender": "الجنس",
+    "phoneNumber": "رقم الهاتف",
+    "phonePlaceholder": "رقم الهاتف",
+    "next": "التالي",
+    "activateByPhone": "تفضل التفعيل عبر الهاتف؟",
+    "callNow": "اتصل الآن",
+    "back": "رجوع",
+    "nationalId": "الرقم القومي",
+    "nationalIdPlaceholder": "أدخل رقمك القومي",
+    "passport": "جواز السفر",
+    "passportPlaceholder": "أدخل رقم جواز سفرك",
+    "dateOfBirth": "تاريخ الميلاد",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+    "activating": "جاري التفعيل...",
+    "activate": "تفعيل",
+    "successTitle": "تم التفعيل!",
+    "successMessage": "تم تفعيل بطاقة ميديكارد بنجاح.",
+    "backToHome": "العودة للرئيسية",
+    "month": "الشهر",
+    "day": "اليوم",
+    "year": "السنة",
+    "selectOption": "اختر من القائمة",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "secondNameRequired": "الاسم الثاني مطلوب",
+    "cardNumberRequired": "رقم البطاقة مطلوب",
+    "genderRequired": "يرجى اختيار الجنس",
+    "phoneInvalid": "رقم الهاتف يجب أن يتكون من 10 أرقام بالضبط",
+    "nationalIdRequired": "الرقم القومي مطلوب",
+    "selectMonth": "اختر الشهر",
+    "selectDay": "اختر اليوم",
+    "selectYear": "اختر السنة",
+    "passwordMinLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+    "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+    "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+    "selectFullDateOfBirth": "يرجى تحديد تاريخ الميلاد الكامل",
+    "months": {
+      "1": "يناير",
+      "2": "فبراير",
+      "3": "مارس",
+      "4": "أبريل",
+      "5": "مايو",
+      "6": "يونيو",
+      "7": "يوليو",
+      "8": "أغسطس",
+      "9": "سبتمبر",
+      "10": "أكتوبر",
+      "11": "نوفمبر",
+      "12": "ديسمبر"
+    },
+    "genderOptions": {
+      "select": "اختر من القائمة",
+      "male": "ذكر",
+      "female": "أنثى"
+    }
+  },
+  "buyCard": {
+    "title": "انضم إلى ميديكارد",
+    "plan": "الباقة",
+    "firstName": "الاسم الأول",
+    "firstNamePlaceholder": "أدخل اسمك الأول",
+    "secondName": "الاسم الثاني",
+    "secondNamePlaceholder": "أدخل اسمك الثاني",
+    "numberOfCards": "عدد البطاقات",
+    "governorate": "المحافظة",
+    "address": "العنوان",
+    "addressPlaceholder": "أدخل عنوانك",
+    "phoneNumber": "رقم الهاتف",
+    "phonePlaceholder": "رقم الهاتف",
+    "buyNow": "اشتر الآن",
+    "save": "وفر {{discount}}%",
+    "selectOption": "اختر من القائمة",
+    "egp": "ج.م"
+  },
+  "auth": {
+    "eyebrow": "خاصية المصادقة",
+    "title": "بداية تدفق تسجيل الدخول",
+    "description": "هذه الصفحة تبقي واجهة النموذج والتحقق وطلبات API وحالة mutation داخل خاصية المصادقة.",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "signingIn": "جاري تسجيل الدخول...",
+    "loginSuccess": "تم تنفيذ طلب تسجيل الدخول.",
+    "validation": {
+      "invalidEmail": "أدخل بريد إلكتروني صحيح",
+      "passwordMin": "كلمة المرور يجب ألا تقل عن 8 أحرف"
+    }
+  },
+  "errors": {
+    "routing": "خطأ في التوجيه",
+    "unexpected": "حدث خطأ غير متوقع في التطبيق"
+  },
+  "language": {
+    "label": "اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  }
+}

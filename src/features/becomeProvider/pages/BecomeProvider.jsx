@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -9,19 +10,20 @@ import SuccessPopup from "../../../shared/components/SuccessPopup"
 import { useCategories, useBecomeProvider } from "../hooks/becomeProvider.queries"
 import becomeProviderImage from "../../../assets/becomeProviderImage.png"
 
-const schema = z.object({
-  providerName: z.string().min(1, "Facility name is required"),
-  category: z.string().min(1, "Please select a category"),
-  numberOfBranches: z.coerce.number().int().min(1, "At least 1 branch is required"),
-  mainBranchAddress: z.string().min(1, "Main branch address is required"),
-  email: z.string().email("Please enter a valid email"),
-  phoneNumber: z.string().regex(/^\d{11}$/, "Phone number must be exactly 11 digits"),
-})
-
 const BecomeProvider = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { data: categoriesData } = useCategories()
   const { mutate, isPending, error: apiError, isSuccess } = useBecomeProvider()
+
+  const schema = z.object({
+    providerName: z.string().min(1, t("becomeProvider.facilityNameRequired")),
+    category: z.string().min(1, t("becomeProvider.selectCategoryRequired")),
+    numberOfBranches: z.coerce.number().int().min(1, t("becomeProvider.branchesRequired")),
+    mainBranchAddress: z.string().min(1, t("becomeProvider.addressRequired")),
+    email: z.string().email(t("becomeProvider.invalidEmail")),
+    phoneNumber: z.string().regex(/^\d{11}$/, t("becomeProvider.phoneInvalid")),
+  })
 
   const {
     register,
@@ -42,7 +44,7 @@ const BecomeProvider = () => {
   })
 
   const categoryOptions = [
-    { value: "", label: "Select a category" },
+    { value: "", label: t("becomeProvider.selectCategory") },
     ...(categoriesData?.data || []).map((cat) => ({
       value: String(cat.id),
       label: cat.name,
@@ -54,7 +56,7 @@ const BecomeProvider = () => {
   }
 
   return (
-    <FormLayout title="Become a MediCard Provider" image={becomeProviderImage}>
+    <FormLayout title={t("becomeProvider.title")} image={becomeProviderImage}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {apiError && (
           <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
@@ -64,8 +66,8 @@ const BecomeProvider = () => {
 
         <div>
           <FormInput
-            label="Clinic / Facility Name"
-            placeholder="Enter your facility name"
+            label={t("becomeProvider.facilityName")}
+            placeholder={t("becomeProvider.facilityNamePlaceholder")}
             {...register("providerName")}
           />
           {errors.providerName && (
@@ -78,7 +80,7 @@ const BecomeProvider = () => {
         <div className="flex flex-col md:flex-row justify-between w-full gap-4">
           <div className="w-full">
             <Dropdown
-              label="Category"
+              label={t("becomeProvider.category")}
               options={categoryOptions}
               value={watch("category")}
               {...register("category")}
@@ -91,7 +93,7 @@ const BecomeProvider = () => {
           </div>
           <div className="w-full">
             <FormInput
-              label="Number of Branches"
+              label={t("becomeProvider.numberOfBranches")}
               type="number"
               min="1"
               {...register("numberOfBranches")}
@@ -106,8 +108,8 @@ const BecomeProvider = () => {
 
         <div>
           <FormInput
-            label="Main Branch Address"
-            placeholder="Enter your main branch address"
+            label={t("becomeProvider.mainBranchAddress")}
+            placeholder={t("becomeProvider.mainBranchAddressPlaceholder")}
             {...register("mainBranchAddress")}
           />
           {errors.mainBranchAddress && (
@@ -119,9 +121,9 @@ const BecomeProvider = () => {
 
           <div>
             <FormInput
-              label="Email"
+              label={t("becomeProvider.email")}
               type="email"
-              placeholder="Email address"
+              placeholder={t("becomeProvider.emailPlaceholder")}
               {...register("email")}
             />
             {errors.email && (
@@ -132,9 +134,9 @@ const BecomeProvider = () => {
           </div>
           <div>
             <FormInput
-              label="Phone"
+              label={t("becomeProvider.phone")}
               type="tel"
-              placeholder="Phone number"
+              placeholder={t("becomeProvider.phonePlaceholder")}
               {...register("phoneNumber")}
             />
             {errors.phoneNumber && (
@@ -149,23 +151,15 @@ const BecomeProvider = () => {
           disabled={isPending}
           className="w-full rounded-xl bg-main py-3 font-medium text-white transition hover:bg-sec disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isPending ? "Submitting..." : "Submit Request"}
+          {isPending ? t("becomeProvider.submitting") : t("becomeProvider.submit")}
         </button>
-
-        {/* <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="w-full text-center text-sm text-gray-400 hover:text-gray-600"
-        >
-          Back
-        </button> */}
       </form>
 
       {isSuccess && (
         <SuccessPopup
-          title="Request Sent!"
-          message="We will review your request and get back to you soon."
-          buttonText="Back to Home"
+          title={t("becomeProvider.successTitle")}
+          message={t("becomeProvider.successMessage")}
+          buttonText={t("becomeProvider.backToHome")}
           onButtonClick={() => navigate("/")}
         />
       )}

@@ -2,7 +2,14 @@
 
 * {
   box-sizing: border-box;
+}
+
+html[dir="ltr"] * {
   font-family: "Inter", sans-serif;
+}
+
+html[dir="rtl"] * {
+  font-family: "Cairo", sans-serif;
 }
 
 html {
@@ -28,14 +35,25 @@ html {
     transform: translateX(0);
   }
 }
-
 .hero-bg {
-  background-image: url('./assets/hero.jpg');
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/hero.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: -1;
 }
 
+html[dir="rtl"] .hero-bg::before {
+  transform: scaleX(-1);
+}
 .swiper-button-next,
 .swiper-button-prev {
   color: #000;
