@@ -52,7 +52,7 @@
     "coverageDesc": "تغطية في جميع أنحاء مصر في 27 محافظة، في المجتمعات الحضرية والريفية على حد سواء."
   },
   "offers": {
-    "title": "لماذا تختار ميديكارد؟"
+    "title": "العروض"
   },
   "home": {
     "serviceProviders": "مزودو الخدمات",
@@ -89,9 +89,9 @@
   },
   "providers": {
     "searchPlaceholder": "اسم الطبيب، الصيدلية، المختبر...",
-    "allCategories": "جميع الفئات",
-    "allGovernments": "جميع المحافظات",
-    "allCities": "جميع المدن",
+    "allCategories": "الفئات",
+    "allGovernments": "المحافظات",
+    "allCities": "المدن",
     "sortBy": "ترتيب حسب",
     "name": "الاسم",
     "highestRated": "الأعلى تقييماً",
