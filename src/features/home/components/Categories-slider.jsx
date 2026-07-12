@@ -22,7 +22,7 @@ const CategoriesSlider = ({ categories }) => {
       slidesPerView={2}
       breakpoints={{
         640: { slidesPerView: 3 },
-        768: { slidesPerView: 4 },
+        768: { slidesPerView: 7 },
       }}
     >
       {categories?.map((cat) => (

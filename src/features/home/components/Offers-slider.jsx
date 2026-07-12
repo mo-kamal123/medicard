@@ -20,7 +20,7 @@ const OffersSlider = ({ sliders }) => {
         key={i18n.language}
         dir={getLanguageDirection(i18n.language)}
         className="offers-slider"
-        modules={[Navigation, A11y, Autoplay]}
+        modules={[ A11y, Autoplay]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         navigation
         spaceBetween={16}

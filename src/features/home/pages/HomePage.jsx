@@ -36,7 +36,7 @@ export function HomePage() {
   return (
     <section className="">
       <Hero />
-      <div className="w-[90%] mx-auto max-w-7xl">
+      <div className="w-[90%] mx-auto">
         <CategoriesSlider categories={categories.data} />
           <section id="service-providers" className="scroll-mt-24">
           <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">{t("home.serviceProviders")}</h2>

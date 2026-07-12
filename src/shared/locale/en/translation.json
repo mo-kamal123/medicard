@@ -52,7 +52,7 @@
     "coverageDesc": "Coverage across all of Egypt 27 Governorates, urban and rural communities alike."
   },
   "offers": {
-    "title": "Why Choose MediCard?"
+    "title": "Offers"
   },
   "home": {
     "serviceProviders": "Service Providers",
@@ -77,7 +77,7 @@
     "name": "Name",
     "email": "Email",
     "message": "Message",
-    "messagePlaceholder": "enter your message",
+    "messagePlaceholder": "Enter your message",
     "send": "Send",
     "sending": "Sending...",
     "followUs": "Follow Us",
@@ -88,10 +88,10 @@
     "messageMinLength": "Message must be at least 10 characters"
   },
   "providers": {
-    "searchPlaceholder": "Doctor name, pharmacy, lab...",
-    "allCategories": "All Categories",
-    "allGovernments": "All Governments",
-    "allCities": "All Cities",
+    "searchPlaceholder": "Doctor name, Pharmacy, Lab...",
+    "allCategories": "Categories",
+    "allGovernments": "Governments",
+    "allCities": "Cities",
     "sortBy": "Sort by",
     "name": "Name",
     "highestRated": "Highest Rated",
