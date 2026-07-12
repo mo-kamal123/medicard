@@ -226,7 +226,7 @@ const MedicardActivation = () => {
 
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-main py-3 font-medium text-main transition hover:bg-main hover:text-white"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-main py-3 font-medium text-main transition hover:bg-blue-50 "
             >
               <Phone size={16} />
               {t("activation.callNow")}

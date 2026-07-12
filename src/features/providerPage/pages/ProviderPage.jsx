@@ -84,11 +84,11 @@ const tabComponents = {
 
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-start justify-between gap-4">
-                <div className="min-w-0">
+                <div className="w-full">
                   <h1 className="text-xl md:text-3xl font-bold text-gray-900 truncate">{provider.name}</h1>
-                  <p className="mt-1 text-sm md:text-base text-gray-500">{provider.categoryName}</p>
+                  <p className="mt-1 text-sm md:text-lg text-gray-500">{provider.categoryName}</p>
 
-                  <div className="mt-3 md:mt-4 flex flex-wrap gap-4 md:gap-6 text-sm text-gray-600">
+                  <div className="mt-3 md:mt-4 flex flex-wrap gap-4 md:gap-6 text-sm justify-between w-full text-gray-600">
                     <span className="flex items-center gap-2 text-xl">
                     <Stethoscope size={20} className="text-main" />
                       {t("providerPage.services", { count: provider.totalServices })}
@@ -100,14 +100,14 @@ const tabComponents = {
                         {provider.hotLine}
                       </span>
                     )}
+                  <div className="flex shrink-0 items-center gap-1 rounded-xl bg-white/70 px-3 md:px-4 py-2 shadow-sm">
+                    <Star size={16} className="fill-yellow-400 text-yellow-400" />
+                    <span className="text-main font-semibold text-sm md:text-base">{provider.averageRating?.toFixed(1)}</span>
+                    <span className="text-main text-xs md:text-sm">({provider.totalReviews} Reviews)</span>
+                  </div>
                   </div>
                 </div>
 
-                <div className="flex shrink-0 items-center gap-1 rounded-xl bg-white/70 px-3 md:px-4 py-2 shadow-sm">
-                  <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                  <span className="text-main font-semibold text-sm md:text-base">{provider.averageRating?.toFixed(1)}</span>
-                  <span className="text-main text-xs md:text-sm">({provider.totalReviews})</span>
-                </div>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@ const tabComponents = {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`whitespace-nowrap pb-3 text-sm font-medium transition-colors ${
+                className={`whitespace-nowrap pb-3  font-medium transition-colors ${
                   activeTab === tab.key
                     ? "border-b-2 border-main text-main"
                     : "text-gray-500 hover:text-gray-700"

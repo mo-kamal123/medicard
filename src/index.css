@@ -35,6 +35,7 @@ html {
     transform: translateX(0);
   }
 }
+
 .hero-bg {
   position: relative;
   overflow: hidden;

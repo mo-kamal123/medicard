@@ -1,10 +1,22 @@
+import { useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useProviderPackages } from "../hooks/providerPage.queries"
+import Paginations from "../../../shared/components/Pagination"
+
+const PAGE_SIZE = 6
 
 const PackagesTab = ({ providerId }) => {
   const { t } = useTranslation()
+  const [page, setPage] = useState(1)
   const { data, isLoading } = useProviderPackages(providerId, true)
   const packages = data?.data?.items || []
+
+  const totalPages = Math.max(1, Math.ceil(packages.length / PAGE_SIZE))
+
+  const paginatedPackages = useMemo(
+    () => packages.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+    [packages, page]
+  )
 
   if (isLoading) {
     return (
@@ -21,8 +33,9 @@ const PackagesTab = ({ providerId }) => {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {packages.map((pkg) => (
+    <>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {paginatedPackages.map((pkg) => (
         <div
           key={pkg.id}
           className="overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-md"
@@ -59,6 +72,13 @@ const PackagesTab = ({ providerId }) => {
         </div>
       ))}
     </div>
+
+      <Paginations
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
+    </>
   )
 }
 

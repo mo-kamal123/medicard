@@ -41,7 +41,7 @@ const ProviderCard = ({ provider }) => {
 
   return (
     <Link to={`/provider/${provider.providerId}`} className="flex h-full">
-      <article className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-borders bg-white shadow-sm transition-shadow hover:shadow-md">
+      <article className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-borders bg-white transition-shadow hover:shadow-md">
         <div className="relative h-52 shrink-0 bg-gray-50">
           <img
             src={provider.imageUrl}

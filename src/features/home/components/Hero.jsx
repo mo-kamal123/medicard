@@ -10,10 +10,10 @@ const Hero = () => {
   const navigate = useNavigate();
   return (
     <section className="relative hero-bg flex items-center bg-cover bg-center bg-no-repeat min-h-[70vh] md:min-h-0">
-      <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-20 py-10 md:py-20">
-        <div className="items-center ">
-          <div className="text-center lg:text-left text-white">
-            <h1 className="text-3xl flex sm:text-4xl md:text-5xl lg:text-6xl text-black font-bold leading-tight mb-4 md:mb-6">
+      <div className="relative z-10 w-[90%] mx-auto px-4 md:px-6 py-10 md:py-20">
+        <div className="items-center">
+          <div className="text-center text-white ">
+            <h1 className="text-3xl flex justify-center lg:justify-start sm:text-4xl md:text-5xl lg:text-6xl text-black font-bold leading-tight mb-4 md:mb-6">
               {t("hero.title1")}
               <p className="text-sec ms-2 md:ms-4">{t("hero.title2")}</p>
             </h1>
@@ -23,7 +23,7 @@ const Hero = () => {
     ${
       i18n.dir() === "rtl"
         ? "text-right mr-auto lg:mr-0"
-        : "text-left mx-auto lg:mx-0"
+        : "text-center lg:text-left mx-auto lg:mx-0"
     }`}
             >
               {t("hero.description")}
