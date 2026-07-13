@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 
-const Dropdown = ({ label, options = [], value, onChange, name, placeholder = "Select an option" }) => {
+const Dropdown = ({ label, options = [], value, onChange, name, placeholder = "Select an option", disabled = false }) => {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
 
@@ -27,8 +27,11 @@ const Dropdown = ({ label, options = [], value, onChange, name, placeholder = "S
       <div ref={ref} className="relative">
         <button
           type="button"
-          onClick={() => setOpen((prev) => !prev)}
-          className="flex h-12 w-full items-center justify-between rounded-xl border border-gray-300 bg-white px-4 text-sm outline-none focus:border-blue-500"
+          onClick={() => !disabled && setOpen((prev) => !prev)}
+          disabled={disabled}
+          className={`flex h-12 w-full items-center justify-between rounded-xl border border-gray-300 bg-white px-4 text-sm outline-none focus:border-blue-500 ${
+            disabled ? "cursor-not-allowed opacity-50" : ""
+          }`}
         >
           <span className={selected ? "text-gray-900" : "text-gray-400"}>
             {selected ? selected.label : placeholder}

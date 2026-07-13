@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getProviderPage, getProviderServices, getProviderReviews, getProviderPackages } from "../api/providerPage.api"
+import { getProviderPage, getProviderServices, getProviderReviews, getProviderPackages, getPackage } from "../api/providerPage.api"
 
 export const useProviderPage = (id) => {
   return useQuery({
@@ -33,6 +33,15 @@ export const useProviderPackages = (id, enabled) => {
     queryKey: ["providerPackages", id],
     queryFn: () => getProviderPackages(id),
     enabled: !!id && enabled,
+    retry: 1,
+  })
+}
+
+export const usePackage = (id) => {
+  return useQuery({
+    queryKey: ["package", id],
+    queryFn: () => getPackage(id),
+    enabled: !!id,
     retry: 1,
   })
 }

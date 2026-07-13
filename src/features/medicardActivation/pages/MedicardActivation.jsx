@@ -56,21 +56,36 @@ const MedicardActivation = () => {
     .object({
       firstName: z.string().min(1, t("activation.firstNameRequired")),
       lastName: z.string().min(1, t("activation.secondNameRequired")),
-      cardNumber: z.string().min(1, t("activation.cardNumberRequired")),
+      cardNumber: z.string().regex(/^\d+$/, t("activation.cardNumberInvalid")),
       gender: z.string().min(1, t("activation.genderRequired")),
-      phone: z.string().regex(/^\d{10}$/, t("activation.phoneInvalid")),
-      nationalId: z.string().min(1, t("activation.nationalIdRequired")),
+      phone: z.string().regex(/^(0?1[0125])\d{8}$/, t("activation.phoneInvalid")),
+      nationalId: z.string().optional(),
       passportNumber: z.string().optional(),
       birthMonth: z.string().min(1, t("activation.selectMonth")),
       birthDay: z.string().min(1, t("activation.selectDay")),
       birthYear: z.string().min(1, t("activation.selectYear")),
-      password: z.string().min(6, t("activation.passwordMinLength")),
+      password: z
+        .string()
+        .min(8, t("activation.passwordMinLength"))
+        .regex(/[a-zA-Z]/, t("activation.passwordMustContainLetter")),
       confirmPassword: z.string().min(1, t("activation.confirmPasswordRequired")),
     })
     .refine((data) => data.password === data.confirmPassword, {
       message: t("activation.passwordsDoNotMatch"),
       path: ["confirmPassword"],
     })
+    .refine(
+      (data) => (data.nationalId && data.nationalId.trim() !== "") || (data.passportNumber && data.passportNumber.trim() !== ""),
+      { message: t("activation.idOrPassportRequired"), path: ["nationalId"] }
+    )
+    .refine(
+      (data) => {
+        if (!data.birthYear || !data.birthMonth || !data.birthDay) return true
+        const birth = new Date(Number(data.birthYear), Number(data.birthMonth) - 1, Number(data.birthDay))
+        return birth <= new Date()
+      },
+      { message: t("activation.dateNotFuture"), path: ["birthDay"] }
+    )
 
   const {
     register,

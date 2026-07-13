@@ -6,7 +6,7 @@ export const getProviderPage = async (id) => {
 }
 
 export const getProviderServices = async (id) => {
-  const response = await httpClient.get(`/ProviderPage/${id}/services`)
+  const response = await httpClient.get("https://medicard-api-v2.medicardeg.com/services", { params: { providerId: id } })
   return response.data
 }
 
@@ -17,5 +17,10 @@ export const getProviderReviews = async (id) => {
 
 export const getProviderPackages = async (id) => {
   const response = await httpClient.get(`/ProviderPage/${id}/packages`)
+  return response.data
+}
+
+export const getPackage = async (id) => {
+  const response = await httpClient.get(`/Package/${id}`)
   return response.data
 }

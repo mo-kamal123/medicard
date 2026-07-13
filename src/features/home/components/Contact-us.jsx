@@ -24,6 +24,12 @@ const iconMap = {
   instagram,
 }
 
+const contactLabelMap = {
+  phone: "contact.phone",
+  email: "contact.emailAddress",
+  whatsapp: "contact.whatsapp",
+}
+
 const ContactUs = ({ data }) => {
   const { t } = useTranslation()
   const [toast, setToast] = useState(null)
@@ -97,15 +103,21 @@ const ContactUs = ({ data }) => {
         </div>
 
         <div className="space-y-4">
-          {contactItems.map((item, index) => (
-            <ContactCard
-              key={index}
-              icon={iconMap[item.type]}
-              title={item.label}
-              subtitle={item.value}
-              link={item.type === "whatsapp"}
-            />
-          ))}
+          {contactItems.map((item, index) => {
+            const href =
+              item.type === "whatsapp" ? `https://wa.me/${item.url.replace(/[^0-9]/g, "")}` :
+              item.url
+
+            return (
+              <ContactCard
+                key={index}
+                icon={iconMap[item.type]}
+                title={contactLabelMap[item.type] ? t(contactLabelMap[item.type]) : item.label}
+                subtitle={item.value}
+                href={href}
+              />
+            )
+          })}
 
           {socialItems.length > 0 && (
             <div className="flex flex-wrap items-center gap-3 md:gap-4 rounded-2xl border border-[#D9E4F5] bg-white p-4">

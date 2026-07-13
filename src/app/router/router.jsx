@@ -7,6 +7,7 @@ import ProviderPage from '../../features/providerPage/pages/ProviderPage'
 import BecomeProvider from '../../features/becomeProvider/pages/BecomeProvider'
 import MedicardActivation from '../../features/medicardActivation/pages/MedicardActivation'
 import BuyCard from '../../features/buyCard/pages/BuyCard'
+import ContentPage from '../../features/content/pages/ContentPage'
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: 'buy-card',
         element: <BuyCard />,
+      },
+      {
+        path: ':slug',
+        element: <ContentPage />,
       },
     ],
   },
