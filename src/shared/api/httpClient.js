@@ -16,8 +16,14 @@ httpClient.interceptors.request.use((config) => {
 httpClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    const message =
-      error.response?.data?.message ?? error.message ?? 'Something went wrong'
+    const data = error.response?.data
+    let message = error.message ?? 'Something went wrong'
+
+    if (data?.errors) {
+      message = Object.values(data.errors).flat().join(", ")
+    } else if (data?.message) {
+      message = data.message
+    }
 
     return Promise.reject(new Error(message))
   },

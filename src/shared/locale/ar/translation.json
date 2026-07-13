@@ -81,6 +81,9 @@
     "send": "إرسال",
     "sending": "جاري الإرسال...",
     "followUs": "تابعنا",
+    "phone": "الهاتف",
+    "emailAddress": "البريد الإلكتروني",
+    "whatsapp": "واتساب",
     "toastSuccess": "تم إرسال الرسالة بنجاح!",
     "toastError": "فشل إرسال الرسالة. حاول مرة أخرى.",
     "nameMinLength": "الاسم يجب أن يكون حرفين على الأقل",
@@ -93,6 +96,7 @@
     "allGovernments": "المحافظات",
     "allCities": "المدن",
     "sortBy": "ترتيب حسب",
+    "nearest": "الأقرب",
     "name": "الاسم",
     "highestRated": "الأعلى تقييماً",
     "highestDiscount": "أعلى خصم",
@@ -135,8 +139,13 @@
     },
     "noPackages": "لا توجد باقات متاحة.",
     "packageServices": "{{count}} خدمات",
+    "includes": "يشمل",
     "noBranches": "لا توجد فروع متاحة.",
-    "viewOnMap": "عرض على الخريطة"
+    "viewOnMap": "عرض على الخريطة",
+    "reviewsCount": "({{count}} تقييم)",
+    "save": "خصم {{percent}}%",
+    "description": "الوصف",
+    "total": "الإجمالي"
   },
   "becomeProvider": {
     "title": "كن مزود خدمة ميديكارد",
@@ -161,7 +170,7 @@
     "branchesRequired": "فرع واحد على الأقل مطلوب",
     "addressRequired": "عنوان الفرع الرئيسي مطلوب",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
-    "phoneInvalid": "رقم الهاتف يجب أن يتكون من 11 رقماً بالضبط"
+    "phoneInvalid": "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 أو 015"
   },
   "activation": {
     "titleStep1": "تفعيل بطاقة ميديكارد",
@@ -201,15 +210,19 @@
     "secondNameRequired": "الاسم الثاني مطلوب",
     "cardNumberRequired": "رقم البطاقة مطلوب",
     "genderRequired": "يرجى اختيار الجنس",
-    "phoneInvalid": "رقم الهاتف يجب أن يتكون من 10 أرقام بالضبط",
+    "phoneInvalid": "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 أو 015",
     "nationalIdRequired": "الرقم القومي مطلوب",
+    "idOrPassportRequired": "الرقم القومي أو جواز السفر مطلوب",
+    "cardNumberInvalid": "رقم البطاقة يجب أن يحتوي على أرقام فقط",
     "selectMonth": "اختر الشهر",
     "selectDay": "اختر اليوم",
     "selectYear": "اختر السنة",
-    "passwordMinLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+    "passwordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+    "passwordMustContainLetter": "كلمة المرور يجب أن تحتوي على حرف واحد على الأقل",
     "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
     "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
     "selectFullDateOfBirth": "يرجى تحديد تاريخ الميلاد الكامل",
+    "dateNotFuture": "لا يمكن أن يكون تاريخ الميلاد في المستقبل",
     "months": {
       "1": "يناير",
       "2": "فبراير",

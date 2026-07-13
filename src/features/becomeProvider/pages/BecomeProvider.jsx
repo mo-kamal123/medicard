@@ -22,7 +22,7 @@ const BecomeProvider = () => {
     numberOfBranches: z.coerce.number().int().min(1, t("becomeProvider.branchesRequired")),
     mainBranchAddress: z.string().min(1, t("becomeProvider.addressRequired")),
     email: z.string().email(t("becomeProvider.invalidEmail")),
-    phoneNumber: z.string().regex(/^\d{11}$/, t("becomeProvider.phoneInvalid")),
+    phoneNumber: z.string().regex(/^(0?1[0125])\d{8}$/, t("becomeProvider.phoneInvalid")),
   })
 
   const {

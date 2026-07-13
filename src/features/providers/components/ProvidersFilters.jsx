@@ -3,40 +3,55 @@ import { Search, SlidersHorizontal } from "lucide-react"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import Dropdown from "../../../shared/components/Dropdown"
+import { useGovernorates, useCities } from "../hooks/providers.queries"
+import { useCategoriesQuery } from "../../../features/home/hooks/home.queries"
 
-const ProvidersFilters = ({ providers = [] }) => {
+const ProvidersFilters = () => {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const timerRef = useRef(null)
   const [filterOpen, setFilterOpen] = useState(false)
 
   const [keyword, setKeyword] = useState(searchParams.get("keyword") || "")
-  const [category, setCategory] = useState(searchParams.get("category") || "all")
-  const [governorate, setGovernorate] = useState(searchParams.get("governorate") || "all")
-  const [city, setCity] = useState(searchParams.get("city") || "all")
-  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "name")
+  const [categoryId, setCategoryId] = useState(searchParams.get("categoryId") || "")
+  const [governorateId, setGovernorateId] = useState(searchParams.get("governorateId") || "")
+  const [cityId, setCityId] = useState(searchParams.get("cityId") || "")
+  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "")
 
+  const selectedGov = governorateId || null
+
+  const { data: governoratesData } = useGovernorates()
+  const { data: citiesData } = useCities(selectedGov)
+  const { data: categoriesData } = useCategoriesQuery()
+
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setKeyword(searchParams.get("keyword") || "")
-    setCategory(searchParams.get("category") || "all")
-    setGovernorate(searchParams.get("governorate") || "all")
-    setCity(searchParams.get("city") || "all")
-    setSortBy(searchParams.get("sortBy") || "name")
+    setCategoryId(searchParams.get("categoryId") || "")
+    setGovernorateId(searchParams.get("governorateId") || "")
+    setCityId(searchParams.get("cityId") || "")
+    setSortBy(searchParams.get("sortBy") || "")
   }, [searchParams])
+  /* eslint-enable react-hooks/set-state-in-effect */
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current)
+  }, [])
 
   const updateParams = (overrides) => {
     const params = new URLSearchParams()
     const kw = overrides.keyword !== undefined ? overrides.keyword : keyword
-    const cat = overrides.category !== undefined ? overrides.category : category
-    const gov = overrides.governorate !== undefined ? overrides.governorate : governorate
-    const cty = overrides.city !== undefined ? overrides.city : city
+    const catId = overrides.categoryId !== undefined ? overrides.categoryId : categoryId
+    const govId = overrides.governorateId !== undefined ? overrides.governorateId : governorateId
+    const ctyId = overrides.cityId !== undefined ? overrides.cityId : cityId
     const sort = overrides.sortBy !== undefined ? overrides.sortBy : sortBy
 
+    params.set("page", "1")
     if (kw.trim()) params.set("keyword", kw.trim())
-    if (cat !== "all") params.set("category", cat)
-    if (gov !== "all") params.set("governorate", gov)
-    if (cty !== "all") params.set("city", cty)
-    if (sort !== "name") params.set("sortBy", sort)
+    if (catId) params.set("categoryId", catId)
+    if (govId) params.set("governorateId", govId)
+    if (ctyId) params.set("cityId", ctyId)
+    if (sort) params.set("sortBy", sort)
 
     setSearchParams(params, { replace: true })
   }
@@ -50,20 +65,21 @@ const ProvidersFilters = ({ providers = [] }) => {
 
   const handleCategoryChange = (e) => {
     const value = e.target.value
-    setCategory(value)
-    updateParams({ category: value })
+    setCategoryId(value)
+    updateParams({ categoryId: value })
   }
 
   const handleGovernorateChange = (e) => {
     const value = e.target.value
-    setGovernorate(value)
-    updateParams({ governorate: value })
+    setGovernorateId(value)
+    setCityId("")
+    updateParams({ governorateId: value, cityId: "" })
   }
 
   const handleCityChange = (e) => {
     const value = e.target.value
-    setCity(value)
-    updateParams({ city: value })
+    setCityId(value)
+    updateParams({ cityId: value })
   }
 
   const handleSortChange = (e) => {
@@ -72,22 +88,20 @@ const ProvidersFilters = ({ providers = [] }) => {
     updateParams({ sortBy: value })
   }
 
-  const categories = useMemo(
-    () =>
-      [...new Set(providers.map((provider) => provider.categoryName).filter(Boolean))].sort(),
-    [providers]
-  )
+  const categories = useMemo(() => {
+    const items = categoriesData?.data || []
+    return items.map((item) => ({ value: String(item.id), label: item.name }))
+  }, [categoriesData])
 
-  const governorates = useMemo(
-    () =>
-      [...new Set(providers.map((provider) => provider.governorate).filter(Boolean))].sort(),
-    [providers]
-  )
+  const governorates = useMemo(() => {
+    const items = governoratesData?.data || []
+    return items.map((item) => ({ value: String(item.id), label: item.name }))
+  }, [governoratesData])
 
-  const cities = useMemo(
-    () => [...new Set(providers.map((provider) => provider.city).filter(Boolean))].sort(),
-    [providers]
-  )
+  const cities = useMemo(() => {
+    const items = citiesData?.data || []
+    return items.map((item) => ({ value: String(item.id), label: item.name }))
+  }, [citiesData])
 
   return (
     <div className="rounded-2xl bg-[#E8F1FA] p-4">
@@ -120,44 +134,45 @@ const ProvidersFilters = ({ providers = [] }) => {
           }`}
         >
           <Dropdown
-            placeholder={t("providers.category")}
+            placeholder={t("providers.allCategories")}
             options={[
-              { value: "all", label: t("providers.allCategories") },
-              ...categories.map((item) => ({ value: item, label: item })),
+              { value: "", label: t("providers.allCategories") },
+              ...categories,
             ]}
-            value={category}
-            name="category"
+            value={categoryId}
+            name="categoryId"
             onChange={handleCategoryChange}
           />
 
           <Dropdown
-            placeholder={t("providers.government")}
+            placeholder={t("providers.allGovernments")}
             options={[
-              { value: "all", label: t("providers.allGovernments") },
-              ...governorates.map((item) => ({ value: item, label: item })),
+              { value: "", label: t("providers.allGovernments") },
+              ...governorates,
             ]}
-            value={governorate}
-            name="governorate"
+            value={governorateId}
+            name="governorateId"
             onChange={handleGovernorateChange}
           />
 
           <Dropdown
-            placeholder={t("providers.city")}
+            placeholder={t("providers.allCities")}
             options={[
-              { value: "all", label: t("providers.allCities") },
-              ...cities.map((item) => ({ value: item, label: item })),
+              { value: "", label: t("providers.allCities") },
+              ...cities,
             ]}
-            value={city}
-            name="city"
+            value={cityId}
+            name="cityId"
             onChange={handleCityChange}
+            disabled={!selectedGov}
           />
 
           <Dropdown
             placeholder={t("providers.sortBy")}
             options={[
-              { value: "name", label: t("providers.name") },
-              { value: "rating", label: t("providers.highestRated") },
-              { value: "discount", label: t("providers.highestDiscount") },
+              { value: "", label: t("providers.sortBy") },
+              { value: "1", label: t("providers.nearest") },
+              { value: "2", label: t("providers.highestDiscount") },
             ]}
             value={sortBy}
             name="sortBy"
