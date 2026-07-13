@@ -9,7 +9,7 @@ const PlanCard = ({ data, active }) => {
   return (
     <div
       className={`
-        relative flex min-h-[450px] md:min-h-[600px] w-full cursor-pointer flex-col justify-between rounded-3xl border p-6 md:p-8 transition-all duration-300
+        relative flex min-h-[450px] md:min-h-[600px] w-full flex-col justify-between rounded-3xl border p-6 md:p-8 transition-all duration-300
         ${
           active
             ? "border-[#D6E4FF] bg-gradient-to-br from-[#EEF4FF] via-[#EAF5F5] to-[#DFF5EE]"
@@ -18,7 +18,7 @@ const PlanCard = ({ data, active }) => {
       `}
     >
       <div
-        className={`absolute top-3 md:top-5 rounded-full border border-[#FCD34D] bg-[#FEF3C7] px-3 md:px-4 py-1 text-xs md:text-sm font-medium text-[#D97706]
+        className={`absolute top-3 md:top-5 rounded-full border border-green-200 bg-green-100 px-3 md:px-4 py-1 text-xs md:text-sm font-medium text-green-600
     ${i18n.dir() === "rtl" ? "left-3 md:left-5" : "right-3 md:right-5"}`}
       >
         {t("plans.save", { discount: Math.round(data.discount) })}
