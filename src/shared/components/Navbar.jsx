@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useTranslation } from "react-i18next";
 import { Globe, Menu, X } from "lucide-react";
@@ -7,7 +7,6 @@ import { useState, useEffect, useRef } from "react";
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
@@ -34,7 +33,7 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: t("navbar.serviceProviders"), hash: "#service-providers" },
+    { name: t("navbar.serviceProviders"), to: "/providers" },
     { name: t("navbar.why"), hash: "#why" },
     { name: t("navbar.offers"), hash: "#offers" },
     { name: t("navbar.contact"), hash: "#contact" },
@@ -60,16 +59,27 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden lg:flex items-center justify-center flex-1 gap-12">
-          {navLinks.map((link) => (
-            <Link
-              key={link.hash}
-              to={{ pathname: "/", hash: link.hash }}
-              onClick={onNavClick(link.hash)}
-              className="text-sm font-medium transition-colors text-gray-700 hover:text-main whitespace-nowrap"
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.to ? (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-medium transition-colors text-gray-700 hover:text-main whitespace-nowrap"
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <Link
+                key={link.hash}
+                to={{ pathname: "/", hash: link.hash }}
+                onClick={onNavClick(link.hash)}
+                className="text-sm font-medium transition-colors text-gray-700 hover:text-main whitespace-nowrap"
+              >
+                {link.name}
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="flex items-center gap-2 md:gap-4">
@@ -104,16 +114,27 @@ const Navbar = () => {
               : "opacity-0 -translate-y-2 pointer-events-none"
           }`}
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.hash}
-              to={{ pathname: "/", hash: link.hash }}
-              onClick={onNavClick(link.hash)}
-              className="text-sm font-medium text-gray-700 hover:text-main py-2"
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.to ? (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-medium text-gray-700 hover:text-main py-2"
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <Link
+                key={link.hash}
+                to={{ pathname: "/", hash: link.hash }}
+                onClick={onNavClick(link.hash)}
+                className="text-sm font-medium text-gray-700 hover:text-main py-2"
+              >
+                {link.name}
+              </Link>
+            )
+          )}
           <button
             onClick={() => { navigate("/medicard-activation"); setMobileOpen(false); }}
             className="sm:hidden w-full px-4 py-2 text-sm font-medium text-main border border-main rounded-lg hover:bg-blue-50 transition"

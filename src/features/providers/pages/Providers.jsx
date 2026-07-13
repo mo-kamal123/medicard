@@ -1,47 +1,43 @@
-import { useMemo, useCallback } from "react"
 import { useSearchParams } from "react-router-dom"
 import ProvidersGrid from "../components/ProvidersGrid"
-import { flattenProviders } from "../utils/flattenProviders"
 import ProvidersFilters from "../components/ProvidersFilters"
 import { useProviders } from "../hooks/providers.queries"
-import { filterProviders } from "../utils/filterProviders"
-import Paginations from "../../../shared/components/Pagination"
+import Pagination from "../../../shared/components/Pagination"
+import { useCallback } from "react"
+import { getStoredLocation, useGeolocation } from "../../../shared/hooks/useGeolocation"
+
 const PAGE_SIZE = 12
-const API_PAGE_SIZE = 100
 
 const Providers = () => {
   const [searchParams, setSearchParams] = useSearchParams()
+  useGeolocation()
 
   const filters = {
     keyword: searchParams.get("keyword") || "",
-    category: searchParams.get("category") || "all",
-    governorate: searchParams.get("governorate") || "all",
-    city: searchParams.get("city") || "all",
-    sortBy: searchParams.get("sortBy") || "name",
+    categoryId: searchParams.get("categoryId") || "",
+    governorateId: searchParams.get("governorateId") || "",
+    cityId: searchParams.get("cityId") || "",
+    sortBy: searchParams.get("sortBy") || "",
+    page: parseInt(searchParams.get("page") || "1", 10),
   }
 
+  const location = getStoredLocation()
   const queryParams = {
     KeyWord: filters.keyword || undefined,
-    PageNumber: 1,
-    PageSize: API_PAGE_SIZE,
-    SortBy: filters.sortBy !== "name" ? filters.sortBy : undefined,
+    CategoryId: filters.categoryId || undefined,
+    GovernorateId: filters.governorateId || undefined,
+    CityId: filters.cityId || undefined,
+    SortBy: filters.sortBy || undefined,
+    UserLatitude: location?.lat ?? undefined,
+    UserLongitude: location?.lng ?? undefined,
+    PageNumber: filters.page,
+    PageSize: PAGE_SIZE,
   }
 
-  const { data, isLoading, isError } = useProviders(queryParams)
+  const { data, isLoading } = useProviders(queryParams)
 
-  const apiProviders = flattenProviders(data?.data?.items || [])
-
-  const filtered = useMemo(
-    () => filterProviders(apiProviders, filters),
-    [apiProviders, filters.keyword, filters.category, filters.governorate, filters.city, filters.sortBy]
-  )
-
-  const currentPage = parseInt(searchParams.get("page") || "1", 10)
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
-  const paginatedProviders = useMemo(
-    () => filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
-    [filtered, currentPage]
-  )
+  const providers = data?.data?.items || []
+  const totalPages = Math.max(1, data?.data?.totalPages || 1)
 
   const handlePageChange = useCallback(
     (page) => {
@@ -60,16 +56,16 @@ const Providers = () => {
   return (
     <div className="bg-white min-h-screen pb-16">
       <div className="w-[90%] mx-auto px-4 py-8">
-        <ProvidersFilters providers={apiProviders} />
+        <ProvidersFilters />
 
         <div className="mt-8">
           <ProvidersGrid
-            providers={paginatedProviders}
-            isLoading={isLoading && !isError && !apiProviders.length}
+            providers={providers}
+            isLoading={isLoading}
           />
         </div>
-        <Paginations
-          currentPage={currentPage}
+        <Pagination
+          currentPage={filters.page}
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />

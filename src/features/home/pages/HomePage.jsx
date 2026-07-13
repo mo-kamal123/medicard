@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import Hero from "../components/Hero";
 import { useCategoriesQuery, useHomeData } from "../hooks/home.queries";
 import CategoriesSlider from "../components/Categories-slider";
-import { Provider } from "react-redux";
 import ProvidersSlider from "../components/Providers-slider";
 import Why from "../components/Why";
 import OffersSlider from "../components/Offers-slider";
@@ -53,7 +52,7 @@ export function HomePage() {
           <ContactUs data={contactUs} />
         </section>
       </div>
-      <Footer />
+      <Footer categories={categories.data} contactUs={contactUs} />
     </section>
   );
 }
