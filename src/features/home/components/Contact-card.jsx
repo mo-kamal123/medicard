@@ -23,7 +23,7 @@ const ContactCard = ({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="block transition hover:shadow-md"
+          className="block transition"
         >
           {content}
         </a>
