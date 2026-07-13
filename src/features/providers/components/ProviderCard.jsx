@@ -62,7 +62,7 @@ const ProviderCard = ({ provider }) => {
               {offers.map((offer) => (
                 <span
                   key={offer}
-                  className="rounded-full bg-[#E8F1FA] px-3 py-1 text-xs font-medium text-main"
+                  className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-600"
                 >
                   {offer}
                 </span>

@@ -200,7 +200,8 @@ const SelectablePlanCard = ({ plan, isSelected, onSelect }) => (
             className="absolute inset-0 h-full w-full object-cover blur-[0.5px]"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[#F8FAFF]/80 via-[#F5FCFC]/80 to-[#F2FBF7]/80" />
-          <div className="absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/80 to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/80 to-transparent form-fade-left" />
+          <div className="absolute inset-y-0 right-0 w-72 bg-gradient-to-l from-white via-white/80 to-transparent form-fade-right" />
           <div className="relative z-10 flex w-full max-w-2xl gap-6">
             {plans.map((plan) => (
               <SelectablePlanCard

@@ -39,7 +39,7 @@ const Hero = () => {
 
             <div className="flex flex-row gap-3 md:gap-4 justify-center lg:justify-start">
               <button
-                onClick={() => navigate("/buy-card")}
+                onClick={() => navigate("/medicard-activation")}
                 className="px-6 md:px-8 py-2.5 md:py-3 text-xs md:text-sm font-medium text-white bg-main rounded-lg hover:bg-sec transition"
               >
                 {t("hero.activateCard")}

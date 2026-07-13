@@ -53,7 +53,17 @@ html {
 }
 
 html[dir="rtl"] .hero-bg::before {
-  transform: scaleX(-1);
+  background-image: url("./assets/hero-rtl.jpeg");
+}
+
+@media (max-width: 767px) {
+  .hero-bg::before {
+    background-image: url("./assets/hero-mobile.jpeg");
+  }
+
+  html[dir="rtl"] .hero-bg::before {
+    background-image: url("./assets/hero-mobile.jpeg");
+  }
 }
 .swiper-button-next,
 .swiper-button-prev {
@@ -127,3 +137,8 @@ html[dir="rtl"] .hero-bg::before {
   padding-top: 2rem;
   border-top: 1px solid #f3f4f6;
 }
+
+.form-fade-left { display: block; }
+.form-fade-right { display: none; }
+html[dir="rtl"] .form-fade-left { display: none; }
+html[dir="rtl"] .form-fade-right { display: block; }
