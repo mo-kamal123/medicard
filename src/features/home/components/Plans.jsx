@@ -7,7 +7,7 @@ import PlanCard from "../../../shared/components/Plan-card";
 import i18n, { getLanguageDirection } from "../../../shared/config/i18n/i18n";
 
 const Plans = ({ plans = [] }) => {
-  const { i18n: i18nHook } = useTranslation();
+  const { i18n: i18nHook, t } = useTranslation();
   const isRTL = i18nHook.dir() === "rtl";
 
   if (!plans.length) return null;
@@ -15,7 +15,7 @@ const Plans = ({ plans = [] }) => {
   return (
     <>
       <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold text-black">
-        MediCard Plans
+      {t("home.serviceProviders")}
       </h2>
 
       <div className="flex items-center">
