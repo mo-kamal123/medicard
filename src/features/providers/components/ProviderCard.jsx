@@ -19,10 +19,10 @@ const getOffers = (provider, t) => {
 };
 
 const getRating = (provider) => {
-  if (provider.rating) {
+  if (provider.averageRating) {
     return {
-      value: Number(provider.rating).toFixed(1),
-      count: provider.reviewsCount || 0,
+      value: Number(provider.averageRating).toFixed(1),
+      count: provider.totalReviews || 0,
     };
   }
 
