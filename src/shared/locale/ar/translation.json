@@ -88,7 +88,8 @@
     "toastError": "فشل إرسال الرسالة. حاول مرة أخرى.",
     "nameMinLength": "الاسم يجب أن يكون حرفين على الأقل",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
-    "messageMinLength": "الرسالة يجب أن تكون 10 أحرف على الأقل"
+    "messageMinLength": "الرسالة يجب أن تكون 10 أحرف على الأقل",
+    "whatsappPrefix": "تواصل معانا الان"
   },
   "providers": {
     "searchPlaceholder": "اسم الطبيب، الصيدلية، المختبر...",
