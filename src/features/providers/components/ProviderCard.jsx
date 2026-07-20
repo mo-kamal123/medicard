@@ -19,17 +19,13 @@ const getOffers = (provider, t) => {
 };
 
 const getRating = (provider) => {
-  if (provider.averageRating) {
-    return {
-      value: Number(provider.averageRating).toFixed(1),
-      count: provider.totalReviews || 0,
-    };
-  }
-
-  const seed = provider.providerId || 1;
   return {
-    value: (4 + (seed % 6) / 10).toFixed(1),
-    count: 100 + (seed * 37) % 300,
+    value:
+      provider.averageRating !== null &&
+      provider.averageRating !== undefined
+        ? Number(provider.averageRating).toFixed(1)
+        : "0.0",
+    count: provider.totalReviews ?? 0,
   };
 };
 
