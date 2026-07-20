@@ -108,12 +108,17 @@ const ContactUs = ({ data }) => {
               item.type === "whatsapp" ? `https://wa.me/${item.url.replace(/[^0-9]/g, "")}` :
               item.url
 
+              const subtitle =
+                item.type === "whatsapp"
+                  ? `${t("contact.whatsappPrefix")}`
+                  : item.value; 
+
             return (
               <ContactCard
                 key={index}
                 icon={iconMap[item.type]}
                 title={contactLabelMap[item.type] ? t(contactLabelMap[item.type]) : item.label}
-                subtitle={item.value}
+                subtitle={subtitle}
                 href={href}
               />
             )

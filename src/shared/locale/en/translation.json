@@ -88,7 +88,9 @@
     "toastError": "Failed to send message. Please try again.",
     "nameMinLength": "Name must be at least 2 characters",
     "invalidEmail": "Please enter a valid email",
-    "messageMinLength": "Message must be at least 10 characters"
+    "messageMinLength": "Message must be at least 10 characters",
+    "whatsappPrefix": "Chat with us"
+
   },
   "providers": {
     "searchPlaceholder": "Doctor name, Pharmacy, Lab...",
