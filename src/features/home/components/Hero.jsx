@@ -54,16 +54,20 @@ const Hero = () => {
             </div>
 
             <div className="mt-6 md:mt-10 flex items-center justify-center lg:justify-end gap-4 md:gap-5">
-              <img
-                src={googleplay}
-                alt="Google Play"
-                className="h-8 md:h-14 w-auto"
-              />
-              <img
-                src={appstore}
-                alt="App Store"
-                className="h-8 md:h-14 w-auto"
-              />
+              <a href="https://play.google.com/store/apps/details?id=com.medicard" target="_blank" rel="noopener noreferrer">
+                <img
+                  src={googleplay}
+                  alt="Google Play"
+                  className="h-8 md:h-14 w-auto"
+                />
+              </a>
+              <a href="https://apps.apple.com/app/medicard" target="_blank" rel="noopener noreferrer">
+                <img
+                  src={appstore}
+                  alt="App Store"
+                  className="h-8 md:h-14 w-auto"
+                />
+              </a>
             </div>
           </div>
         </div>

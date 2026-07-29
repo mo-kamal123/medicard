@@ -53,7 +53,7 @@ const PlanCard = ({ data, active }) => {
         </div>
       </div>
 
-      <button
+      {/* <button
         onClick={() => navigate("/buy-card")}
         className={`
           mt-6 md:mt-10 w-full rounded-xl py-3 md:py-4 font-medium text-white transition-all
@@ -65,7 +65,7 @@ const PlanCard = ({ data, active }) => {
         `}
       >
         {t("plans.getCard")}
-      </button>
+      </button> */}
     </div>
   );
 };

@@ -43,6 +43,10 @@ const ContentPage = () => {
         className="content-html"
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      {/* Safelist: ensures Tailwind compiles classes used in API HTML content */}
+      {false && (
+        <div className="text-blue-900 font-black text-blue-600 whitespace-pre-line list-disc pr-5 border-gray-100 pt-8" />
+      )}
     </div>
   )
 }
