@@ -88,54 +88,51 @@ html[dir="rtl"] .hero-bg::before {
 }
 
 /* Content page HTML styles (from API) */
+.content-html,
+.content-html * {
+  font-family: "Cairo", sans-serif;
+}
+
 .content-html h1 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  font-weight: 900;
-  margin-bottom: 0.75rem;
+  @apply text-3xl md:text-4xl font-black text-blue-900 mb-3;
 }
-@media (min-width: 768px) {
-  .content-html h1 {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-}
+
 .content-html h2 {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 900;
-  margin-bottom: 0.75rem;
+  @apply text-xl font-black text-blue-900 mb-3;
 }
+
 .content-html p {
-  line-height: 1.625;
-  font-weight: 500;
+  @apply leading-relaxed font-medium;
   margin-bottom: 1rem;
 }
+
 .content-html a {
-  font-weight: 900;
-  text-decoration: none;
+  @apply font-black no-underline;
 }
+
 .content-html a:hover {
-  text-decoration: underline;
+  @apply underline;
 }
+
 .content-html ul {
-  list-style-type: disc;
-  padding-right: 1.25rem;
+  @apply list-disc pr-5;
   margin-top: 1rem;
 }
+
 .content-html li {
-  line-height: 1.625;
+  @apply leading-relaxed;
 }
+
 .content-html header {
   margin-bottom: 2.5rem;
 }
+
 .content-html section {
   margin-bottom: 2.5rem;
 }
+
 .content-html footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #f3f4f6;
+  @apply mt-12 pt-8 border-t border-gray-100;
 }
 
 .form-fade-left { display: block; }

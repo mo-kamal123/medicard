@@ -239,13 +239,13 @@ const MedicardActivation = () => {
               <div className="h-px flex-1 bg-gray-200" />
             </div>
 
-            <button
-              type="button"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-main py-3 font-medium text-main transition hover:bg-blue-50 "
+            <a
+              href="tel:16641"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-main py-3 font-medium text-main transition hover:bg-blue-50"
             >
               <Phone size={16} />
               {t("activation.callNow")}
-            </button>
+            </a>
           </>
         )}
 

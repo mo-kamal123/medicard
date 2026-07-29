@@ -50,14 +50,14 @@ const Footer = ({ categories = [], contactUs = null }) => {
             </div>
 
             <div className="flex items-center gap-3 md:gap-4 shrink-0 mt-2 sm:mt-0">
-              <a href="#" className="inline-flex">
+              <a href="https://play.google.com/store/apps/details?id=com.medicard" target="_blank" rel="noopener noreferrer" className="inline-flex">
                 <img
                   src={googlePlay}
                   alt="Get it on Google Play"
                   className="h-8 md:h-10 w-auto"
                 />
               </a>
-              <a href="#" className="inline-flex">
+              <a href="https://apps.apple.com/app/medicard" target="_blank" rel="noopener noreferrer" className="inline-flex">
                 <img
                   src={appStore}
                   alt="Download on the App Store"
