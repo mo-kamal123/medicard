@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import i18n, { getLanguageDirection } from "../../../shared/config/i18n/i18n";
 
@@ -7,9 +8,10 @@ import { A11y, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-
 const OffersSlider = ({ sliders }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   return (
     <>
       <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold text-black">
@@ -20,7 +22,7 @@ const OffersSlider = ({ sliders }) => {
         key={i18n.language}
         dir={getLanguageDirection(i18n.language)}
         className="offers-slider"
-        modules={[ A11y, Autoplay]}
+        modules={[A11y, Autoplay]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         navigation
         spaceBetween={16}
@@ -32,12 +34,14 @@ const OffersSlider = ({ sliders }) => {
       >
         {sliders?.map((provider) => (
           <SwiperSlide key={provider.id}>
-            <div className="p-4 md:p-6 text-center flex flex-col gap-2 my-6 md:my-10">
+            <div
+              className="p-4 md:p-6 text-center flex flex-col gap-2 my-6 md:my-10 cursor-pointer"
+              onClick={() => navigate(`/provider/${provider.providerId}`)}
+            >
               <img
-                src={
-                  "https://images.pexels.com/photos/17227607/pexels-photo-17227607.jpeg"
-                }
-                className="w-full rounded-xl mx-auto"
+                src={provider.imageUrl}
+                alt={provider.providerName}
+                className="w-full rounded-xl mx-auto border border-gray-200 transition-shadow duration-300 hover:shadow-lg"
               />
             </div>
           </SwiperSlide>
