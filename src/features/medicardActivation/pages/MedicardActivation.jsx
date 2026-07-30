@@ -56,7 +56,7 @@ const MedicardActivation = () => {
     .object({
       firstName: z.string().min(1, t("activation.firstNameRequired")),
       lastName: z.string().min(1, t("activation.secondNameRequired")),
-      cardNumber: z.string().regex(/^\d+$/, t("activation.cardNumberInvalid")),
+      cardNumber: z.string().length(12, t("activation.cardNumberLength")).regex(/^\d+$/, t("activation.cardNumberInvalid")),
       gender: z.string().min(1, t("activation.genderRequired")),
       phone: z.string().regex(/^(0?1[0125])\d{8}$/, t("activation.phoneInvalid")),
       nationalId: z.string().optional(),
@@ -180,6 +180,8 @@ const MedicardActivation = () => {
               <FormInput
                 label={t("activation.cardNumber")}
                 placeholder={t("activation.cardNumberPlaceholder")}
+                autoComplete="off"
+                data-form-type="other"
                 {...register("cardNumber")}
               />
               {errors.cardNumber && (

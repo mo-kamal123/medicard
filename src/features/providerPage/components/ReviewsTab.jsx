@@ -1,6 +1,9 @@
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Star } from "lucide-react"
 import { useProviderReviews } from "../hooks/providerPage.queries"
+
+const MAX_LENGTH = 200
 
 const timeAgo = (dateString, t) => {
   const now = new Date()
@@ -27,6 +30,11 @@ const ReviewsTab = ({ providerId }) => {
   const { t } = useTranslation()
   const { data, isLoading } = useProviderReviews(providerId, true)
   const reviews = data?.data?.items || []
+  const [expanded, setExpanded] = useState({})
+
+  const toggleExpand = (id) => {
+    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }))
+  }
 
   if (isLoading) {
     return (
@@ -44,52 +52,71 @@ const ReviewsTab = ({ providerId }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {reviews.map((review, index) => (
-        <div
-          key={index}
-          className="rounded-xl border border-gray-200 bg-gray-50/50 p-4"
-        >
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-main/10">
-              {providerId.userImageUrl ? (
-                <img
-                  src={providerId.userImageUrl}
-                  alt="User avatar"
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <span className="text-sm font-semibold text-main">
-                  {providerId.userName?.charAt(0).toUpperCase()}
-                </span>
-              )}
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">{review.userName}</p>
-              <p className="my-1 text-xs text-gray-400">
-                {timeAgo(review.createdAt, t)}
-              </p>
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={14}
-                    className={
-                      i < review.rating
-                        ? "fill-yellow-400 text-yellow-400"
-                        : "text-gray-300"
-                    }
+      {reviews.map((review, index) => {
+        const isExpanded = expanded[review.id]
+        const needsTruncation = review.ratingText?.length > MAX_LENGTH
+        const displayText = needsTruncation && !isExpanded
+          ? review.ratingText.slice(0, MAX_LENGTH) + "..."
+          : review.ratingText
+
+        return (
+          <div
+            key={review.id || index}
+            className="rounded-xl border border-gray-200 bg-gray-50/50 p-4"
+            style={{ fontFamily: "'Cairo', sans-serif" }}
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-main/10">
+                {review.userImageUrl ? (
+                  <img
+                    src={review.userImageUrl}
+                    alt="User avatar"
+                    className="h-full w-full object-cover"
                   />
-                ))}
+                ) : (
+                  <span className="text-sm font-semibold text-main">
+                    {review.userName?.charAt(0).toUpperCase()}
+                  </span>
+                )}
+              </div>
+              <div>
+                <p className="font-medium text-gray-900">{review.userName}</p>
+                <p className="my-1 text-xs text-gray-400">
+                  {timeAgo(review.createdAt, t)}
+                </p>
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={14}
+                      className={
+                        i < review.rating
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
+                      }
+                    />
+                  ))}
+                </div>
               </div>
             </div>
+            {review.ratingText && (
+              <div>
+                <p className="mt-3 text-sm text-gray-600">{displayText}</p>
+                {needsTruncation && (
+                  <button
+                    onClick={() => toggleExpand(review.id)}
+                    className="mt-1 text-sm font-medium text-main hover:underline"
+                  >
+                    {isExpanded ? t("providerPage.showLess") : t("providerPage.showMore")}
+                  </button>
+                )}
+              </div>
+            )}
           </div>
-          {review.ratingText && (
-            <p className="mt-3 text-sm text-gray-600">{review.ratingText}</p>
-          )}
-        </div>
-      ))}
+        )
+      })}
     </div>
-  );
+  )
 }
 
 export default ReviewsTab
