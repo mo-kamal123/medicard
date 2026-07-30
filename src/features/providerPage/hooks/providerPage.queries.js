@@ -10,10 +10,10 @@ export const useProviderPage = (id) => {
   })
 }
 
-export const useProviderServices = (id, enabled) => {
+export const useProviderServices = (id, enabled, pageNumber = 1) => {
   return useQuery({
-    queryKey: ["providerServices", id],
-    queryFn: () => getProviderServices(id),
+    queryKey: ["providerServices", id, pageNumber],
+    queryFn: () => getProviderServices(id, pageNumber),
     enabled: !!id && enabled,
     retry: 1,
   })

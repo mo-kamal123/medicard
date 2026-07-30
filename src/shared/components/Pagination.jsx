@@ -1,6 +1,10 @@
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import i18n from "../config/i18n/i18n"
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const isRtl = i18n.dir() === "rtl"
+  const PrevIcon = isRtl ? ChevronRight : ChevronLeft
+  const NextIcon = isRtl ? ChevronLeft : ChevronRight
 
   const getPages = () => {
     const pages = []
@@ -34,7 +38,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === 1}
         className={`${btnBase} text-gray-500 hover:bg-blue-50 hover:text-main disabled:opacity-30 disabled:pointer-events-none`}
       >
-        <ChevronLeft size={18} />
+        <PrevIcon size={18} />
       </button>
 
       {getPages().map((page, idx) =>
@@ -62,7 +66,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === totalPages}
         className={`${btnBase} text-gray-500 hover:bg-blue-50 hover:text-main disabled:opacity-30 disabled:pointer-events-none`}
       >
-        <ChevronRight size={18} />
+        <NextIcon size={18} />
       </button>
     </div>
   )

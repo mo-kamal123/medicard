@@ -95,12 +95,12 @@ const tabComponents = {
                     </span>
 
                     {provider.hotLine && (
-                      <span className="flex items-center gap-2 text-xl">
+                      <a href={`tel:${provider.hotLine}`} className="flex items-center gap-2 text-xl hover:text-main">
                         <Phone size={20} className="text-main"/>
                         {provider.hotLine}
-                      </span>
+                      </a>
                     )}
-                  <div className="flex shrink-0 items-center gap-1 rounded-xl bg-white/70 px-3 md:px-4 py-2 shadow-sm">
+                  <div className="flex shrink-0 items-center gap-1 rounded-xl bg-white/70 px-3 md:px-4 py-2 shadow-sm cursor-pointer" onClick={() => setActiveTab("reviews")}>
                     <Star size={16} className="fill-yellow-400 text-yellow-400" />
                     <span className="text-main font-semibold text-sm md:text-base">{provider.averageRating?.toFixed(1)}</span>
                     <span className="text-main text-xs md:text-sm">{t("providerPage.reviewsCount", { count: provider.totalReviews })}</span>

@@ -16,7 +16,7 @@ const ProvidersFilters = () => {
   const [categoryId, setCategoryId] = useState(searchParams.get("categoryId") || "")
   const [governorateId, setGovernorateId] = useState(searchParams.get("governorateId") || "")
   const [cityId, setCityId] = useState(searchParams.get("cityId") || "")
-  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "")
+  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "1")
 
   const selectedGov = governorateId || null
 
@@ -30,7 +30,7 @@ const ProvidersFilters = () => {
     setCategoryId(searchParams.get("categoryId") || "")
     setGovernorateId(searchParams.get("governorateId") || "")
     setCityId(searchParams.get("cityId") || "")
-    setSortBy(searchParams.get("sortBy") || "")
+    setSortBy(searchParams.get("sortBy") || "1")
   }, [searchParams])
   /* eslint-enable react-hooks/set-state-in-effect */
 
@@ -134,7 +134,7 @@ const ProvidersFilters = () => {
           }`}
         >
           <Dropdown
-            placeholder={t("providers.allCategories")}
+            placeholder={t("providers.category")}
             options={[
               { value: "", label: t("providers.allCategories") },
               ...categories,
@@ -145,7 +145,7 @@ const ProvidersFilters = () => {
           />
 
           <Dropdown
-            placeholder={t("providers.allGovernments")}
+            placeholder={t("providers.government")}
             options={[
               { value: "", label: t("providers.allGovernments") },
               ...governorates,
@@ -156,7 +156,7 @@ const ProvidersFilters = () => {
           />
 
           <Dropdown
-            placeholder={t("providers.allCities")}
+            placeholder={t("providers.city")}
             options={[
               { value: "", label: t("providers.allCities") },
               ...cities,
@@ -168,9 +168,8 @@ const ProvidersFilters = () => {
           />
 
           <Dropdown
-            placeholder={t("providers.sortBy")}
+            placeholder={t("providers.nearest")}
             options={[
-              { value: "", label: t("providers.sortBy") },
               { value: "1", label: t("providers.nearest") },
               { value: "2", label: t("providers.highestDiscount") },
             ]}

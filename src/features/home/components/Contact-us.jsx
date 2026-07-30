@@ -36,9 +36,9 @@ const ContactUs = ({ data }) => {
   const { mutate, isPending, isSuccess } = useContactUs()
 
   const schema = z.object({
-    name: z.string().min(2, t("contact.nameMinLength")),
+    name: z.string().min(2, t("contact.nameMinLength")).regex(/^[^0-9]*$/, t("contact.nameNoNumbers")),
     email: z.string().email(t("contact.invalidEmail")),
-    message: z.string().min(10, t("contact.messageMinLength")),
+    message: z.string().min(10, t("contact.messageMinLength")).max(500, t("contact.messageMaxLength")),
   })
 
   const {
@@ -69,7 +69,7 @@ const ContactUs = ({ data }) => {
 
   return (
     <section className="container mx-auto px-4 md:px-0 py-10 md:py-20">
-      <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold">{t("contact.title")}</h2>
+      <h2 className="mb-6 md:mb-8 text-2xl md:text-3xl font-bold">{t("contact.title")}</h2>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="rounded-3xl border border-[#D9E4F5] bg-[#F4F8FF] p-4 md:p-6">

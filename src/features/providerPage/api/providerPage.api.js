@@ -5,8 +5,8 @@ export const getProviderPage = async (id) => {
   return response.data
 }
 
-export const getProviderServices = async (id) => {
-  const response = await httpClient.get("https://medicard-api-v2.medicardeg.com/services", { params: { providerId: id } })
+export const getProviderServices = async (id, pageNumber = 1) => {
+  const response = await httpClient.get("https://medicard-api-v2.medicardeg.com/services", { params: { providerId: id, pageNumber, pageSize: 10 } })
   return response.data
 }
 
