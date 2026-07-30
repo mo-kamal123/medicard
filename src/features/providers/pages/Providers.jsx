@@ -64,11 +64,13 @@ const Providers = () => {
             isLoading={isLoading}
           />
         </div>
-        <Pagination
-          currentPage={filters.page}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={filters.page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        )}
       </div>
     </div>
   )

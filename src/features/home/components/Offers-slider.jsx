@@ -14,7 +14,7 @@ const OffersSlider = ({ sliders }) => {
 
   return (
     <>
-      <h2 className="my-6 md:my-8 text-2xl md:text-3xl font-bold text-black">
+      <h2 className="mb-6 md:mb-8 text-2xl md:text-3xl font-bold text-black">
         {t("offers.title")}
       </h2>
 
@@ -35,7 +35,7 @@ const OffersSlider = ({ sliders }) => {
         {sliders?.map((provider) => (
           <SwiperSlide key={provider.id}>
             <div
-              className="p-4 md:p-6 text-center flex flex-col gap-2 my-6 md:my-10 cursor-pointer"
+              className="p-4 md:p-6 text-center flex flex-col gap-2 cursor-pointer"
               onClick={() => navigate(`/provider/${provider.providerId}`)}
             >
               <img

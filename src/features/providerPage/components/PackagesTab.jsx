@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 import { useProviderPackages, usePackage } from "../hooks/providerPage.queries";
 import Paginations from "../../../shared/components/Pagination";
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 10;
 
 const PackagesTab = ({ providerId }) => {
   const { t } = useTranslation();
@@ -55,7 +55,7 @@ const PackagesTab = ({ providerId }) => {
               </div>
             )}
             <span className="rounded-full absolute top-3 right-3 bg-green-100 px-2 py-1 text-xs text-green-600">
-              -{pkg.discountPercentage.toFixed(0)}%
+              {pkg.discountPercentage.toFixed(0)}%
             </span>
             <div className="p-4">
               <h3 className="font-semibold text-gray-900">{pkg.name}</h3>
@@ -80,11 +80,13 @@ const PackagesTab = ({ providerId }) => {
         ))}
       </div>
 
-      <Paginations
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={setPage}
-      />
+      {totalPages > 1 && (
+        <Paginations
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
+      )}
 
       {selectedId && (
         <div
@@ -118,11 +120,11 @@ const PackagesTab = ({ providerId }) => {
                       {selectedPkg.name}
                     </h2>
 
-                    {selectedPkg.discountPercentage > 0 && (
+                    {/* {selectedPkg.discountPercentage > 0 && (
                       <span className="rounded-full bg-[#DFF7F1] px-3 py-1 text-sm font-medium text-[#11A87A]">
-                        Save {selectedPkg.discountPercentage.toFixed(0)}%
+                        {t("providerPage.save", { percent: selectedPkg.discountPercentage.toFixed(0) })}
                       </span>
-                    )}
+                    )} */}
                   </div>
 
                   {/* Tests + Image */}
@@ -155,7 +157,7 @@ const PackagesTab = ({ providerId }) => {
                   {selectedPkg.description && (
                     <div className="mt-6">
                       <h3 className="font-semibold text-gray-800">
-                        Description
+                        {t("providerPage.description")}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-gray-500">
                         {selectedPkg.description}
@@ -166,14 +168,14 @@ const PackagesTab = ({ providerId }) => {
                   {/* Footer */}
                   <div className="mt-8 flex items-center justify-between border-t border-gray-300 pt-5">
                     <span className="text-lg font-semibold text-gray-900">
-                      Total
+                      {t("providerPage.total")}
                     </span>
                     <div className="flex items-center gap-3">
                       <span className="text-gray-400 line-through">
-                        {selectedPkg.priceBefore.toFixed(0)} EGP
+                        {selectedPkg.priceBefore.toFixed(0)} {t("providerPage.egp")}
                       </span>
                       <span className="text-2xl font-bold text-[#1677FF]">
-                        {selectedPkg.priceAfter.toFixed(0)} EGP
+                        {selectedPkg.priceAfter.toFixed(0)} {t("providerPage.egp")}
                       </span>
                     </div>
                   </div>

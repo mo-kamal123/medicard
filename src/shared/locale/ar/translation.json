@@ -21,7 +21,7 @@
     "title1": "تكلفة أقل",
     "title2": "رعاية أكثر.",
     "description": "استفد من أكثر من 2,000 طبيب ومختبر وصيدلية ونادي صحي وخدمات منزلية في جميع أنحاء مصر بعضوية ميديكارد واحدة.",
-    "searchPlaceholder": "اسم الطبيب، الصيدلية، المختبر\u2026",
+    "searchPlaceholder": "اسم مقدم الخدمه\u2026",
     "activateCard": "تفعيل البطاقة",
     "becomeProvider": "كن مزود خدمة"
   },
@@ -59,7 +59,8 @@
     "eyebrow": "أساس المشروع",
     "title": "بنية React قائمة على الخصائص لميديكارد.",
     "description": "تم تجهيز Router objects و TanStack Query و Axios و React Hook Form و Zod داخل هيكل يمكنه النمو خاصية بعد خاصية.",
-    "action": "عرض مثال النموذج"
+    "action": "عرض مثال النموذج",
+    "seeMore": "عرض الكل"
   },
   "plans": {
     "title": "باقات ميديكارد",
@@ -87,20 +88,26 @@
     "toastSuccess": "تم إرسال الرسالة بنجاح!",
     "toastError": "فشل إرسال الرسالة. حاول مرة أخرى.",
     "nameMinLength": "الاسم يجب أن يكون حرفين على الأقل",
+    "nameNoNumbers": "يجب ألا يحتوي الاسم على أرقام",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
     "messageMinLength": "الرسالة يجب أن تكون 10 أحرف على الأقل",
+    "messageMaxLength": "يجب ألا تتجاوز الرسالة 500 حرف",
     "whatsappPrefix": "تواصل معانا الان"
   },
   "providers": {
     "searchPlaceholder": "اسم الطبيب، الصيدلية، المختبر...",
-    "allCategories": "الفئات",
-    "allGovernments": "المحافظات",
-    "allCities": "المدن",
+    "category": "الفئة",
+    "government": "المحافظة",
+    "city": "المدينة",
+    "allCategories": "كل الفئات",
+    "allGovernments": "كل المحافظات",
+    "allCities": "كل المدن",
     "sortBy": "ترتيب حسب",
     "nearest": "الأقرب",
     "name": "الاسم",
     "highestRated": "الأعلى تقييماً",
     "highestDiscount": "أعلى خصم",
+    "directions": "الاتجاهات",
     "noResults": "لم يتم العثور على مزودي خدمات",
     "noResultsDesc": "حاول تعديل البحث أو الفلاتر للحصول على نتائج أكثر.",
     "upToOff": "خصم حتى {{discount}}%",
@@ -144,9 +151,12 @@
     "noBranches": "لا توجد فروع متاحة.",
     "viewOnMap": "عرض على الخريطة",
     "reviewsCount": "({{count}} تقييم)",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل",
     "save": "خصم {{percent}}%",
     "description": "الوصف",
-    "total": "الإجمالي"
+    "total": "الإجمالي",
+    "egp": "ج.م"
   },
   "becomeProvider": {
     "title": "كن مزود خدمة ميديكارد",
@@ -215,6 +225,7 @@
     "nationalIdRequired": "الرقم القومي مطلوب",
     "idOrPassportRequired": "الرقم القومي أو جواز السفر مطلوب",
     "cardNumberInvalid": "رقم البطاقة يجب أن يحتوي على أرقام فقط",
+    "cardNumberLength": "رقم البطاقة يجب أن يكون 12 رقمًا",
     "selectMonth": "اختر الشهر",
     "selectDay": "اختر اليوم",
     "selectYear": "اختر السنة",

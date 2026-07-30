@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { MapPin, Phone, ExternalLink } from "lucide-react"
 import Paginations from "../../../shared/components/Pagination"
 
-const PAGE_SIZE = 9
+const PAGE_SIZE = 10
 
 const BranchesTab = ({ branches }) => {
   const { t } = useTranslation()
@@ -73,11 +73,13 @@ const BranchesTab = ({ branches }) => {
         ))}
       </div>
 
-      <Paginations
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={setPage}
-      />
+      {totalPages > 1 && (
+        <Paginations
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
+      )}
     </>
   );
 }

@@ -1,11 +1,14 @@
-import { useMemo } from "react"
+import { useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useProviderServices } from "../hooks/providerPage.queries"
+import Pagination from "../../../shared/components/Pagination"
 
 const ServicesTab = ({ providerId }) => {
   const { t } = useTranslation()
-  const { data, isLoading } = useProviderServices(providerId, true)
+  const [page, setPage] = useState(1)
+  const { data, isLoading } = useProviderServices(providerId, true, page)
   const groups = useMemo(() => data?.data?.groups || [], [data])
+  const totalPages = data?.data?.totalPages || 0
 
   const allServices = useMemo(
     () => groups.flatMap((g) => g.services.map((s) => ({ ...s, categoryName: g.categoryName }))),
@@ -60,6 +63,9 @@ const ServicesTab = ({ providerId }) => {
           </div>
         </div>
       ))}
+      {totalPages > 1 && (
+        <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+      )}
     </div>
   )
 }
