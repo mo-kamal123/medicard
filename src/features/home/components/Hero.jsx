@@ -54,14 +54,23 @@ const Hero = () => {
             </div>
 
             <div className="mt-6 md:mt-10 flex items-center justify-center lg:justify-end gap-4 md:gap-5">
-              <a href="https://play.google.com/store/apps/details?id=com.medicard" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://play.google.com/store/apps/details%3Fid%3Dcom.khusm.medicard%26hl%3Den%26referrer%3Dutm_source%253Dgoogle%2526utm_medium%253Dorganic%2526utm_term%253Dgoogle%2Bplay%2Bmedicard%26pcampaignid%3DAPPU_1__VVrapCCDYmQkdUP_I-MsQ8&ved=2ahUKEwjQ9NuGxfqVAxUJSKQEHfwHI_YQ5YQBegQIEBAC&sqi=2&usg=AOvVaw2L8Vs72eQQ5iIeQuzvUcP2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   src={googleplay}
                   alt="Google Play"
                   className="h-8 md:h-14 w-auto"
                 />
               </a>
-              <a href="https://apps.apple.com/app/medicard" target="_blank" rel="noopener noreferrer">
+              <a
+                href="
+https://apps.apple.com/us/app/medicard/id6776209724?l=ar"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   src={appstore}
                   alt="App Store"
