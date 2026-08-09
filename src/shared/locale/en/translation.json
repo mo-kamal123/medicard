@@ -220,6 +220,7 @@
     "selectOption": "Select an option",
     "firstNameRequired": "First name is required",
     "secondNameRequired": "Second name is required",
+    "nameNoNumbers": "Name must not contain numbers",
     "cardNumberRequired": "Card number is required",
     "genderRequired": "Please select your gender",
     "phoneInvalid": "Phone number must start with 010, 011, 012, or 015",
