@@ -219,6 +219,7 @@
     "selectOption": "اختر من القائمة",
     "firstNameRequired": "الاسم الأول مطلوب",
     "secondNameRequired": "الاسم الثاني مطلوب",
+    "nameNoNumbers": "يجب ألا يحتوي الاسم على أرقام",
     "cardNumberRequired": "رقم البطاقة مطلوب",
     "genderRequired": "يرجى اختيار الجنس",
     "phoneInvalid": "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 أو 015",

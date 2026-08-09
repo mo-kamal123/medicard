@@ -54,8 +54,8 @@ const MedicardActivation = () => {
 
   const schema = z
     .object({
-      firstName: z.string().min(1, t("activation.firstNameRequired")),
-      lastName: z.string().min(1, t("activation.secondNameRequired")),
+      firstName: z.string().min(1, t("activation.firstNameRequired")).regex(/^[^0-9]*$/, t("activation.nameNoNumbers")),
+      lastName: z.string().min(1, t("activation.secondNameRequired")).regex(/^[^0-9]*$/, t("activation.nameNoNumbers")),
       cardNumber: z.string().length(12, t("activation.cardNumberLength")).regex(/^\d+$/, t("activation.cardNumberInvalid")),
       gender: z.string().min(1, t("activation.genderRequired")),
       phone: z.string().regex(/^(0?1[0125])\d{8}$/, t("activation.phoneInvalid")),

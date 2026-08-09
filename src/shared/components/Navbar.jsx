@@ -42,7 +42,19 @@ const Navbar = () => {
   const onNavClick = (hash) => (e) => {
     e.preventDefault();
     setMobileOpen(false);
-    navigate({ pathname: "/", hash });
+
+    const scrollToSection = () => {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    if (window.location.pathname === "/") {
+      window.history.replaceState(null, "", hash);
+      scrollToSection();
+    } else {
+      navigate({ pathname: "/", hash });
+      setTimeout(scrollToSection, 100);
+    }
   };
 
   return (
