@@ -50,14 +50,24 @@ const Footer = ({ categories = [], contactUs = null }) => {
             </div>
 
             <div className="flex items-center gap-3 md:gap-4 shrink-0 mt-2 sm:mt-0">
-              <a href="https://play.google.com/store/apps/details?id=com.medicard" target="_blank" rel="noopener noreferrer" className="inline-flex">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.medicard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
+              >
                 <img
                   src={googlePlay}
                   alt="Get it on Google Play"
                   className="h-8 md:h-10 w-auto"
                 />
               </a>
-              <a href="https://apps.apple.com/app/medicard" target="_blank" rel="noopener noreferrer" className="inline-flex">
+              <a
+                href="https://apps.apple.com/app/medicard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
+              >
                 <img
                   src={appStore}
                   alt="Download on the App Store"
@@ -72,7 +82,13 @@ const Footer = ({ categories = [], contactUs = null }) => {
               <h3 className="text-sm font-semibold tracking-wide text-white">
                 {col.title}
               </h3>
-              <ul className={`mt-3 md:mt-5 text-sm text-white/75 ${col.isCategories ? "grid grid-cols-2 gap-x-4 gap-y-2" : "space-y-2 md:space-y-3"}`}>
+              <ul
+                className={`mt-3 md:mt-5 text-sm text-white/75 ${
+                  col.isCategories
+                    ? "grid grid-cols-2 gap-x-4 gap-y-2"
+                    : "space-y-2 md:space-y-3"
+                }`}
+              >
                 {col.isCategories
                   ? col.items.map((item) => (
                       <li key={item.label}>
@@ -100,16 +116,29 @@ const Footer = ({ categories = [], contactUs = null }) => {
         </div>
 
         <div className="mt-8 md:mt-12 border-t border-white/15 pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-white/70">
-          <p>&copy; {new Date().getFullYear()} MediCard Egypt. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} MediCard Egypt. All rights
+            reserved.
+          </p>
           <div className="flex items-center gap-3">
             {phoneItem && (
-              <a href={`tel:${phoneItem.url}`} className="hover:text-white transition-colors">
+              <a
+                href={phoneItem.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
                 {phoneItem.value}
               </a>
             )}
             {phoneItem && emailItem && <span>|</span>}
             {emailItem && (
-              <a href={`mailto:${emailItem.url}`} className="hover:text-white transition-colors">
+              <a
+                href={emailItem.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
                 {emailItem.value}
               </a>
             )}
