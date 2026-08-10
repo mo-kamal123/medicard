@@ -8,7 +8,11 @@
   },
   "common": {
     "backHome": "العودة للرئيسية",
-    "folders": "المجلدات"
+    "folders": "المجلدات",
+    "phoneRequired": "رقم الهاتف مطلوب",
+    "phoneDigitsOnly": "رقم الهاتف يجب أن يحتوي على أرقام فقط",
+    "phoneLength": "رقم الهاتف يجب أن يتكون من 11 أرقام",
+    "phoneInvalid": "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 أو 015"
   },
   "navbar": {
     "serviceProviders": "مزودو الخدمات",

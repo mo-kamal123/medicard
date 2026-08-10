@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import i18n, { getLanguageDirection } from "../../../shared/config/i18n/i18n";
 
-import { A11y, Navigation, Autoplay, Pagination } from "swiper/modules";
+import { A11y, Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const OffersSlider = ({ sliders }) => {
@@ -23,10 +22,9 @@ const OffersSlider = ({ sliders }) => {
         key={i18n.language}
         dir={getLanguageDirection(i18n.language)}
         className="offers-slider home-slider mb-8"
-        modules={[A11y, Autoplay, Pagination, Navigation]}
+        modules={[A11y, Autoplay, Pagination]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        navigation
         spaceBetween={16}
         slidesPerView={1.2}
         breakpoints={{

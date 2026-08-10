@@ -8,7 +8,11 @@
   },
   "common": {
     "backHome": "Back home",
-    "folders": "Folders"
+    "folders": "Folders",
+    "phoneRequired": "Phone number is required",
+    "phoneDigitsOnly": "Phone number must contain digits only",
+    "phoneLength": "Phone number must be 11 digits",
+    "phoneInvalid": "Phone number must start with 010, 011, 012, or 015"
   },
   "navbar": {
     "serviceProviders": "Service Providers",

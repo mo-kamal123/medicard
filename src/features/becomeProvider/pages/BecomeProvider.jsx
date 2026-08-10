@@ -7,6 +7,7 @@ import FormLayout from "../../../shared/components/FormLayout"
 import FormInput from "../../../shared/components/Form-Input"
 import Dropdown from "../../../shared/components/Dropdown"
 import SuccessPopup from "../../../shared/components/SuccessPopup"
+import { createPhoneSchema } from "../../../shared/validations/phoneSchema"
 import { useCategories, useBecomeProvider } from "../hooks/becomeProvider.queries"
 import becomeProviderImage from "../../../assets/becomeProviderImage.png"
 
@@ -22,7 +23,7 @@ const BecomeProvider = () => {
     numberOfBranches: z.coerce.number().int().min(1, t("becomeProvider.branchesRequired")),
     mainBranchAddress: z.string().min(1, t("becomeProvider.addressRequired")),
     email: z.string().email(t("becomeProvider.invalidEmail")),
-    phoneNumber: z.string().regex(/^(0?1[0125])\d{8}$/, t("becomeProvider.phoneInvalid")),
+    phoneNumber: createPhoneSchema(t),
   })
 
   const {
