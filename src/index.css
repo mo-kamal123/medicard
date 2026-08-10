@@ -70,6 +70,34 @@ html[dir="rtl"] .hero-bg::before {
   color: #000;
 }
 
+.home-slider .swiper-pagination {
+  position: static;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.home-slider .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  opacity: 1;
+  margin: 0;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.home-slider .swiper-pagination-bullet:hover {
+  background: #93c5fd;
+}
+
+.home-slider .swiper-pagination-bullet-active {
+  width: 28px;
+  background: #3872b1;
+}
+
 .offers-slider {
   overflow: visible;
 }

@@ -17,7 +17,7 @@ export function HomePage({}) {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const [showBanner, setShowBanner] = useState(true);
+  const [showBanner, setShowBanner] = useState(false);
   const { data: categoriesData } = useCategoriesQuery();
   const { data: homeData } = useHomeData();
 
@@ -35,6 +35,12 @@ export function HomePage({}) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [location.hash]);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("medicard_banner_shown")) return;
+    sessionStorage.setItem("medicard_banner_shown", "1");
+    setShowBanner(true);
+  }, []);
 
   return (
     <section className="">
@@ -70,20 +76,21 @@ export function HomePage({}) {
 
       {showBanner && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6"
           onClick={() => setShowBanner(false)}
         >
           <div className="relative" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setShowBanner(false)}
-              className="absolute top-3 right-14 z-10 rounded-full bg-white p-1 shadow-md hover:bg-gray-100"
+              className="absolute -top-3 -right-3 z-10 rounded-full bg-white p-1.5 shadow-md hover:bg-gray-100"
+              aria-label="Close banner"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
             <img
               src={banner}
               alt="banner"
-              className="max-h-[50vh] w-auto cursor-pointer rounded-2xl mx-10"
+              className="max-h-[55vh] md:max-h-[75vh] w-auto max-w-[92vw] md:max-w-[720px] cursor-pointer rounded-2xl object-contain"
               onClick={() => { setShowBanner(false); navigate("/providers"); }}
             />
           </div>
