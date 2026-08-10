@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import i18n, { getLanguageDirection } from "../../../shared/config/i18n/i18n";
 
-import { A11y, Autoplay } from "swiper/modules";
+import { A11y, Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,8 +16,10 @@ const CategoriesSlider = ({ categories }) => {
     <Swiper
       key={i18n.language}
       dir={getLanguageDirection(i18n.language)}
-      modules={[A11y, Autoplay]}
+      className="home-slider mb-8"
+      modules={[A11y, Autoplay, Pagination]}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
+      pagination={{ clickable: true }}
       spaceBetween={16}
       slidesPerView={2}
       breakpoints={{

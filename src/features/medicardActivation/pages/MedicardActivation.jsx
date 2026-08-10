@@ -9,6 +9,7 @@ import FormLayout from "../../../shared/components/FormLayout"
 import FormInput from "../../../shared/components/Form-Input"
 import Dropdown from "../../../shared/components/Dropdown"
 import SuccessPopup from "../../../shared/components/SuccessPopup"
+import { createPhoneSchema } from "../../../shared/validations/phoneSchema"
 import { useActivateCard } from "../hooks/activateCard.queries"
 import activateCard from "../../../assets/activateCard.jpg"
 
@@ -58,7 +59,7 @@ const MedicardActivation = () => {
       lastName: z.string().min(1, t("activation.secondNameRequired")).regex(/^[^0-9]*$/, t("activation.nameNoNumbers")),
       cardNumber: z.string().length(12, t("activation.cardNumberLength")).regex(/^\d+$/, t("activation.cardNumberInvalid")),
       gender: z.string().min(1, t("activation.genderRequired")),
-      phone: z.string().regex(/^(0?1[0125])\d{8}$/, t("activation.phoneInvalid")),
+      phone: createPhoneSchema(t),
       nationalId: z.string().optional(),
       passportNumber: z.string().optional(),
       birthMonth: z.string().min(1, t("activation.selectMonth")),
