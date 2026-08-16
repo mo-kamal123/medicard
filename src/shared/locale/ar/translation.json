@@ -134,6 +134,8 @@
     "noServices": "لا توجد خدمات متاحة.",
     "off": "خصم {{discount}}%",
     "specialOffer": "عرض خاص",
+    "searchServices": "ابحث عن الخدمات...",
+    "noSearchResults": "لا توجد خدمات مطابقة لبحثك.",
     "noReviews": "لا توجد تقييمات بعد.",
     "timeAgo": {
       "year": "منذ {{count}} سنة",
