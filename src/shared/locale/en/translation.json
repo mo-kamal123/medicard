@@ -135,6 +135,8 @@
     "noServices": "No services available.",
     "off": "{{discount}}% off",
     "specialOffer": "Special Offer",
+    "searchServices": "Search services...",
+    "noSearchResults": "No services found for your search.",
     "noReviews": "No reviews yet.",
     "timeAgo": {
       "year": "{{count}} year ago",

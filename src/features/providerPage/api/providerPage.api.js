@@ -1,12 +1,23 @@
 import { httpClient } from "../../../shared/api/httpClient"
 
+const API_BASE = "https://medicard-api-v2.medicardeg.com/api"
+
 export const getProviderPage = async (id) => {
   const response = await httpClient.get(`/ProviderPage/${id}`)
   return response.data
 }
 
-export const getProviderServices = async (id, pageNumber = 1) => {
-  const response = await httpClient.get("https://medicard-api-v2.medicardeg.com/services", { params: { providerId: id, pageNumber, pageSize: 10 } })
+export const getProviderCategories = async (providerId) => {
+  const response = await httpClient.get(`${API_BASE}/CategoryService/providerCategories`, {
+    params: { providerId },
+  })
+  return response.data
+}
+
+export const getServicesByCategory = async (providerId, categoryId, search = "", pageNumber = 1, pageSize = 6) => {
+  const response = await httpClient.get(`${API_BASE}/ProviderPage/servicesByCategory`, {
+    params: { providerId, categoryId, search: search || undefined, pageNumber, pageSize },
+  })
   return response.data
 }
 

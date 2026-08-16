@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getProviderPage, getProviderServices, getProviderReviews, getProviderPackages, getPackage } from "../api/providerPage.api"
+import { getProviderPage, getProviderCategories, getServicesByCategory, getProviderReviews, getProviderPackages, getPackage } from "../api/providerPage.api"
 
 export const useProviderPage = (id) => {
   return useQuery({
@@ -10,11 +10,20 @@ export const useProviderPage = (id) => {
   })
 }
 
-export const useProviderServices = (id, enabled, pageNumber = 1) => {
+export const useProviderCategories = (providerId, enabled) => {
   return useQuery({
-    queryKey: ["providerServices", id, pageNumber],
-    queryFn: () => getProviderServices(id, pageNumber),
-    enabled: !!id && enabled,
+    queryKey: ["providerCategories", providerId],
+    queryFn: () => getProviderCategories(providerId),
+    enabled: !!providerId && enabled,
+    retry: 1,
+  })
+}
+
+export const useServicesByCategory = (providerId, categoryId, search = "", pageNumber = 1, enabled = true) => {
+  return useQuery({
+    queryKey: ["providerServicesByCategory", providerId, categoryId, search, pageNumber],
+    queryFn: () => getServicesByCategory(providerId, categoryId, search, pageNumber),
+    enabled: !!providerId && !!categoryId && enabled,
     retry: 1,
   })
 }

@@ -59,9 +59,10 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`sticky top-0 flex items-center justify-between px-4 md:px-8 py-4 bg-white shadow-md z-50 transition-transform duration-300 ${
+      <header className={`sticky top-0 py-4 bg-white shadow-md z-50 transition-transform duration-300 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}>
+          <div className="w-[90%] m-auto flex items-center justify-between">
         <Link to="/" className="flex items-center shrink-0">
           <img
             src={logo}
@@ -154,6 +155,7 @@ const Navbar = () => {
             {t("navbar.activateCard")}
           </button>
         </nav>
+        </div>
       </header>
 
       <div
