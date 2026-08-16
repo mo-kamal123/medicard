@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams, Link } from "react-router-dom"
-import { Phone, Star, ArrowLeft, Stethoscope } from "lucide-react"
+import { Phone, Star, ArrowLeft, Stethoscope, MessageSquare, Package, MapPin } from "lucide-react"
 import { useProviderPage } from "../hooks/providerPage.queries"
 import ServicesTab from "../components/ServicesTab"
 import ReviewsTab from "../components/ReviewsTab"
@@ -11,10 +11,10 @@ import BranchesTab from "../components/BranchesTab"
 const ProviderPage = () => {
   const { t } = useTranslation()
   const TABS = [
-    { key: "services", label: t("providerPage.tabs.services") },
-    { key: "reviews", label: t("providerPage.tabs.reviews") },
-    { key: "packages", label: t("providerPage.tabs.packages") },
-    { key: "branches", label: t("providerPage.tabs.branches") },
+    { key: "services", label: t("providerPage.tabs.services"), icon: Stethoscope },
+    { key: "reviews", label: t("providerPage.tabs.reviews"), icon: MessageSquare },
+    { key: "packages", label: t("providerPage.tabs.packages"), icon: Package },
+    { key: "branches", label: t("providerPage.tabs.branches"), icon: MapPin },
   ]
 
 const tabComponents = {
@@ -72,9 +72,9 @@ const tabComponents = {
           <ArrowLeft size={16} /> Back to providers
         </Link> */}
 
-        <div className="rounded-2xl border border-gray-200 bg-gradient-to-r from-[#F0F6FF] via-[#E7EFFF] to-[#DDF5EF] p-4 md:p-10">
+        <div className="rounded-2xl border w-[90%] m-auto mt-8 border-gray-200 bg-linear-to-r from-[#F0F6FF] via-[#E7EFFF] to-[#DDF5EF] p-4 md:py-10 md:px-0">
           <div className="flex flex-col gap-4 md:gap-6 md:flex-row md:items-center w-[95%] m-auto">
-            <div className="flex h-20 w-20 md:h-40 md:w-40 shrink-0 items-center justify-center rounded-xl border border-gray-400 bg-white p-2">
+            <div className="flex h-20 w-20 md:h-40 md:w-40 shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-white p-2">
               <img
                 src={provider.imageUrl}
                 alt={provider.name}
@@ -89,17 +89,20 @@ const tabComponents = {
                   <p className="mt-1 text-sm md:text-lg text-gray-500">{provider.categoryName}</p>
 
                   <div className="mt-3 md:mt-4 flex flex-wrap gap-4 md:gap-6 text-sm justify-between w-full text-gray-600">
-                    <span className="flex items-center gap-2 text-xl">
+                    <div className="flex gap-5">
+
+                    <span className="flex items-center gap-2 text-xl bg-white p-2 rounded-xl border border-gray-200">
                     <Stethoscope size={20} className="text-main" />
                       {t("providerPage.services", { count: provider.totalServices })}
                     </span>
 
                     {provider.hotLine && (
-                      <a href={`tel:${provider.hotLine}`} className="flex items-center gap-2 text-xl hover:text-main">
+                      <a href={`tel:${provider.hotLine}`} className="flex items-center gap-2 text-xl hover:text-main bg-white p-2 rounded-xl border border-gray-200">
                         <Phone size={20} className="text-main"/>
                         {provider.hotLine}
                       </a>
                     )}
+                    </div>
                   <div className="flex shrink-0 items-center gap-1 rounded-xl bg-white/70 px-3 md:px-4 py-2 shadow-sm cursor-pointer" onClick={() => setActiveTab("reviews")}>
                     <Star size={16} className="fill-yellow-400 text-yellow-400" />
                     <span className="text-main font-semibold text-sm md:text-base">{provider.averageRating?.toFixed(1)}</span>
@@ -113,21 +116,29 @@ const tabComponents = {
           </div>
         </div>
 
-        <div className="mt-6 border-b border-gray-400 w-[90%] m-auto">
+        <div className="mt-8 border-b border-gray-400 w-[90%] m-auto">
           <div className="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar">
-            {TABS.map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`whitespace-nowrap pb-3  font-medium transition-colors ${
-                  activeTab === tab.key
-                    ? "border-b-2 border-main text-main"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+            {TABS.map((tab) => {
+              const Icon = tab.icon
+              const isActive = activeTab === tab.key
+              return (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`flex items-center gap-2 whitespace-nowrap pb-3 font-medium transition-colors ${
+                    isActive
+                      ? "border-b-2 border-main text-main"
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  <Icon
+                    size={18}
+                    className={isActive ? "text-main" : "text-gray-400"}
+                  />
+                  {tab.label}
+                </button>
+              )
+            })}
           </div>
         </div>
 

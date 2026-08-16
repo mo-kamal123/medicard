@@ -90,7 +90,7 @@ export function HomePage({}) {
             <img
               src={banner}
               alt="banner"
-              className="max-h-[55vh] md:max-h-[75vh] w-auto max-w-[92vw] md:max-w-[720px] cursor-pointer rounded-2xl object-contain"
+              className="max-h-[55vh] md:max-h-[75vh] w-auto max-w-[92vw] md:max-w-180 cursor-pointer rounded-2xl object-contain"
               onClick={() => { setShowBanner(false); navigate("/providers"); }}
             />
           </div>
