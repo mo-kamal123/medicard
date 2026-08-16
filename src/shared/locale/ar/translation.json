@@ -157,6 +157,7 @@
     "reviewsCount": "({{count}} تقييم)",
     "showMore": "عرض المزيد",
     "showLess": "عرض أقل",
+    "reviewDetails": "تفاصيل التقييم",
     "save": "خصم {{percent}}%",
     "description": "الوصف",
     "total": "الإجمالي",
