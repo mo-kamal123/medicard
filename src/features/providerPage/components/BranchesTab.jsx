@@ -23,7 +23,7 @@ const BranchesTab = ({ branches }) => {
 
   return (
     <>
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-3 md:grid-cols-3">
         {paginatedBranches.map((branch) => (
           <div
             key={branch.branchId}

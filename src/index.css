@@ -16,6 +16,22 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Auto-detected content language (see shared/utils/textLanguage.js).
+   Applied per-element so it never changes the website locale.
+   The `html[dir]` prefix keeps specificity above `html[dir="ltr"] *` /
+   `html[dir="rtl"] *` so these fonts win over the global ones. */
+html[dir] .text-auto-ar {
+  font-family: "Cairo", sans-serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+html[dir] .text-auto-en {
+  font-family: "Inter", sans-serif;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
 @theme {
   --color-body: #f7fafc;
   --color-borders: #e1e1e4;
