@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams, Link } from "react-router-dom"
-import { Phone, Star, ArrowLeft, Stethoscope, MessageSquare, Package, MapPin } from "lucide-react"
+import { Phone, Star, ArrowRight, Stethoscope, MessageSquare, Package, MapPin } from "lucide-react"
 import { useProviderPage } from "../hooks/providerPage.queries"
 import ServicesTab from "../components/ServicesTab"
 import ReviewsTab from "../components/ReviewsTab"
@@ -17,12 +17,12 @@ const ProviderPage = () => {
     { key: "branches", label: t("providerPage.tabs.branches"), icon: MapPin },
   ]
 
-const tabComponents = {
-  services: ServicesTab,
-  reviews: ReviewsTab,
-  packages: PackagesTab,
-  branches: BranchesTab,
-}
+  const tabComponents = {
+    services: ServicesTab,
+    reviews: ReviewsTab,
+    packages: PackagesTab,
+    branches: BranchesTab,
+  }
 
   const { id } = useParams()
   const [activeTab, setActiveTab] = useState("services")
@@ -32,13 +32,18 @@ const tabComponents = {
   if (isLoading) {
     return (
       <div className="bg-body min-h-screen pb-16">
-        <div className="mx-auto w-[90%] px-4 py-8">
+        <div className="w-full lg:w-[90%] mx-auto px-4 py-8">
           <div className="animate-pulse space-y-6">
             <div className="h-8 w-32 rounded bg-gray-200" />
-            <div className="h-32 rounded-2xl bg-gray-200" />
-            <div className="flex gap-8">
+            <div className="h-40 rounded-2xl bg-gray-200" />
+            <div className="flex gap-4 overflow-hidden">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="h-8 w-24 rounded bg-gray-200" />
+                <div key={i} className="h-8 w-24 shrink-0 rounded bg-gray-200" />
+              ))}
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="h-44 rounded-2xl bg-gray-100" />
               ))}
             </div>
           </div>
@@ -49,11 +54,14 @@ const tabComponents = {
 
   if (isError || !provider) {
     return (
-      <div className="bg-body flex min-h-screen items-center justify-center pb-16">
+      <div className="bg-body flex min-h-screen items-center justify-center px-4 pb-16">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-dark">{t("providerPage.notFound")}</h2>
-          <Link to="/providers" className="mt-4 inline-flex items-center gap-2 text-main underline">
-            <ArrowLeft size={16} /> {t("providerPage.backToProviders")}
+          <Link
+            to="/providers"
+            className="mt-4 inline-flex items-center gap-2 text-main underline"
+          >
+            <ArrowRight size={16} /> {t("providerPage.backToProviders")}
           </Link>
         </div>
       </div>
@@ -63,61 +71,89 @@ const tabComponents = {
   const ActiveComponent = tabComponents[activeTab]
 
   return (
-    <div className="bg-white  min-h-screen pb-16">
-      <div className="">
-        {/* <Link
-          to="/providers"
-          className="mb-6 inline-flex items-center gap-2 text-sm text-gray-500 hover:text-main"
-        >
-          <ArrowLeft size={16} /> Back to providers
-        </Link> */}
+    <div className="min-h-screen bg-white pb-16">
+      {/* Hero */}
+      <div className="mx-auto lg:w-[90%] mt-3 px-4">
+        <div className="relative rounded-2xl border border-gray-200 bg-linear-to-r from-[#F0F6FF] via-[#E7EFFF] to-[#DDF5EF] p-4 sm:p-6 md:p-8">
+          <button
+            onClick={() => setActiveTab("reviews")}
+            className="absolute top-3 inset-e-3 flex items-center gap-1.5 rounded-xl bg-white px-2.5 py-1.5 shadow-sm transition hover:shadow-md md:hidden sm:top-4 sm:inset-e-4"
+          >
+            <Star size={15} className="fill-yellow-400 text-yellow-400" />
+            <span className="text-sm font-semibold text-main">
+              {provider.averageRating?.toFixed(1)}
+            </span>
+            <span className="text-xs text-gray-500">
+              {t("providerPage.reviewsCount", { count: provider.totalReviews })}
+            </span>
+          </button>
 
-        <div className="rounded-2xl border w-[90%] m-auto mt-8 border-gray-200 bg-linear-to-r from-[#F0F6FF] via-[#E7EFFF] to-[#DDF5EF] p-4 md:py-10 md:px-0">
-          <div className="flex flex-col gap-4 md:gap-6 md:flex-row md:items-center w-[95%] m-auto">
-            <div className="flex h-20 w-20 md:h-40 md:w-40 shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-white p-2">
-              <img
-                src={provider.imageUrl}
-                alt={provider.name}
-                className="h-full w-full object-contain"
-              />
-            </div>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+            {/* Logo */}
+            {provider.imageUrl ? (
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-300 bg-white p-1.5 sm:h-28 sm:w-28 md:h-36 md:w-36">
+                <img
+                  src={provider.imageUrl}
+                  alt={provider.name}
+                  className="h-full w-full object-contain"
+                />
+              </div>
+            ) : (
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-white text-2xl font-bold text-main sm:h-28 sm:w-28 md:h-36 md:w-36">
+                {provider.name?.charAt(0)}
+              </div>
+            )}
 
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-start justify-between gap-4">
-                <div className="w-full">
-                  <h1 className="text-xl md:text-3xl font-bold text-gray-900 truncate">{provider.name}</h1>
-                  <p className="mt-1 text-sm md:text-lg text-gray-500">{provider.categoryName}</p>
+            {/* Info */}
+            <div className="flex min-w-0 flex-1 flex-col">
+              <h1 className="truncate text-xl font-bold text-gray-900 sm:text-2xl md:text-3xl">
+                {provider.name}
+              </h1>
+              <p className="mt-1 text-sm text-gray-500 sm:text-base">
+                {provider.categoryName}
+              </p>
 
-                  <div className="mt-3 md:mt-4 flex flex-wrap gap-4 md:gap-6 text-sm justify-between w-full text-gray-600">
-                    <div className="flex gap-5">
+              {/* Badges */}
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+                <div className="flex gap-4">
+                  <span className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-600 sm:text-sm">
+                    <Stethoscope size={16} className="text-main" />
+                    {t("providerPage.services", { count: provider.totalServices })}
+                  </span>
 
-                    <span className="flex items-center gap-2 text-xl bg-white p-2 rounded-xl border border-gray-200">
-                    <Stethoscope size={20} className="text-main" />
-                      {t("providerPage.services", { count: provider.totalServices })}
-                    </span>
-
-                    {provider.hotLine && (
-                      <a href={`tel:${provider.hotLine}`} className="flex items-center gap-2 text-xl hover:text-main bg-white p-2 rounded-xl border border-gray-200">
-                        <Phone size={20} className="text-main"/>
-                        {provider.hotLine}
-                      </a>
-                    )}
-                    </div>
-                  <div className="flex shrink-0 items-center gap-1 rounded-xl bg-white/70 px-3 md:px-4 py-2 shadow-sm cursor-pointer" onClick={() => setActiveTab("reviews")}>
-                    <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                    <span className="text-main font-semibold text-sm md:text-base">{provider.averageRating?.toFixed(1)}</span>
-                    <span className="text-main text-xs md:text-sm">{t("providerPage.reviewsCount", { count: provider.totalReviews })}</span>
-                  </div>
-                  </div>
+                  {provider.hotLine && (
+                    <a
+                      href={`tel:${provider.hotLine}`}
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-main hover:text-main sm:text-sm"
+                    >
+                      <Phone size={16} className="text-main" />
+                      {provider.hotLine}
+                    </a>
+                  )}
                 </div>
 
+                <button
+                  onClick={() => setActiveTab("reviews")}
+                  className="hidden md:inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-2.5 py-1.5 transition hover:border-main sm:text-sm"
+                >
+                  <Star size={16} className="fill-yellow-400 text-yellow-400" />
+                  <span className="font-semibold text-main">
+                    {provider.averageRating?.toFixed(1)}
+                  </span>
+                  <span className="text-xs text-gray-500 sm:text-sm">
+                    {t("providerPage.reviewsCount", { count: provider.totalReviews })}
+                  </span>
+                </button>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-8 border-b border-gray-400 w-[90%] m-auto">
-          <div className="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar">
+      {/* Tabs */}
+      <div className="mx-auto mt-6 w-[90%] px-4">
+        <div className="border-b border-gray-200">
+          <div className="flex gap-4 overflow-x-auto no-scrollbar sm:gap-6 md:gap-8">
             {TABS.map((tab) => {
               const Icon = tab.icon
               const isActive = activeTab === tab.key
@@ -125,30 +161,28 @@ const tabComponents = {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex items-center gap-2 whitespace-nowrap pb-3 font-medium transition-colors ${
+                  className={`flex shrink-0 items-center gap-1.5 whitespace-nowrap pb-3 text-sm font-medium transition-colors sm:text-base ${
                     isActive
                       ? "border-b-2 border-main text-main"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
-                  <Icon
-                    size={18}
-                    className={isActive ? "text-main" : "text-gray-400"}
-                  />
+                  <Icon size={16} className={isActive ? "text-main" : "text-gray-400"} />
                   {tab.label}
                 </button>
               )
             })}
           </div>
         </div>
+      </div>
 
-        <div className="mt-6 w-[90%] m-auto">
-          {activeTab === "branches" ? (
-            <BranchesTab branches={provider.branches} />
-          ) : (
-            <ActiveComponent providerId={Number(id)} />
-          )}
-        </div>
+      {/* Content */}
+      <div className="mx-auto mt-6 w-[90%] px-4">
+        {activeTab === "branches" ? (
+          <BranchesTab branches={provider.branches} />
+        ) : (
+          <ActiveComponent providerId={Number(id)} />
+        )}
       </div>
     </div>
   )
