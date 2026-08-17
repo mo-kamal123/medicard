@@ -55,7 +55,7 @@ const Providers = () => {
 
   return (
     <div className="bg-white min-h-screen pb-16">
-      <div className="w-[98%] mx-auto px-4 py-8 lg:w-[90%]">
+      <div className="w-full mx-auto px-2 py-8 lg:w-[90%]">
         <ProvidersFilters />
 
         <div className="mt-8">
