@@ -9,7 +9,7 @@ const ProvidersGrid = ({ providers = [], isLoading }) => {
         {Array.from({ length: 6 }).map((_, index) => (
           <div
             key={index}
-            className="h-[360px] animate-pulse rounded-2xl border border-borders bg-white"
+            className="h-90 animate-pulse rounded-2xl border border-borders bg-white"
           >
             <div className="h-52 bg-gray-100" />
             <div className="space-y-3 p-4">
