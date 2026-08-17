@@ -118,6 +118,10 @@
     "upToOff": "Up to {{discount}}% Off",
     "scanOff": "Scan 20%",
     "examOff": "30% Off Examination",
+    "filters": "Filters",
+    "clearAll": "Clear All",
+    "apply": "Apply",
+    "active": "active",
     "category": "Category",
     "government": "Government",
     "city": "City"
