@@ -44,14 +44,14 @@ const ProviderCard = ({ provider }) => {
   return (
     <Link to={`/provider/${provider.providerId}`} className="block">
       {/* ================= MOBILE ================= */}
-      <article className="md:hidden flex gap-3 rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg">
+      <article className="md:hidden flex gap-3 rounded-2xl p-3 border border-gray-200 bg-white">
         {/* Logo */}
-        <div className="shrink-0 overflow-hidden rounded-bl-xl rounded-tl-xl h-28 ">
+        <div className="shrink-0 overflow-hidden rounded-xl ">
           {provider.imageUrl ? (
             <img
               src={provider.imageUrl}
               alt={provider.providerName}
-              className="h-28 w-28 object-cover"
+              className="h-full w-28 object-cover"
             />
           ) : (
             <div className="flex h-24 w-24 items-center justify-center bg-main/10 text-lg font-bold text-main">
@@ -61,7 +61,7 @@ const ProviderCard = ({ provider }) => {
         </div>
 
         {/* Content */}
-        <div className="flex min-w-0 flex-1 flex-col justify-between p-3 gap-1.5 ">
+        <div className="flex min-w-0 flex-1 flex-col justify-between  gap-1.5 ">
           {/* Name + category + distance */}
           <div>
             <div className="flex items-start justify-between gap-2">

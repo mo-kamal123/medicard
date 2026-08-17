@@ -117,6 +117,10 @@
     "upToOff": "خصم حتى {{discount}}%",
     "scanOff": "خصم 20% على الفحوصات",
     "examOff": "خصم 30% على الكشف",
+    "filters": "الفلاتر",
+    "clearAll": "مسح الكل",
+    "apply": "تطبيق",
+    "active": "نشط",
     "category": "الفئة",
     "government": "المحافظة",
     "city": "المدينة"
