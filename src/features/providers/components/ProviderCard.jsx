@@ -46,12 +46,12 @@ const ProviderCard = ({ provider }) => {
       {/* ================= MOBILE ================= */}
       <article className="md:hidden flex gap-3 rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg">
         {/* Logo */}
-        <div className="shrink-0 overflow-hidden rounded-xl bg-gray-100">
+        <div className="shrink-0 overflow-hidden rounded-bl-xl rounded-tl-xl h-28 ">
           {provider.imageUrl ? (
             <img
               src={provider.imageUrl}
               alt={provider.providerName}
-              className="h-full w-36 object-cover"
+              className="h-28 w-28 object-cover"
             />
           ) : (
             <div className="flex h-24 w-24 items-center justify-center bg-main/10 text-lg font-bold text-main">
