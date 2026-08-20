@@ -154,16 +154,12 @@ const ProvidersFilters = () => {
   const applyAndClose = () => closeSheet()
 
   const clearAll = () => {
-    updateParams({
-      categoryId: "",
-      governororateId: "",
-      cityId: "",
-      sortBy: "1",
-    })
+    setKeyword("")
     setCategoryId("")
     setGovernorateId("")
     setCityId("")
     setSortBy("1")
+    setSearchParams({ page: "1" }, { replace: true })
     closeSheet()
   }
 
@@ -182,7 +178,7 @@ const ProvidersFilters = () => {
         <div className="relative sm:col-span-2 lg:col-span-4">
           <Search
             size={18}
-            className="absolute start-4 top-1/2 -translate-y-1/2 text-gray-400"
+            className="absolute inset-s-4 top-1/2 -translate-y-1/2 text-gray-400"
           />
           <input
             value={keyword}
@@ -193,7 +189,7 @@ const ProvidersFilters = () => {
           />
           <button
             onClick={openSheet}
-            className="absolute end-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5 rounded-lg bg-main/10 px-2 py-1.5 text-main transition-colors hover:bg-main/20 lg:hidden"
+            className="absolute inset-e-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5 rounded-lg bg-main/10 px-2 py-1.5 text-main transition-colors hover:bg-main/20 lg:hidden"
           >
             <SlidersHorizontal size={16} />
             {activeFilterCount > 0 && (
@@ -295,7 +291,7 @@ const ProvidersFilters = () => {
               </div>
               <button
                 onClick={closeSheet}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-600"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-main transition-colors hover:bg-gray-200 hover:text-gray-600"
               >
                 <X size={18} strokeWidth={2.5} />
               </button>
@@ -413,13 +409,13 @@ const ProvidersFilters = () => {
             <div className="flex gap-3 border-t border-gray-200/60 bg-white px-5 py-4 safe-area-pb">
               <button
                 onClick={clearAll}
-                className="flex-1 rounded-2xl border border-gray-200 bg-white py-3.5 text-sm font-semibold text-gray-500 shadow-sm transition-all hover:bg-gray-50 active:scale-[0.97]"
+                className="flex-1 rounded-2xl border border-gray-200 bg-white py-3.5 text-sm font-semibold text-gray-500 transition-all hover:bg-gray-50 active:scale-[0.97]"
               >
                 {t("providers.clearAll")}
               </button>
               <button
                 onClick={applyAndClose}
-                className="flex-1 rounded-2xl bg-gradient-to-b from-main to-sec py-3.5 text-sm font-semibold text-white shadow-md shadow-main/25 transition-all hover:shadow-lg hover:shadow-main/30 active:scale-[0.97]"
+                className="flex-1 rounded-2xl bg-linear-to-b from-main to-sec py-3.5 text-sm font-semibold text-white shadow-md shadow-main/25 transition-all hover:shadow-lg hover:shadow-main/30 active:scale-[0.97]"
               >
                 {t("providers.apply")}
               </button>

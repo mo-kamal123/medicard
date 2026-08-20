@@ -2,6 +2,7 @@ import { useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { MapPin, Phone, ExternalLink } from "lucide-react"
 import Paginations from "../../../shared/components/Pagination"
+import EmptyState from "../../../shared/components/EmptyState"
 
 const PAGE_SIZE = 10
 
@@ -18,7 +19,7 @@ const BranchesTab = ({ branches }) => {
   )
 
   if (!safeBranches.length) {
-    return <p className="text-gray-500">{t("providerPage.noBranches")}</p>
+    return <EmptyState icon={MapPin} title={t("providerPage.noBranches")} />
   }
 
   return (

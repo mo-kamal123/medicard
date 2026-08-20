@@ -1,6 +1,7 @@
-import { useEffect } from "react"
+import { useCallback, useState } from "react"
 
 const STORAGE_KEY = "medicard_location"
+const PROMPTED_KEY = "medicard_location_prompted"
 
 export function getStoredLocation() {
   try {
@@ -11,9 +12,26 @@ export function getStoredLocation() {
   }
 }
 
+function hasBeenPrompted() {
+  return localStorage.getItem(PROMPTED_KEY) === "1"
+}
+
+function markPrompted() {
+  localStorage.setItem(PROMPTED_KEY, "1")
+}
+
 export function useGeolocation() {
-  useEffect(() => {
-    if (!navigator.geolocation) return
+  const [location, setLocation] = useState(() => getStoredLocation())
+  const [showPopup, setShowPopup] = useState(
+    () => !getStoredLocation() && !hasBeenPrompted() && !!navigator.geolocation
+  )
+
+  const requestLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      markPrompted()
+      setShowPopup(false)
+      return
+    }
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -22,8 +40,20 @@ export function useGeolocation() {
           lng: pos.coords.longitude,
         }
         localStorage.setItem(STORAGE_KEY, JSON.stringify(loc))
+        setLocation(loc)
+        markPrompted()
+        setShowPopup(false)
       },
-      (err) => console.warn("Geolocation error:", err.code, err.message)
+      () => {
+        markPrompted()
+        setShowPopup(false)
+      }
     )
   }, [])
+
+  const skipLocation = useCallback(() => {
+    setShowPopup(false)
+  }, [])
+
+  return { location, showPopup, requestLocation, skipLocation }
 }

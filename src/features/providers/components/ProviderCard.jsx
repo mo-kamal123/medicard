@@ -42,26 +42,26 @@ const ProviderCard = ({ provider }) => {
   const location = provider.city || provider.branchName || provider.governorate;
 
   return (
-    <Link to={`/provider/${provider.providerId}`} className="block">
+    <Link to={`/provider/${provider.providerId}`} className="block h-full">
       {/* ================= MOBILE ================= */}
-      <article className="md:hidden flex gap-3 rounded-2xl p-3 border border-gray-200 bg-white">
+      <article className="md:hidden flex h-full gap-3 rounded-2xl p-3 border border-gray-200 bg-white">
         {/* Logo */}
-        <div className="shrink-0 overflow-hidden rounded-xl ">
+        <div className="shrink-0 self-stretch overflow-hidden rounded-xl h-30 w-30">
           {provider.imageUrl ? (
             <img
               src={provider.imageUrl}
               alt={provider.providerName}
-              className="h-full w-28 object-cover"
+              className="h-full w-full object-cover"
             />
           ) : (
-            <div className="flex h-24 w-24 items-center justify-center bg-main/10 text-lg font-bold text-main">
+            <div className="flex h-full w-full items-center justify-center bg-main/10 text-lg font-bold text-main">
               {provider.providerName?.charAt(0)}
             </div>
           )}
         </div>
 
         {/* Content */}
-        <div className="flex min-w-0 flex-1 flex-col justify-between  gap-1.5 ">
+        <div className="flex min-w-0 flex-1 flex-col gap-1.5">
           {/* Name + category + distance */}
           <div>
             <div className="flex items-start justify-between gap-2">
@@ -91,62 +91,51 @@ const ProviderCard = ({ provider }) => {
             </div>
           )}
 
-          {/* Offers */}
-          {offers.length > 0 && (
-            <div className="flex flex-wrap gap-1.5">
-              {offers.map((offer) => (
-                <span
-                  key={offer}
-                  className="w-fit rounded-full border border-green-200 bg-green-50 px-2 py-0.5 text-[11px] font-medium text-green-700"
-                >
-                  {offer}
-                </span>
-              ))}
-            </div>
-          )}
+          {/* Offers — always reserve space */}
+          <div className="flex min-h-[22px] flex-wrap gap-1.5">
+            {offers.map((offer) => (
+              <span
+                key={offer}
+                className="w-fit rounded-full border border-green-200 bg-green-50 px-2 py-0.5 text-[11px] font-medium text-green-700"
+              >
+                {offer}
+              </span>
+            ))}
+          </div>
 
-          {/* Actions */}
-          <div className="flex items-center justify-end gap-2 pt-1">
-            {/* <div className="flex items-center gap-1.5 rounded-full bg-yellow-50 px-2 py-0.5">
-              <Star size={12} className="fill-yellow-400 text-yellow-400" />
-              <span className="text-xs font-semibold text-gray-800">{rating.value}</span>
-              <span className="text-[10px] text-gray-500">({rating.count})</span>
-            </div> */}
-
-            <div className="flex items-center gap-1.5">
-              {provider.hotLine && (
-                <a
-                  href={`tel:${provider.hotLine}`}
-                  className="rounded-xl border border-gray-200 p-2 text-gray-400 transition hover:border-main hover:bg-main hover:text-white"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <Phone size={14} />
-                </a>
-              )}
-
-              {provider.hotLine && (
-                <a
-                  href={`https://wa.me/${provider.hotLine.replace(/[^0-9]/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-xl border border-gray-200 p-2 text-gray-400 transition hover:border-main hover:bg-main hover:text-white"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <img src={whatsappIcon} alt="WhatsApp" className="h-3.5 w-3.5" />
-                </a>
-              )}
-
+          {/* Actions — pinned to bottom */}
+          <div className="mt-auto flex items-center justify-end gap-2 pt-1">
+            {provider.hotLine && (
               <a
-                href={`https://www.google.com/maps/search/${encodeURIComponent(provider.providerName + " " + (location || ""))}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl border border-gray-200 px-2 py-1 text-gray-400 transition hover:border-main hover:bg-main hover:text-white"
+                href={`tel:${provider.hotLine}`}
+                className="rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
                 onClick={(e) => e.stopPropagation()}
               >
-                <MapPin size={14} className="inline-block text-main" />
-                {/* {t("providers.directions")} */}
+                <Phone size={14} />
               </a>
-            </div>
+            )}
+
+            {provider.hotLine && (
+              <a
+                href={`https://wa.me/${provider.hotLine.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img src={whatsappIcon} alt="WhatsApp" className="h-3.5 w-3.5 grayscale brightness-0 opacity-60 group-hover:brightness-0 group-hover:grayscale group-hover:invert group-hover:opacity-100" />
+              </a>
+            )}
+
+            <a
+              href={`https://www.google.com/maps/search/${encodeURIComponent(provider.providerName + " " + (location || ""))}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <MapPin size={14} />
+            </a>
           </div>
         </div>
       </article>

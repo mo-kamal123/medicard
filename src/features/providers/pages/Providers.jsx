@@ -1,16 +1,17 @@
 import { useSearchParams } from "react-router-dom"
 import ProvidersGrid from "../components/ProvidersGrid"
 import ProvidersFilters from "../components/ProvidersFilters"
+import LocationPopup from "../components/LocationPopup"
 import { useProviders } from "../hooks/providers.queries"
 import Pagination from "../../../shared/components/Pagination"
 import { useCallback } from "react"
-import { getStoredLocation, useGeolocation } from "../../../shared/hooks/useGeolocation"
+import { useGeolocation } from "../../../shared/hooks/useGeolocation"
 
 const PAGE_SIZE = 12
 
 const Providers = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  useGeolocation()
+  const { location, showPopup, requestLocation, skipLocation } = useGeolocation()
 
   const filters = {
     keyword: searchParams.get("keyword") || "",
@@ -21,7 +22,6 @@ const Providers = () => {
     page: parseInt(searchParams.get("page") || "1", 10),
   }
 
-  const location = getStoredLocation()
   const queryParams = {
     KeyWord: filters.keyword || undefined,
     CategoryId: filters.categoryId || undefined,
@@ -55,6 +55,9 @@ const Providers = () => {
 
   return (
     <div className="bg-white min-h-screen pb-16">
+      {showPopup && (
+        <LocationPopup onAllow={requestLocation} onSkip={skipLocation} />
+      )}
       <div className="w-full mx-auto px-2 py-8 lg:w-[90%]">
         <ProvidersFilters />
 
