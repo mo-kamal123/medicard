@@ -66,8 +66,7 @@ const Hero = () => {
                 />
               </a>
               <a
-                href="
-https://apps.apple.com/us/app/medicard/id6776209724?l=ar"
+                href="https://apps.apple.com/us/app/medicard/id6776209724?l=ar"
                 target="_blank"
                 rel="noopener noreferrer"
               >

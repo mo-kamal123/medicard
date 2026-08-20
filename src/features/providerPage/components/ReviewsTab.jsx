@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Star, User, X } from "lucide-react"
+import { Star, User, X, MessageSquare } from "lucide-react"
 import { useProviderReviews } from "../hooks/providerPage.queries"
 import AutoText from "../../../shared/components/AutoText"
+import EmptyState from "../../../shared/components/EmptyState"
 
 const MAX_LENGTH = 150
 
@@ -194,7 +195,7 @@ const ReviewsTab = ({ providerId }) => {
   }
 
   if (!reviews.length) {
-    return <p className="text-gray-500">{t("providerPage.noReviews")}</p>
+    return <EmptyState icon={MessageSquare} title={t("providerPage.noReviews")} />
   }
 
   return (

@@ -86,6 +86,8 @@ html[dir="rtl"] .hero-bg::before {
   color: #000;
 }
 
+/* ── Home slider pagination ── */
+
 .home-slider .swiper-pagination {
   position: static;
   margin-top: 1rem;
