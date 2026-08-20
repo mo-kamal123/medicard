@@ -116,10 +116,13 @@ const ProviderPage = () => {
               {/* Badges */}
               <div className="mt-3 flex flex-wrap items-center justify-between gap-2 sm:gap-3">
                 <div className="flex gap-4">
-                  <span className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-600 sm:text-sm">
+                  <button
+                    onClick={() => setActiveTab("services")}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-600 transition cursor-pointer hover:border-main hover:text-main sm:text-sm"
+                  >
                     <Stethoscope size={16} className="text-main" />
                     {t("providerPage.services", { count: provider.totalServices })}
-                  </span>
+                  </button>
 
                   {provider.hotLine && (
                     <a

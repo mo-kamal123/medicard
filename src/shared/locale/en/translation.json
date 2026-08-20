@@ -124,7 +124,13 @@
     "active": "active",
     "category": "Category",
     "government": "Government",
-    "city": "City"
+    "city": "City",
+    "locationPopup": {
+      "title": "Enable Location",
+      "description": "Allow access to your location to find the nearest providers and services around you.",
+      "allow": "Allow Access",
+      "skip": "Skip for Now"
+    }
   },
   "providerPage": {
     "tabs": {

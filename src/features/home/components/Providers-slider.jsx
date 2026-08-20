@@ -6,7 +6,6 @@ import { A11y, Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 const ProvidersSlider = ({ providers }) => {
@@ -17,9 +16,8 @@ const ProvidersSlider = ({ providers }) => {
       key={i18n.language}
       dir={getLanguageDirection(i18n.language)}
       className="home-slider mb-8"
-      modules={[A11y, Autoplay, Pagination]}
+      modules={[A11y, Autoplay]}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
-      pagination={{ clickable: true }}
       spaceBetween={16}
       slidesPerView={2}
       breakpoints={{

@@ -51,7 +51,7 @@ const Footer = ({ categories = [], contactUs = null }) => {
 
             <div className="flex items-center gap-3 md:gap-4 shrink-0 mt-2 sm:mt-0">
               <a
-                href="https://play.google.com/store/apps/details?id=com.medicard"
+                href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://play.google.com/store/apps/details%3Fid%3Dcom.khusm.medicard%26hl%3Den%26referrer%3Dutm_source%253Dgoogle%2526utm_medium%253Dorganic%2526utm_term%253Dgoogle%2Bplay%2Bmedicard%26pcampaignid%3DAPPU_1__VVrapCCDYmQkdUP_I-MsQ8&ved=2ahUKEwjQ9NuGxfqVAxUJSKQEHfwHI_YQ5YQBegQIEBAC&sqi=2&usg=AOvVaw2L8Vs72eQQ5iIeQuzvUcP2"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex"
@@ -63,7 +63,8 @@ const Footer = ({ categories = [], contactUs = null }) => {
                 />
               </a>
               <a
-                href="https://apps.apple.com/app/medicard"
+                href="
+                https://apps.apple.com/us/app/medicard/id6776209724?l=ar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex"

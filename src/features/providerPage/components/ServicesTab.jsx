@@ -19,6 +19,7 @@ import {
 import { useProviderCategories, useServicesByCategory } from "../hooks/providerPage.queries"
 import Pagination from "../../../shared/components/Pagination"
 import AutoText from "../../../shared/components/AutoText"
+import EmptyState from "../../../shared/components/EmptyState"
 
 const API_ORIGIN = "https://medicard-api-v2.medicardeg.com"
 
@@ -97,7 +98,7 @@ const ServicesTab = ({ providerId }) => {
   }
 
   if (!categories.length) {
-    return <p className="text-gray-500">{t("providerPage.noServices")}</p>
+    return <EmptyState icon={ClipboardList} title={t("providerPage.noServices")} />
   }
 
   return (
@@ -223,20 +224,10 @@ const ServicesTab = ({ providerId }) => {
           )}
         </>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50/60 px-6 py-16 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-main/10">
-            {debouncedSearch ? (
-              <SearchX size={28} className="text-main/70" />
-            ) : (
-              <ClipboardList size={28} className="text-main/70" />
-            )}
-          </div>
-          <p className="mt-4 text-base font-medium text-gray-600">
-            {debouncedSearch
-              ? t("providerPage.noSearchResults")
-              : t("providerPage.noServices")}
-          </p>
-        </div>
+        <EmptyState
+          icon={debouncedSearch ? SearchX : ClipboardList}
+          title={debouncedSearch ? t("providerPage.noSearchResults") : t("providerPage.noServices")}
+        />
       )}
     </div>
   )

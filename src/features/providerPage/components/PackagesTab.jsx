@@ -1,8 +1,9 @@
 import { useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { X } from "lucide-react";
+import { X, Package } from "lucide-react";
 import { useProviderPackages, usePackage } from "../hooks/providerPage.queries";
 import Paginations from "../../../shared/components/Pagination";
+import EmptyState from "../../../shared/components/EmptyState";
 
 const PAGE_SIZE = 10;
 
@@ -33,7 +34,7 @@ const PackagesTab = ({ providerId }) => {
   }
 
   if (!packages.length) {
-    return <p className="text-gray-500">{t("providerPage.noPackages")}</p>;
+    return <EmptyState icon={Package} title={t("providerPage.noPackages")} />;
   }
 
   return (
