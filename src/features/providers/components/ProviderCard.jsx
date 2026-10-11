@@ -42,43 +42,54 @@ const ProviderCard = ({ provider }) => {
   const location = provider.city || provider.branchName || provider.governorate;
 
   return (
-    <Link to={`/provider/${provider.providerId}`} className="block h-full">
+    <div className="relative h-full">
+      <Link
+        to={`/provider/${provider.providerId}`}
+        aria-label={provider.providerName}
+        className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main"
+      />
       {/* ================= MOBILE ================= */}
-      <article className="md:hidden flex h-full gap-3 rounded-2xl p-3 border border-gray-200 bg-white">
+      <article className="md:hidden flex h-full items-stretch gap-3 overflow-hidden rounded-2xl border border-gray-200 bg-white">
         {/* Logo */}
-        <div className="shrink-0 self-stretch overflow-hidden rounded-xl h-30 w-30">
+        <div className="relative m-2 me-0 min-h-34 w-34 shrink-0 self-stretch overflow-hidden rounded-xl  ">
           {provider.imageUrl ? (
             <img
               src={provider.imageUrl}
               alt={provider.providerName}
-              className="h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-main/10 text-lg font-bold text-main">
+            <div className="absolute inset-0 flex items-center justify-center bg-main/10 text-lg font-bold text-main">
               {provider.providerName?.charAt(0)}
             </div>
           )}
         </div>
 
         {/* Content */}
-        <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-          {/* Name + category + distance */}
-          <div>
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="line-clamp-1 text-base font-bold text-gray-900">
-                {provider.providerName}
-              </h3>
-              {provider.distanceKm != null && (
-                <span className="flex shrink-0 items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-500">
-                  <Navigation size={11} className="text-main" />
-                  {provider.distanceKm.toFixed(1)} km
-                </span>
-              )}
+        <div className="flex min-w-0 flex-1 flex-col justify-start gap-1.5 py-3 pe-3">
+          {/* Name and reviews aligned at the top */}
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="min-w-0 flex-1 line-clamp-2 text-lg font-bold leading-snug text-gray-900">
+              {provider.providerName}
+            </h3>
+            <div className="inline-flex shrink-0 items-center gap-1 rounded-lg bg-amber-50 px-2 py-1 text-[11px] font-semibold text-amber-900 ring-1 ring-inset ring-amber-100">
+              <Star size={12} className="fill-amber-400 text-amber-400" />
+              <span>{rating.value}</span>
+              <span className="font-normal text-gray-500">({rating.count})</span>
             </div>
+          </div>
 
+          {/* Category and distance labels */}
+          <div className="flex flex-wrap items-center gap-1.5">
             {provider.categoryName && (
-              <span className="mt-1 inline-block rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-main">
+              <span className="inline-flex items-center rounded-md bg-main/10 px-2 py-1 text-[11px] font-semibold leading-tight text-main">
                 {provider.categoryName}
+              </span>
+            )}
+            {provider.distanceKm != null && (
+              <span className="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2 py-1 text-[11px] font-medium leading-tight text-gray-600">
+                <Navigation size={11} className="shrink-0 text-main" />
+                {provider.distanceKm.toFixed(1)} km
               </span>
             )}
           </div>
@@ -91,12 +102,12 @@ const ProviderCard = ({ provider }) => {
             </div>
           )}
 
-          {/* Offers — always reserve space */}
-          <div className="flex min-h-[22px] flex-wrap gap-1.5">
+          {/* Offer labels */}
+          <div className="flex flex-wrap gap-1.5">
             {offers.map((offer) => (
               <span
                 key={offer}
-                className="w-fit rounded-full border border-green-200 bg-green-50 px-2 py-0.5 text-[11px] font-medium text-green-700"
+                className="w-fit rounded-md bg-green-50 px-2 py-1 text-[11px] font-semibold leading-tight text-green-700 ring-1 ring-inset ring-green-100"
               >
                 {offer}
               </span>
@@ -104,12 +115,12 @@ const ProviderCard = ({ provider }) => {
           </div>
 
           {/* Actions — pinned to bottom */}
-          <div className="mt-auto flex items-center justify-end gap-2 pt-1">
+          <div className="relative z-20 mt-auto flex items-center justify-end gap-2 pt-1">
             {provider.hotLine && (
               <a
                 href={`tel:${provider.hotLine}`}
+                aria-label={`Call ${provider.providerName}`}
                 className="rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
-                onClick={(e) => e.stopPropagation()}
               >
                 <Phone size={14} />
               </a>
@@ -121,18 +132,17 @@ const ProviderCard = ({ provider }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
-                onClick={(e) => e.stopPropagation()}
               >
                 <img src={whatsappIcon} alt="WhatsApp" className="h-3.5 w-3.5 grayscale brightness-0 opacity-60 group-hover:brightness-0 group-hover:grayscale group-hover:invert group-hover:opacity-100" />
               </a>
             )}
 
             <a
+              aria-label={`View ${provider.providerName} on Google Maps`}
               href={`https://www.google.com/maps/search/${encodeURIComponent(provider.providerName + " " + (location || ""))}`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
-              onClick={(e) => e.stopPropagation()}
             >
               <MapPin size={14} />
             </a>
@@ -156,35 +166,87 @@ const ProviderCard = ({ provider }) => {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col justify-center p-4">
-          {offers.length > 0 && (
-            <div className="mb-3 flex flex-wrap gap-2">
-              {offers.map((offer) => (
-                <span
-                  key={offer}
-                  className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-600"
-                >
-                  {offer}
-                </span>
-              ))}
-            </div>
-          )}
-
+        <div className="flex flex-1 flex-col p-4">
           <h3 className="text-lg font-semibold text-dark">
             {provider.providerName}
           </h3>
 
-          <p className="mt-1 text-sm text-gray-500">{provider.categoryName}</p>
+          <div className="mt-2 flex items-center gap-2">
+            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-1.5">
+              {provider.categoryName && (
+                <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-semibold leading-tight text-main">
+                  {provider.categoryName}
+                </span>
+              )}
+              {provider.distanceKm != null && (
+                <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
+                  <Navigation size={12} className="shrink-0 text-main" />
+                  {provider.distanceKm.toFixed(1)} km
+                </span>
+              )}
+            </div>
+
+          </div>
+
+
 
           {location && (
-            <div className="mt-auto flex items-center gap-1.5 pt-2 text-sm text-gray-500">
+            <div className="flex items-center gap-1.5 pt-2 text-sm text-gray-500">
               <MapPin size={14} />
               <span>{location}</span>
             </div>
           )}
+
+          <div className="mt-auto flex items-start justify-between gap-2 pt-3">
+            {offers.length > 0 && (
+              <div className="flex min-w-0 flex-1 flex-wrap gap-2">
+                {offers.map((offer) => (
+                  <span
+                    key={offer}
+                    className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-600"
+                  >
+                    {offer}
+                  </span>
+                ))}
+              </div>
+            )}
+            {/* Contact actions beside offers */}
+            <div className="relative z-20 ms-auto flex shrink-0 items-center gap-1.5">
+              {provider.hotLine && (
+                <a
+                  href={`tel:${provider.hotLine}`}
+                  aria-label={`Call ${provider.providerName}`}
+                  className="rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
+                >
+                  <Phone size={14} />
+                </a>
+              )}
+  
+              {provider.hotLine && (
+                <a
+                  href={`https://wa.me/${provider.hotLine.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
+                >
+                  <img src={whatsappIcon} alt="WhatsApp" className="h-3.5 w-3.5 grayscale brightness-0 opacity-60 group-hover:brightness-0 group-hover:grayscale group-hover:invert group-hover:opacity-100" />
+                </a>
+              )}
+  
+              <a
+                aria-label={`View ${provider.providerName} on Google Maps`}
+                href={`https://www.google.com/maps/search/${encodeURIComponent(provider.providerName + " " + (location || ""))}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl border border-gray-200 p-2 text-gray-400 transition-colors hover:border-main hover:bg-main hover:text-white"
+              >
+                <MapPin size={14} />
+              </a>
+            </div>
+          </div>
         </div>
       </article>
-    </Link>
+    </div>
   );
 };
 
