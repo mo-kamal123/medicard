@@ -51,7 +51,7 @@ const ProviderCard = ({ provider }) => {
       {/* ================= MOBILE ================= */}
       <article className="md:hidden flex h-full items-stretch gap-3 overflow-hidden rounded-2xl border border-gray-200 bg-white">
         {/* Logo */}
-        <div className="relative m-2 me-0 min-h-30 w-30 shrink-0 self-stretch overflow-hidden rounded-xl  ">
+        <div className="relative m-2 me-0 min-h-34 w-34 shrink-0 self-stretch overflow-hidden rounded-xl  ">
           {provider.imageUrl ? (
             <img
               src={provider.imageUrl}
@@ -69,7 +69,7 @@ const ProviderCard = ({ provider }) => {
         <div className="flex min-w-0 flex-1 flex-col justify-start gap-1.5 py-3 pe-3">
           {/* Name and reviews aligned at the top */}
           <div className="flex items-start justify-between gap-2">
-            <h3 className="min-w-0 flex-1 line-clamp-2 text-base font-bold leading-snug text-gray-900">
+            <h3 className="min-w-0 flex-1 line-clamp-2 text-lg font-bold leading-snug text-gray-900">
               {provider.providerName}
             </h3>
             <div className="inline-flex shrink-0 items-center gap-1 rounded-lg bg-amber-50 px-2 py-1 text-[11px] font-semibold text-amber-900 ring-1 ring-inset ring-amber-100">
