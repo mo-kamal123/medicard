@@ -32,15 +32,17 @@ const ProvidersFilters = () => {
   const { data: citiesData } = useCities(selectedGov)
   const { data: categoriesData } = useCategoriesQuery()
 
-  /* eslint-disable react-hooks/set-state-in-effect */
+  const paramsKeyRef = useRef(searchParams.toString())
   useEffect(() => {
+    const next = searchParams.toString()
+    if (paramsKeyRef.current === next) return
+    paramsKeyRef.current = next
     setKeyword(searchParams.get("keyword") || "")
     setCategoryId(searchParams.get("categoryId") || "")
     setGovernorateId(searchParams.get("governorateId") || "")
     setCityId(searchParams.get("cityId") || "")
     setSortBy(searchParams.get("sortBy") || "1")
   }, [searchParams])
-  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     return () => clearTimeout(timerRef.current)
